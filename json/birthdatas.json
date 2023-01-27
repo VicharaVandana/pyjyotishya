@@ -1,0 +1,23 @@
+{
+    "shyam bhat": {
+        "DOB": {
+            "year": 1991,
+            "month": 10,
+            "day": 8
+        },
+        "TOB": {
+            "hour": 14,
+            "min": 47,
+            "sec": 9
+        },
+        "POB": {
+            "name": "Honavar",
+            "lat": 74.4439,
+            "lon": 14.2798,
+            "timezone": 5.5
+        },
+        "name": "Shyam Bhat",
+        "Gender": "Male",
+        "Comments": "This is Birth data of creator of this software."
+    }
+}
