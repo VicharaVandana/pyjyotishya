@@ -156,6 +156,17 @@ tithi_names = [ "shukla padyami", "shukla dwitiya", "shukla tritiya", "shukla ch
                 "krishna shashti", "krishna sapthami", "krishna ashtami", "krishna navami", "krishna dashami",
                 "krishna ekadashi", "krishna dwadashi", "krishna trayodashi", "krishna chaturdashi", "amavasya"]
 
+karana_names = ["Kintughna", "Bava", "Balava", "Kaulava", "Taitila", "Gara", "Vanija", "Vishti", "Bava", "Balava", 
+                "Kaulava", "Taitila", "Gara", "Vanija", "Vishti", "Bava", "Balava", "Kaulava", "Taitila", "Gara", 
+                "Vanija", "Vishti", "Bava", "Balava", "Kaulava", "Taitila", "Gara", "Vanija", "Vishti", "Bava", "Balava", 
+                "Gara", "Taitila", "Kaulava", "Vanija", "Vishti", "Bava", "Balava", "Kaulava", "Taitila", "Gara", 
+                "Vanija", "Vishti", "Bava", "Balava", "Kaulava", "Taitila", "Gara", "Vanija", "Vishti", "Bava", 
+                "Balava", "Kaulava", "Taitila", "Gara", "Vanija", "Vishti", "Shakuni", "Chatushpada", "Naga"]
+
+yoga_names = [  "Vaidhriti", "Vishkambha", "Priti", "Ayushman", "Saubhagya", "Shobhana", "Atiganda", "Sukarma", "Dhriti", "Soola", 
+                "Ganda", "Vriddhi", "Dhruva", "Vyaghata", "Harshana", "Vajra", "Siddhi", "Vyatipata", "Variyana", "Parigha", 
+                "Siva", "Siddha", "Sadhya", "Shubha", "Shukla", "Brahma", "Indra" ]
+
 diety_of_nakshatra = dict(zip(nakshatras, nakshatra_dieties))
 ruler_of_nakshatra = dict(zip(nakshatras, nakshatra_rulers))
 lord_of_sign       = dict(zip(signs, signlords))
@@ -185,10 +196,16 @@ def update_miscdata(jd, place, miscdata):
 
     miscdata["vaara"] = vaara_names[panchanga.vaara(jd)-1]
 
-    miscdata["tithi"] = tithi_names[panchanga.tithi(jd,place)[0] - 1]
+    miscdata["tithi"] = tithi_names[panchanga.tithi(jd,place)[0] - 2]
+
+    miscdata["karana"] = karana_names[panchanga.karana(jd,place)[0] - 2]
+
+    miscdata["yoga"] = yoga_names[panchanga.yoga(jd,place)[0] - 1]
+
     print(panchanga.jd_to_gregorian(jd))
     print(place)
     print(panchanga.tithi(jd,place))
+    print(panchanga.karana(jd,place))
 
     return
 
@@ -291,11 +308,15 @@ def compute_conjuncts(division):
     ''' Computes the conjuncted planets of each planet in planet group '''
     planetgroup = division["planets"]
     for planetname in planetgroup:
-        planet = planetgroup[planetname]    #geteach planet sturcuture
+        planet = planetgroup[planetname]    #get each planet sturcuture
         house_no = planet["house-num"]
         for p in division["houses"][house_no - 1]["planets"]:
             planet["conjuncts"].append(p)
-        planet["conjuncts"].remove(planetname)
+        try:
+            planet["conjuncts"].remove(planetname)
+        except:
+            print(f"An exception occurred to remove {planetname}")
+    
     return
 
 def compute_BenMalNeu4lagna(lagna, cls):

@@ -337,6 +337,8 @@ D1 = {"name"            : "Lagna",
                           }
       }
 
+isAstroDataComputed = False
+
 charts = {"D1": D1,
           "user_details" : {"name"  :"",
                             "maasa" :"",
@@ -392,6 +394,26 @@ birthdatastr = { "DOB"  : { "year"     : "2020",
             
 birthdatas = {}
 places = {}
+
+def clearAstroData(charts):
+  charts["D1"]["classifications"] = { "benefics"    : [],
+                                      "malefics"    : [],
+                                      "neutral"     : [],
+                                      "kendra"      : [],
+                                      "trikona"     : [],
+                                      "trik"        : [],
+                                      "upachaya"    : [],
+                                      "dharma"      : [],
+                                      "artha"       : [],
+                                      "kama"        : [],
+                                      "moksha"      : []
+                                    }.copy()
+  charts["D1"]["houses"] = []
+  for key in lagna_planets:
+    lagna_planets[key]["Aspects"] = {"planets":[], "houses":[], "signs":[]}.copy()
+    lagna_planets[key]["Aspected-by"] = []
+    lagna_planets[key]["conjuncts"] = []
+
 
 #if the striong is not a float then returns False. else returns the string as float number
 def isfloat(num):

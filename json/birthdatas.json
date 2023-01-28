@@ -19,5 +19,26 @@
         "name": "Shyam Bhat",
         "Gender": "Male",
         "Comments": "This is Birth data of creator of this software."
+    },
+    "deepa bhat": {
+        "DOB": {
+            "year": 1997,
+            "month": 7,
+            "day": 5
+        },
+        "TOB": {
+            "hour": 8,
+            "min": 40,
+            "sec": 9
+        },
+        "POB": {
+            "name": "Kundgol",
+            "lat": 75.33975,
+            "lon": 15.2306,
+            "timezone": 5.5
+        },
+        "name": "Deepa Bhat",
+        "Gender": "Male",
+        "Comments": "This is Birth data of creator of this software."
     }
 }

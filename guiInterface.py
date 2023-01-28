@@ -69,7 +69,9 @@ def FetchUserInputData_formBirthdata(usrInputTk):
             js.dump_placedatas_injson()
 
         #computing the Lagna chart and other details on that
+        data.clearAstroData(data.charts)
         mod_lagna.compute_lagnaChart_custom(data.birthdata)
+        js.dump_astrodata_injson()
         #creating Lagna chart image
         js.load_drawChartConfig()
         dc.create_chartSVG(data.D1)
@@ -120,7 +122,9 @@ def ClearFormfields(usrInputTk):
     usrInputTk.udVaara["text"]=f'Vaara : '
     usrInputTk.udYoga["text"]=f'Yoga : '
     usrInputTk.udKarana["text"]=f'Karana : '
-    usrInputTk.udRutu["text"]=f'Rutu : '
+    usrInputTk.udRutu["text"]=f''
+
+    data.isAstroDataComputed = False
     return
 
 def FetchBirthdata_updateFormfields(usrInputTk):
@@ -165,7 +169,7 @@ def UpdateUserDetaisinform(usrInputTk):
     usrInputTk.udVaara["text"]=f'Vaara : {data.charts["user_details"]["vaara"]}'
     usrInputTk.udYoga["text"]=f'Yoga : {data.charts["user_details"]["yoga"]}'
     usrInputTk.udKarana["text"]=f'Karana : {data.charts["user_details"]["karana"]}'
-    usrInputTk.udRutu["text"]=f'Rutu : {data.charts["user_details"]["rutu"]}'
+    usrInputTk.udRutu["text"]=f'{data.charts["user_details"]["rutu"]}'
     return
 
 #Read all values in Birth Details in MainWindow and prepare the birthdata dictionary

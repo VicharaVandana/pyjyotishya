@@ -40,7 +40,8 @@ from mod_astrodata import birthdata as bd
 Date = struct("Date", ["year", "month", "day"])
 Place = struct("Place", ["latitude", "longitude", "timezone"])
 
-sidereal_year = 365.256360417   # From WolframAlpha
+sidereal_year = 365.256360417   # From 
+
 
 # namah suryaya chandraya mangalaya ... rahuve ketuve namah
 swe.KETU = swe.PLUTO  # I've mapped Pluto to Ketu
@@ -353,6 +354,7 @@ def compute_lagnaChart_custom(UserBirthData):
   gen.populate_kamaplanets(data.D1) #kama planets
   gen.populate_mokshaplanets(data.D1) #moksha planets
 
+  data.isAstroDataComputed = True
   return
 
 if __name__ == "__main__":

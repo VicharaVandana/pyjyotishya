@@ -8,8 +8,8 @@
             "pos": {
                 "deg": 19,
                 "min": 37,
-                "sec": 31,
-                "dec_deg": 19.625326941851142
+                "sec": 11,
+                "dec_deg": 19.619933787879006
             },
             "nakshatra": "Shravana",
             "pada": 3,
@@ -777,13 +777,14 @@
         }
     },
     "user_details": {
-        "name": "Shyamu",
+        "name": "Shyam Bhat",
         "maasa": "Ashwayuja",
         "vaara": "Tuesday",
-        "tithi": "shukla dwitiya",
-        "karana": "",
+        "tithi": "shukla padyami",
+        "karana": "Bava",
         "nakshatra": "",
-        "yoga": "",
-        "rashi": ""
+        "yoga": "Indra",
+        "rashi": "",
+        "rutu": ""
     }
 }
