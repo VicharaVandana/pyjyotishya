@@ -1,8 +1,11 @@
 from tkinter import *
 from PIL import Image, ImageTk
+from tkinter import ttk 
 
 import mod_astrodata as data
 from tkinter import messagebox
+
+import dashas
 
 CLOSE = False
 OPEN = True
@@ -16,6 +19,7 @@ BG_DEBILITATED = "grey"
 
 gui_D1_window_status = CLOSE
 gui_D1planet_window_status = CLOSE
+gui_VimDasha_window_status = CLOSE
 
 #generic functions
 #Gets Background colour for planet based on sign placement
@@ -195,6 +199,39 @@ def popup_window_D1_closed():
     global gui_D1
     gui_D1_window_status = CLOSE
     gui_D1.destroy()
+
+#Window for Vimshottari Dasha
+def popup_window_VimDasha():
+    global gui_VimDasha_window_status
+    global gui_VimDasha
+    if (gui_VimDasha_window_status == CLOSE): #open new window if not active window of lagna
+        gui_VimDasha = Toplevel()
+        gui_VimDasha.protocol("WM_DELETE_WINDOW", popup_window_VimDasha_closed)
+        name = "Shyam Bhat"
+        gui_VimDasha.title(f'Vimshottari Dasha {name}.')
+        gui_VimDasha.geometry('750x350') 
+        #grid layout  
+        gui_VimDasha.rowconfigure(0, weight=1)  
+        gui_VimDasha.columnconfigure(0, weight=1)  
+        
+        #Tree view  
+        tree = ttk.Treeview(gui_VimDasha)  
+        tree.heading('#0', text = 'Vimshottari Dasha')#, anchor=W) 
+
+        for line in dashas.dashaCodeLines:
+            exec(line)
+
+        tree.pack(fill="both", expand=True)
+        gui_VimDasha_window_status = OPEN
+    else:
+        gui_VimDasha.focus_force()    #Brings focus back to this window
+        #gui_VimDasha.bell()
+
+def popup_window_VimDasha_closed():
+    global gui_VimDasha_window_status
+    global gui_VimDasha
+    gui_VimDasha_window_status = CLOSE
+    gui_VimDasha.destroy()
 
 #Window for table
 class StaticTable:	

@@ -8,6 +8,7 @@ import mod_lagna as mod_lagna
 import mod_astrodata as data
 import mod_json as js
 import mod_drawChart as dc
+import dashas
 
 userlist = []
 
@@ -75,6 +76,8 @@ def FetchUserInputData_formBirthdata(usrInputTk):
         #creating Lagna chart image
         js.load_drawChartConfig()
         dc.create_chartSVG(data.D1)
+
+        dashas.Vimshottari()
 
         #update user details in the form
         UpdateUserDetaisinform(usrInputTk)

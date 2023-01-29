@@ -202,10 +202,10 @@ def update_miscdata(jd, place, miscdata):
 
     miscdata["yoga"] = yoga_names[panchanga.yoga(jd,place)[0] - 1]
 
-    print(panchanga.jd_to_gregorian(jd))
-    print(place)
-    print(panchanga.tithi(jd,place))
-    print(panchanga.karana(jd,place))
+    #print(panchanga.jd_to_gregorian(jd))
+    #print(place)
+    #print(panchanga.tithi(jd,place))
+    #print(panchanga.karana(jd,place))
 
     return
 

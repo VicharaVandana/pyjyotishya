@@ -17,20 +17,24 @@ import mod_lagna as mod_lagna
 import mod_astrodata as data
 import mod_json as js
 import mod_drawChart as dc
+import dashas
+import dymmy as dummy
+
+import json
 
 
 
 def compute_astrodata_charts(focususer):
     data.birthdata = js.get_birthdata(focususer)
-    print(data.birthdata)
+    #print(data.birthdata)
     mod_lagna.compute_lagnaChart_custom(data.birthdata)
     js.load_drawChartConfig()
     dc.create_chartSVG(data.D1)
 
 def compute_astrodata_charts2():
-    focususer = "Shyam Bhat"
+    focususer = "shyam bhat"
     data.birthdata = js.get_birthdata(focususer)
-    print(data.birthdata)
+    #print(data.birthdata)
     mod_lagna.compute_lagnaChart_custom(data.birthdata)
     js.load_drawChartConfig()
     dc.create_chartSVG(data.D1)
@@ -42,12 +46,30 @@ if __name__ == "__main__":
     #print("Updated lagna")
     #print(data.lagna_ascendant)
     print("START")
-    js.load_places()
-    compute_astrodata_charts("Shyamu")
-    myplace = data.birthdata2["POB"]
-    myplaceid = myplace["name"].lower()
-    js.add_place2DB(myplace,myplaceid)
-    js.dump_placedatas_injson()
+    compute_astrodata_charts2()
+    dashas.Vimshottari()
+    f = open("./json/vimshottari.txt", "w")
+    for item in dashas.dashaStrings:
+        f.write(item)
+        f.write("\n")
+    f.close()
+
+    f = open("vimshottaricode.txt", "w")
+    for item in dashas.dashaCodeLines:
+        f.write(item)
+        f.write("\n")
+    f.close()
+
+    dummy.updatetable(dashas.dashaCodeLines)
+    #with open('./json/vimshottari.json', 'w') as jsonfile:
+        #json.dump((dashas.vimshottariDasha), jsonfile, indent=4)
+    
+    #js.load_places()
+    #compute_astrodata_charts("Shyamu")
+    #myplace = data.birthdata2["POB"]
+    #myplaceid = myplace["name"].lower()
+    #js.add_place2DB(myplace,myplaceid)
+    #js.dump_placedatas_injson()
     #print(data.lagna_planets["Sun"])
     #print(data.D1["houses"])
     js.dump_astrodata_injson()

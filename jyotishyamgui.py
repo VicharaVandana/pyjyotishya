@@ -835,6 +835,7 @@ class Toplevel1:
 
         #manual addition parts
         self.btnD1.configure(command=lambda: popup_window_D1("Shyam Bhat", 'images/Lagna_chart.png'))
+        self.btnD4.configure(command=lambda: popup_window_VimDasha())
         self.btnPlanetTable.configure(command=lambda: popup_window_D1PlanetDetails())
         self.btnSubmitUserDetails.configure(command=lambda: FetchUserInputData_formBirthdata(self))
         self.btnFetchPlaceDetails.configure(command=lambda: FetchPlacedata_updateFormfields(self))
