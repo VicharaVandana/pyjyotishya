@@ -178,6 +178,9 @@ def resize_image(event, arg):
 def popup_window_D1(name,imagepath):
     global gui_D1_window_status
     global gui_D1
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
     if (gui_D1_window_status == CLOSE): #open new window if not active window of lagna
         gui_D1 = Toplevel()
         gui_D1.protocol("WM_DELETE_WINDOW", popup_window_D1_closed)
@@ -193,17 +196,22 @@ def popup_window_D1(name,imagepath):
     else:
         gui_D1.focus_force()    #Brings focus back to this window
         #gui_D1.bell()
+    return
 
 def popup_window_D1_closed():
     global gui_D1_window_status
     global gui_D1
     gui_D1_window_status = CLOSE
     gui_D1.destroy()
+    return
 
 #Window for Vimshottari Dasha
 def popup_window_VimDasha():
     global gui_VimDasha_window_status
     global gui_VimDasha
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
     if (gui_VimDasha_window_status == CLOSE): #open new window if not active window of lagna
         gui_VimDasha = Toplevel()
         gui_VimDasha.protocol("WM_DELETE_WINDOW", popup_window_VimDasha_closed)
