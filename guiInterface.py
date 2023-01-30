@@ -71,6 +71,7 @@ def FetchUserInputData_formBirthdata(usrInputTk):
 
         #computing the Lagna chart and other details on that
         data.clearAstroData(data.charts)
+        dashas.clearDashaDetails()
         mod_lagna.compute_lagnaChart_custom(data.birthdata)
         js.dump_astrodata_injson()
         #creating Lagna chart image
@@ -104,6 +105,7 @@ def FetchPlacedata_updateFormfields(usrInputTk):
 
 def ClearFormfields(usrInputTk):
     usrInputTk.cmbName.delete(0,END)
+    usrInputTk.cmbGender.set('')
     usrInputTk.yyyy.delete(0,END)
     usrInputTk.mm.delete(0,END)
     usrInputTk.dd.delete(0,END)
@@ -138,6 +140,14 @@ def FetchBirthdata_updateFormfields(usrInputTk):
     else:   #user birth details fetched. Now update it in form
         usrInputTk.cmbName.delete(0,END)
         usrInputTk.cmbName.insert(0,l_birthdata["name"])
+        
+        if(l_birthdata["Gender"] == "Male"):
+            usrInputTk.cmbGender.current(0)
+        elif(l_birthdata["Gender"] == "Female"):
+            usrInputTk.cmbGender.current(1)
+        else:
+            usrInputTk.cmbGender.current(2)
+
         usrInputTk.yyyy.delete(0,END)
         usrInputTk.yyyy.insert(0,l_birthdata["DOB"]["year"])
         usrInputTk.mm.delete(0,END)
@@ -178,6 +188,7 @@ def UpdateUserDetaisinform(usrInputTk):
 #Read all values in Birth Details in MainWindow and prepare the birthdata dictionary
 def PopulateBirthdatastr4mUserInput(usrInputTk):
     data.birthdatastr["name"] = usrInputTk.cmbName.get()
+    data.birthdatastr["Gender"] = usrInputTk.cmbGender.get()
     data.birthdatastr["DOB"]["year"] = usrInputTk.yyyy.get()
     data.birthdatastr["DOB"]["month"] = usrInputTk.mm.get()
     data.birthdatastr["DOB"]["day"] = usrInputTk.dd.get()
@@ -185,8 +196,8 @@ def PopulateBirthdatastr4mUserInput(usrInputTk):
     data.birthdatastr["TOB"]["min"] = usrInputTk.mn.get()
     data.birthdatastr["TOB"]["sec"] = usrInputTk.ss.get()
     data.birthdatastr["POB"]["name"] = usrInputTk.Place.get()
-    data.birthdatastr["POB"]["lon"] = usrInputTk.lon.get()
-    data.birthdatastr["POB"]["lat"] = usrInputTk.lat.get()
+    data.birthdatastr["POB"]["lon"] = usrInputTk.lat.get()
+    data.birthdatastr["POB"]["lat"] = usrInputTk.lon.get()
     data.birthdatastr["POB"]["timezone"] = usrInputTk.timezone.get()
     #data.birthdata["TOB"]["hour"] = usrInputTk.hh.delete(0,END)
     ##data.birthdata["TOB"]["hour"] = usrInputTk.hh.insert(0,"14")

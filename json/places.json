@@ -133,14 +133,14 @@
     },
     "honavar": {
         "name": "Honavar",
-        "lat": 74.4439,
-        "lon": 14.2798,
+        "lon": 74.4439,
+        "lat": 14.2798,
         "timezone": 5.5
     },
     "kundgol": {
         "name": "Kundgol",
-        "lat": 75.33975,
-        "lon": 15.2306,
+        "lon": 75.33975,
+        "lat": 15.2306,
         "timezone": 5.5
     },
     "darmstadt": {
@@ -49720,5 +49720,11 @@
         "lat": 41.73212,
         "lon": 12.27654,
         "timezone": 1.0
+    },
+    "dfgb": {
+        "name": "dfgb",
+        "lat": 74.0,
+        "lon": 14.0,
+        "timezone": 5.0
     }
 }

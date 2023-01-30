@@ -371,7 +371,7 @@ birthdata = { "DOB"     : { "year"     : 2020,
                           },
               "name"    : "Shyam Bhat",
               "Gender"  : c.MALE,  
-              "Comments": "This is Birth data of creator of this software."
+              "Comments": ""
             }
 birthdatastr = { "DOB"  : { "year"     : "2020",
                             "month"    : "10",
@@ -409,6 +409,7 @@ def clearAstroData(charts):
                                       "moksha"      : []
                                     }.copy()
   charts["D1"]["houses"] = []
+  
   for key in lagna_planets:
     lagna_planets[key]["Aspects"] = {"planets":[], "houses":[], "signs":[]}.copy()
     lagna_planets[key]["Aspected-by"] = []
@@ -505,8 +506,13 @@ def validate_birthdatastr2birthdata():
       return ("Timezone field must be a number (+ve or -ve with or without decimal point)")
     if (((l_tz%0.5)==0) == False):
       return ("Timezone field must be in hour format with steps of 30 min (30 min would be 0.5 hours)")
+    #check for Gender -> must be a non empty string
+    l_gender = birthdatastr["Gender"]
+    if (len(l_gender.strip()) == 0):
+      return ("Gender field cant be empty")
     #All fields are proper. So update birthdata
     birthdata["name"] = l_name.strip()
+    birthdata["Gender"] = l_gender.strip()
     birthdata["DOB"]["year"] = int(l_year)
     birthdata["DOB"]["month"] = int(l_month) 
     birthdata["DOB"]["day"] = int(l_day)

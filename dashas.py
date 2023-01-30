@@ -122,10 +122,55 @@ paryantardashaPlanetEntry = {
                         }
 dashaStrings = []
 dashaCodeLines = []
+
+def clearDashaDetails():
+    global dashaStrings
+    global dashaCodeLines
+    global vimshottariDasha
+    global mahadashaPlanetEntry
+    global antardashaPlanetEntry
+    global paryantardashaPlanetEntry
+    dashaStrings = []
+    dashaCodeLines = []
+    vimshottariDasha = []
+    mahadashaPlanetEntry = {
+                            "name": "",
+                            "startDate": datetime(year=1, month=1, day=1, hour=0, minute=0, second=0),
+                            "endDate": datetime(year=1, month=1, day=1, hour=0, minute=0, second=0),
+                            "entryString": "",
+                            "level": "mahadasha",
+                            "sublevel": "antardasha",
+                            "antardasha" : []   #contains array of Antardasha planet entries
+                            }.copy()
+    antardashaPlanetEntry = {
+                            "name": "",
+                            "startDate": datetime(year=1, month=1, day=1, hour=0, minute=0, second=0),
+                            "endDate": datetime(year=1, month=1, day=1, hour=0, minute=0, second=0),
+                            "entryString": "",
+                            "level": "antardasha",
+                            "sublevel": "paryantardasha",
+                            "paryantardasha" : []   #contains array of paryantardasha planet entries
+                            }.copy()
+    paryantardashaPlanetEntry = {
+                            "name": "",
+                            "startDate": datetime(year=1, month=1, day=1, hour=0, minute=0, second=0),
+                            "endDate": datetime(year=1, month=1, day=1, hour=0, minute=0, second=0),
+                            "entryString": "",
+                            "level": "paryantardasha",
+                            "sublevel": "sookshma-antardasha",
+                            #"paryantardasha" : []   #contains array of paryantardasha planet entries
+                            }.copy()
+    return
 def computeVimshottariDasha(lngsecondsMoon, nakshatraLord, birthDate):
+    global dashaStrings
+    global dashaCodeLines
+    global vimshottariDasha
+    global mahadashaPlanetEntry
+    global antardashaPlanetEntry
+    global paryantardashaPlanetEntry
     idcnt = 0
     l_DashaStartDate = computeStartDate_FirstDashaLord(lngsecondsMoon, nakshatraLord, birthDate)
-    print(f'start date is :{l_DashaStartDate}')
+    #print(f'start date is :{l_DashaStartDate}')
     l_firstPlanet = nakshatraLord
     l_wholeDuration = relativedelta(years=120)  #whole vimshottari dasha is for 120 years
     #compute Vimshottari table

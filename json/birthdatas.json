@@ -12,8 +12,8 @@
         },
         "POB": {
             "name": "Honavar",
-            "lat": 74.4439,
-            "lon": 14.2798,
+            "lon": 74.4439,
+            "lat": 14.2798,
             "timezone": 5.5
         },
         "name": "Shyam Bhat",
@@ -33,12 +33,33 @@
         },
         "POB": {
             "name": "Kundgol",
-            "lat": 75.33975,
-            "lon": 15.2306,
+            "lon": 75.33975,
+            "lat": 15.2306,
             "timezone": 5.5
         },
         "name": "Deepa Bhat",
-        "Gender": "Male",
-        "Comments": "This is Birth data of creator of this software."
+        "Gender": "Female",
+        "Comments": ""
+    },
+    "ayushi soraganvi": {
+        "DOB": {
+            "year": 2021,
+            "month": 7,
+            "day": 14
+        },
+        "TOB": {
+            "hour": 13,
+            "min": 53,
+            "sec": 52
+        },
+        "POB": {
+            "name": "Ottawa",
+            "lat": 45.41117,
+            "lon": -75.69812,
+            "timezone": -4.0
+        },
+        "name": "Ayushi Soraganvi",
+        "Gender": "Female",
+        "Comments": ""
     }
 }
