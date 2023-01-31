@@ -61,5 +61,26 @@
         "name": "Ayushi Soraganvi",
         "Gender": "Female",
         "Comments": ""
+    },
+    "mythri shridhar friend": {
+        "DOB": {
+            "year": 1998,
+            "month": 4,
+            "day": 1
+        },
+        "TOB": {
+            "hour": 23,
+            "min": 40,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Bangalore",
+            "lat": 77.59369,
+            "lon": 12.97194,
+            "timezone": 5.5
+        },
+        "name": "Mythri Shridhar friend",
+        "Gender": "Female",
+        "Comments": ""
     }
 }

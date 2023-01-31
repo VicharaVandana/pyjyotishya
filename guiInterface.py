@@ -140,7 +140,7 @@ def FetchBirthdata_updateFormfields(usrInputTk):
     else:   #user birth details fetched. Now update it in form
         usrInputTk.cmbName.delete(0,END)
         usrInputTk.cmbName.insert(0,l_birthdata["name"])
-        
+
         if(l_birthdata["Gender"] == "Male"):
             usrInputTk.cmbGender.current(0)
         elif(l_birthdata["Gender"] == "Female"):
@@ -163,9 +163,9 @@ def FetchBirthdata_updateFormfields(usrInputTk):
         usrInputTk.Place.delete(0,END)
         usrInputTk.Place.insert(0,l_birthdata["POB"]["name"])
         usrInputTk.lon.delete(0,END)
-        usrInputTk.lon.insert(0,str(l_birthdata["POB"]["lon"]))
+        usrInputTk.lon.insert(0,str(l_birthdata["POB"]["lat"]))
         usrInputTk.lat.delete(0,END)
-        usrInputTk.lat.insert(0,str(l_birthdata["POB"]["lat"]))
+        usrInputTk.lat.insert(0,str(l_birthdata["POB"]["lon"]))
         usrInputTk.timezone.delete(0,END)
         usrInputTk.timezone.insert(0,str(l_birthdata["POB"]["timezone"]))
     return
