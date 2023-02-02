@@ -18,7 +18,9 @@ BG_ENEMYSIGN = "orange"
 BG_DEBILITATED = "grey"
 
 gui_D1_window_status = CLOSE
-gui_D1planet_window_status = CLOSE
+gui_D9_window_status = CLOSE
+gui_D10_window_status = CLOSE
+gui_planetTable_window_status = CLOSE
 gui_VimDasha_window_status = CLOSE
 
 #generic functions
@@ -205,6 +207,68 @@ def popup_window_D1_closed():
     gui_D1.destroy()
     return
 
+#functions for Navamsa chart gui window
+def popup_window_D9(name,imagepath):
+    global gui_D9_window_status
+    global gui_D9
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D9_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D9 = Toplevel()
+        gui_D9.protocol("WM_DELETE_WINDOW", popup_window_D9_closed)
+        gui_D9.title(f'Navamsa chart of {name}.')
+        gui_D9.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D9 = ImageTk.PhotoImage(image)
+        label = Label(gui_D9, image = photo_D9)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D9_window_status = OPEN
+    else:
+        gui_D9.focus_force()    #Brings focus back to this window
+        #gui_D9.bell()
+    return
+
+def popup_window_D9_closed():
+    global gui_D9_window_status
+    global gui_D9
+    gui_D9_window_status = CLOSE
+    gui_D9.destroy()
+    return
+
+#functions for Dasamsa chart gui window
+def popup_window_D10(name,imagepath):
+    global gui_D10_window_status
+    global gui_D10
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D10_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D10 = Toplevel()
+        gui_D10.protocol("WM_DELETE_WINDOW", popup_window_D10_closed)
+        gui_D10.title(f'Dasamsa chart of {name}.')
+        gui_D10.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D10 = ImageTk.PhotoImage(image)
+        label = Label(gui_D10, image = photo_D10)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D10_window_status = OPEN
+    else:
+        gui_D10.focus_force()    #Brings focus back to this window
+        #gui_D10.bell()
+    return
+
+def popup_window_D10_closed():
+    global gui_D10_window_status
+    global gui_D10
+    gui_D10_window_status = CLOSE
+    gui_D10.destroy()
+    return
+
 #Window for Vimshottari Dasha
 def popup_window_VimDasha():
     global gui_VimDasha_window_status
@@ -282,27 +346,28 @@ def PopulatePlanetData(planetdata, lagnadata):
     D1PlanetsData.append((l_plt,f'{round(planetdata[l_plt]["pos"]["dec_deg"], 3)}',planetdata[l_plt]["house-num"],planetdata[l_plt]["sign"],planetdata[l_plt]["dispositor"],planetdata[l_plt]["nakshatra"],planetdata[l_plt]["nak-ruler"],get_bgClr(planetdata[l_plt]), "black", "Heading"))
     return
 
-def popup_window_D1PlanetDetails():
-    global gui_D1planet_window_status
+def popup_window_D1PlanetDetails(usrInputTk):
+    global gui_planetTable_window_status
     global gui_D1PlanetDetails
     if(data.isAstroDataComputed == False):
         messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
         return
-    if (gui_D1planet_window_status == CLOSE): #open new window if not active window of lagna
-        PopulatePlanetData(data.D1["planets"], data.lagna_ascendant)
+    if (gui_planetTable_window_status == CLOSE): #open new window if not active window of lagna
+        #PopulatePlanetData(data.D1["planets"], data.lagna_ascendant)
+        PopulatePlanetData(data.charts[usrInputTk.cmbVarga.get()]["planets"], data.charts[usrInputTk.cmbVarga.get()]["ascendant"])
         gui_D1PlanetDetails = Toplevel()
         gui_D1PlanetDetailstable = StaticTable(gui_D1PlanetDetails, D1PlanetsData)
         gui_D1PlanetDetails.protocol("WM_DELETE_WINDOW", popup_window_D1PlanetDetails_closed)
         gui_D1PlanetDetails.title(f'Planetary details of Lagna chart.')
-        gui_D1planet_window_status = OPEN
+        gui_planetTable_window_status = OPEN
     else:
         gui_D1PlanetDetails.focus_force()    #Brings focus back to this window
         #gui_D1PlanetDetails.bell()
     return
 
 def popup_window_D1PlanetDetails_closed():
-    global gui_D1planet_window_status
-    gui_D1planet_window_status = CLOSE
+    global gui_planetTable_window_status
+    gui_planetTable_window_status = CLOSE
     gui_D1PlanetDetails.destroy()
     return
 

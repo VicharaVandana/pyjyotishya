@@ -210,8 +210,8 @@ def update_miscdata(jd, place, miscdata):
     return
 
 def housediff(fromsign, tosign):
-  ''' Computes how many houses is difference between froimsign to to sign
-      This function is sed to compute housenumber for planets too '''
+  ''' Computes how many houses is difference between from fromsign to tosign
+      This function is used to compute housenumber for planets too '''
   if(tosign > fromsign):
     house = tosign - fromsign + 1
   elif(tosign < fromsign):

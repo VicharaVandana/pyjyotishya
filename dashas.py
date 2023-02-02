@@ -266,13 +266,13 @@ def computeSubPeriods(startdate,firstPlanet,wholeDuration, level, birthday):
         l_focusplanet = dashaVimshottariSkeleton[l_focusplanet]["next-dasha"]
     return(l_SubPeriods)
 
-def Vimshottari():
-    moonlngsec = (((signnum(data.lagna_moon["sign"])) * 30 * 3600) + 
-                  ((data.lagna_moon["pos"]["deg"]) * 3600) + 
-                  ((data.lagna_moon["pos"]["min"]) * 60) + 
-                  (data.lagna_moon["pos"]["sec"]))
+def Vimshottari(division):
+    moonlngsec = (((signnum(division["planets"]["Moon"]["sign"])-1) * 30 * 3600) + 
+                  ((division["planets"]["Moon"]["pos"]["deg"]) * 3600) + 
+                  ((division["planets"]["Moon"]["pos"]["min"]) * 60) + 
+                  (division["planets"]["Moon"]["pos"]["sec"]))
 
-    nakshatraLord = data.lagna_moon["nak-ruler"]
+    nakshatraLord = division["planets"]["Moon"]["nak-ruler"]
 
     bdaytime = datetime(year=data.birthdata["DOB"]["year"], 
                         month=data.birthdata["DOB"]["month"], 
@@ -286,7 +286,7 @@ def Vimshottari():
     return
 
 if __name__ == "__main__":
-    moonlngsec = (((signnum(data.lagna_moon["sign"])) * 30 * 3600) + 
+    moonlngsec = (((signnum(data.lagna_moon["sign"])-1) * 30 * 3600) + 
                   ((data.lagna_moon["pos"]["deg"]) * 3600) + 
                   ((data.lagna_moon["pos"]["min"]) * 60) + 
                   (data.lagna_moon["pos"]["sec"]))

@@ -49726,5 +49726,11 @@
         "lat": 74.0,
         "lon": 14.0,
         "timezone": 5.0
+    },
+    "madikeri": {
+        "name": "madikeri",
+        "lat": 75.7476,
+        "lon": 12.4272,
+        "timezone": 5.5
     }
 }

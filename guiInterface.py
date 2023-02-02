@@ -4,7 +4,8 @@ from tkinter import messagebox
 
 #local modules import
 import mod_constants as c
-import mod_lagna as mod_lagna
+import mod_lagna 
+import mod_divisional as varga
 import mod_astrodata as data
 import mod_json as js
 import mod_drawChart as dc
@@ -30,7 +31,6 @@ def update_cmbbox(event):
     populateCombobox(event.widget, data)
     return
    
-
 
 #Get the userlist in Database [birthdatas.json]
 def getUserList():
@@ -73,12 +73,16 @@ def FetchUserInputData_formBirthdata(usrInputTk):
         data.clearAstroData(data.charts)
         dashas.clearDashaDetails()
         mod_lagna.compute_lagnaChart_custom(data.birthdata)
+        varga.compute_Dx_4m_D1(data.charts,"D9")
+        varga.compute_Dx_4m_D1(data.charts,"D10")
         js.dump_astrodata_injson()
         #creating Lagna chart image
         js.load_drawChartConfig()
         dc.create_chartSVG(data.D1)
+        dc.create_chartSVG(data.D9)
+        dc.create_chartSVG(data.D10)
 
-        dashas.Vimshottari()
+        dashas.Vimshottari(data.charts[usrInputTk.cmbVarga.get()])
 
         #update user details in the form
         UpdateUserDetaisinform(usrInputTk)

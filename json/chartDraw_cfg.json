@@ -22,5 +22,5 @@
                         "karchbhav"    : "black"
                      },
     "template"  :   "north-square-classic",
-    "aspect-visibility"  : true
+    "aspect-visibility"  : false
 }

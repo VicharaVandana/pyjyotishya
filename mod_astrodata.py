@@ -337,9 +337,47 @@ D1 = {"name"            : "Lagna",
                           }
       }
 
+
+
+D9 = {"name"            : "Navamsa",
+      "symbol"          : "D9",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D10 = {"name"            : "Dasamsa",
+      "symbol"          : "D10",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
 isAstroDataComputed = False
 
 charts = {"D1": D1,
+          "D9": D9,
+          "D10":D10,
           "user_details" : {"name"  :"",
                             "maasa" :"",
                             "vaara" : "",
