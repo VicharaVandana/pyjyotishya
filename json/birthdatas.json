@@ -124,5 +124,47 @@
         "name": "Bipin",
         "Gender": "Male",
         "Comments": ""
+    },
+    "akshata gm": {
+        "DOB": {
+            "year": 1992,
+            "month": 9,
+            "day": 12
+        },
+        "TOB": {
+            "hour": 8,
+            "min": 15,
+            "sec": 0
+        },
+        "POB": {
+            "name": "saundatti",
+            "lat": 75.1253,
+            "lon": 15.7522,
+            "timezone": 5.5
+        },
+        "name": "Akshata GM",
+        "Gender": "Female",
+        "Comments": ""
+    },
+    "mahantesh akshu anna": {
+        "DOB": {
+            "year": 1982,
+            "month": 11,
+            "day": 30
+        },
+        "TOB": {
+            "hour": 23,
+            "min": 30,
+            "sec": 0
+        },
+        "POB": {
+            "name": "kittur",
+            "lat": 74.7885,
+            "lon": 15.5988,
+            "timezone": 5.5
+        },
+        "name": "Mahantesh Akshu anna",
+        "Gender": "Male",
+        "Comments": ""
     }
 }

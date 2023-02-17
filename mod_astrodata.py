@@ -373,11 +373,245 @@ D10 = {"name"            : "Dasamsa",
                           }
       }
 
+D2 = {"name"            : "Hora",
+      "symbol"          : "D2",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D3 = {"name"            : "Drekkana",
+      "symbol"          : "D3",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D4 = {"name"            : "Chaturtamsa",
+      "symbol"          : "D4",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D7 = {"name"            : "Saptamsa",
+      "symbol"          : "D7",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D12 = {"name"            : "Dwadasamsa",
+      "symbol"          : "D12",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D16 = {"name"            : "Shodasamsa",
+      "symbol"          : "D16",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D20 = {"name"            : "Vimsamsa",
+      "symbol"          : "D20",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D24 = {"name"            : "Chaturvimsamsa",
+      "symbol"          : "D24",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D27 = {"name"            : "Saptavimsamsa",
+      "symbol"          : "D27",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D30 = {"name"            : "Trimsamsa",
+      "symbol"          : "D30",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D40 = {"name"            : "Khavedamsa",
+      "symbol"          : "D40",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D45 = {"name"            : "Akshavedamsa",
+      "symbol"          : "D45",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
+D60 = {"name"            : "Shashtiamsa",
+      "symbol"          : "D60",
+      "houses"          : [],
+      "classifications" : { "benefics"    : [],
+                            "malefics"    : [],
+                            "neutral"     : [],
+                            "kendra"      : [],
+                            "trikona"     : [],
+                            "trik"        : [],
+                            "upachaya"    : [],
+                            "dharma"      : [],
+                            "artha"       : [],
+                            "kama"        : [],
+                            "moksha"      : []
+                          }
+      }
+
 isAstroDataComputed = False
 
 charts = {"D1": D1,
           "D9": D9,
           "D10":D10,
+          "D2":D2,
+          "D3":D3,
+          "D4":D4,
+          "D7":D7,
+          "D12":D12,
+          "D16":D16,
+          "D20":D20,
+          "D24":D24,
+          "D27":D27,
+          "D30":D30,
+          "D40":D40,
+          "D45":D45,
+          "D60":D60,
           "user_details" : {"name"  :"",
                             "maasa" :"",
                             "vaara" : "",

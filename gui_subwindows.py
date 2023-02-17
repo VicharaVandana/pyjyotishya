@@ -20,6 +20,19 @@ BG_DEBILITATED = "grey"
 gui_D1_window_status = CLOSE
 gui_D9_window_status = CLOSE
 gui_D10_window_status = CLOSE
+gui_D2_window_status = CLOSE
+gui_D3_window_status = CLOSE
+gui_D4_window_status = CLOSE
+gui_D7_window_status = CLOSE
+gui_D12_window_status = CLOSE
+gui_D16_window_status = CLOSE
+gui_D20_window_status = CLOSE
+gui_D24_window_status = CLOSE
+gui_D27_window_status = CLOSE
+gui_D30_window_status = CLOSE
+gui_D40_window_status = CLOSE
+gui_D45_window_status = CLOSE
+gui_D60_window_status = CLOSE
 gui_planetTable_window_status = CLOSE
 gui_VimDasha_window_status = CLOSE
 
@@ -268,6 +281,409 @@ def popup_window_D10_closed():
     gui_D10_window_status = CLOSE
     gui_D10.destroy()
     return
+
+#functions for Hora chart gui window
+def popup_window_D2(name,imagepath):
+    global gui_D2_window_status
+    global gui_D2
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D2_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D2 = Toplevel()
+        gui_D2.protocol("WM_DELETE_WINDOW", popup_window_D2_closed)
+        gui_D2.title(f'Hora chart of {name}.')
+        gui_D2.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D2 = ImageTk.PhotoImage(image)
+        label = Label(gui_D2, image = photo_D2)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D2_window_status = OPEN
+    else:
+        gui_D2.focus_force()    #Brings focus back to this window
+        #gui_D2.bell()
+    return
+
+def popup_window_D2_closed():
+    global gui_D2_window_status
+    global gui_D2
+    gui_D2_window_status = CLOSE
+    gui_D2.destroy()
+    return
+
+#functions for Drekkana chart gui window
+def popup_window_D3(name,imagepath):
+    global gui_D3_window_status
+    global gui_D3
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D3_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D3 = Toplevel()
+        gui_D3.protocol("WM_DELETE_WINDOW", popup_window_D3_closed)
+        gui_D3.title(f'Drekkana chart of {name}.')
+        gui_D3.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D3 = ImageTk.PhotoImage(image)
+        label = Label(gui_D3, image = photo_D3)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D3_window_status = OPEN
+    else:
+        gui_D3.focus_force()    #Brings focus back to this window
+        #gui_D3.bell()
+    return
+
+def popup_window_D3_closed():
+    global gui_D3_window_status
+    global gui_D3
+    gui_D3_window_status = CLOSE
+    gui_D3.destroy()
+    return
+
+#functions for Chaturtamsa chart gui window
+def popup_window_D4(name,imagepath):
+    global gui_D4_window_status
+    global gui_D4
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D4_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D4 = Toplevel()
+        gui_D4.protocol("WM_DELETE_WINDOW", popup_window_D4_closed)
+        gui_D4.title(f'Chaturtamsa chart of {name}.')
+        gui_D4.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D4 = ImageTk.PhotoImage(image)
+        label = Label(gui_D4, image = photo_D4)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D4_window_status = OPEN
+    else:
+        gui_D4.focus_force()    #Brings focus back to this window
+        #gui_D4.bell()
+    return
+
+def popup_window_D4_closed():
+    global gui_D4_window_status
+    global gui_D4
+    gui_D4_window_status = CLOSE
+    gui_D4.destroy()
+    return
+
+#functions for Saptamsa chart gui window
+def popup_window_D7(name,imagepath):
+    global gui_D7_window_status
+    global gui_D7
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D7_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D7 = Toplevel()
+        gui_D7.protocol("WM_DELETE_WINDOW", popup_window_D7_closed)
+        gui_D7.title(f'Saptamsa chart of {name}.')
+        gui_D7.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D7 = ImageTk.PhotoImage(image)
+        label = Label(gui_D7, image = photo_D7)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D7_window_status = OPEN
+    else:
+        gui_D7.focus_force()    #Brings focus back to this window
+        #gui_D7.bell()
+    return
+
+def popup_window_D7_closed():
+    global gui_D7_window_status
+    global gui_D7
+    gui_D7_window_status = CLOSE
+    gui_D7.destroy()
+    return
+
+#functions for Dwadasamsa chart gui window
+def popup_window_D12(name,imagepath):
+    global gui_D12_window_status
+    global gui_D12
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D12_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D12 = Toplevel()
+        gui_D12.protocol("WM_DELETE_WINDOW", popup_window_D12_closed)
+        gui_D12.title(f'Dwadasamsa chart of {name}.')
+        gui_D12.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D12 = ImageTk.PhotoImage(image)
+        label = Label(gui_D12, image = photo_D12)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D12_window_status = OPEN
+    else:
+        gui_D12.focus_force()    #Brings focus back to this window
+        #gui_D12.bell()
+    return
+
+def popup_window_D12_closed():
+    global gui_D12_window_status
+    global gui_D12
+    gui_D12_window_status = CLOSE
+    gui_D12.destroy()
+    return
+
+#functions for Shodasamsa chart gui window
+def popup_window_D16(name,imagepath):
+    global gui_D16_window_status
+    global gui_D16
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D16_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D16 = Toplevel()
+        gui_D16.protocol("WM_DELETE_WINDOW", popup_window_D16_closed)
+        gui_D16.title(f'Shodasamsa chart of {name}.')
+        gui_D16.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D16 = ImageTk.PhotoImage(image)
+        label = Label(gui_D16, image = photo_D16)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D16_window_status = OPEN
+    else:
+        gui_D16.focus_force()    #Brings focus back to this window
+        #gui_D16.bell()
+    return
+
+def popup_window_D16_closed():
+    global gui_D16_window_status
+    global gui_D16
+    gui_D16_window_status = CLOSE
+    gui_D16.destroy()
+    return   
+
+#functions for Vimsamsa chart gui window
+def popup_window_D20(name,imagepath):
+    global gui_D20_window_status
+    global gui_D20
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D20_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D20 = Toplevel()
+        gui_D20.protocol("WM_DELETE_WINDOW", popup_window_D20_closed)
+        gui_D20.title(f'Vimsamsa chart of {name}.')
+        gui_D20.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D20 = ImageTk.PhotoImage(image)
+        label = Label(gui_D20, image = photo_D20)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D20_window_status = OPEN
+    else:
+        gui_D20.focus_force()    #Brings focus back to this window
+        #gui_D20.bell()
+    return
+
+def popup_window_D20_closed():
+    global gui_D20_window_status
+    global gui_D20
+    gui_D20_window_status = CLOSE
+    gui_D20.destroy()
+    return   
+
+#functions for ChaturVimsamsa chart gui window
+def popup_window_D24(name,imagepath):
+    global gui_D24_window_status
+    global gui_D24
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D24_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D24 = Toplevel()
+        gui_D24.protocol("WM_DELETE_WINDOW", popup_window_D24_closed)
+        gui_D24.title(f'ChaturVimsamsa chart of {name}.')
+        gui_D24.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D24 = ImageTk.PhotoImage(image)
+        label = Label(gui_D24, image = photo_D24)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D24_window_status = OPEN
+    else:
+        gui_D24.focus_force()    #Brings focus back to this window
+        #gui_D24.bell()
+    return
+
+def popup_window_D24_closed():
+    global gui_D24_window_status
+    global gui_D24
+    gui_D24_window_status = CLOSE
+    gui_D24.destroy()
+    return   
+
+#functions for SaptaVimsamsa chart gui window
+def popup_window_D27(name,imagepath):
+    global gui_D27_window_status
+    global gui_D27
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D27_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D27 = Toplevel()
+        gui_D27.protocol("WM_DELETE_WINDOW", popup_window_D27_closed)
+        gui_D27.title(f'SaptaVimsamsa chart of {name}.')
+        gui_D27.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D27 = ImageTk.PhotoImage(image)
+        label = Label(gui_D27, image = photo_D27)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D27_window_status = OPEN
+    else:
+        gui_D27.focus_force()    #Brings focus back to this window
+        #gui_D27.bell()
+    return
+
+def popup_window_D27_closed():
+    global gui_D27_window_status
+    global gui_D27
+    gui_D27_window_status = CLOSE
+    gui_D27.destroy()
+    return   
+
+#functions for Trimsamsa chart gui window
+def popup_window_D30(name,imagepath):
+    global gui_D30_window_status
+    global gui_D30
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D30_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D30 = Toplevel()
+        gui_D30.protocol("WM_DELETE_WINDOW", popup_window_D30_closed)
+        gui_D30.title(f'Trimsamsa chart of {name}.')
+        gui_D30.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D30 = ImageTk.PhotoImage(image)
+        label = Label(gui_D30, image = photo_D30)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D30_window_status = OPEN
+    else:
+        gui_D30.focus_force()    #Brings focus back to this window
+        #gui_D30.bell()
+    return
+
+def popup_window_D30_closed():
+    global gui_D30_window_status
+    global gui_D30
+    gui_D30_window_status = CLOSE
+    gui_D30.destroy()
+    return   
+
+#functions for Khavedamsa chart gui window
+def popup_window_D40(name,imagepath):
+    global gui_D40_window_status
+    global gui_D40
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D40_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D40 = Toplevel()
+        gui_D40.protocol("WM_DELETE_WINDOW", popup_window_D40_closed)
+        gui_D40.title(f'Khavedamsa chart of {name}.')
+        gui_D40.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D40 = ImageTk.PhotoImage(image)
+        label = Label(gui_D40, image = photo_D40)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D40_window_status = OPEN
+    else:
+        gui_D40.focus_force()    #Brings focus back to this window
+        #gui_D40.bell()
+    return
+
+def popup_window_D40_closed():
+    global gui_D40_window_status
+    global gui_D40
+    gui_D40_window_status = CLOSE
+    gui_D40.destroy()
+    return   
+
+#functions for Akshavedamsa chart gui window
+def popup_window_D45(name,imagepath):
+    global gui_D45_window_status
+    global gui_D45
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D45_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D45 = Toplevel()
+        gui_D45.protocol("WM_DELETE_WINDOW", popup_window_D45_closed)
+        gui_D45.title(f'Akshavedamsa chart of {name}.')
+        gui_D45.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D45 = ImageTk.PhotoImage(image)
+        label = Label(gui_D45, image = photo_D45)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D45_window_status = OPEN
+    else:
+        gui_D45.focus_force()    #Brings focus back to this window
+        #gui_D45.bell()
+    return
+
+def popup_window_D45_closed():
+    global gui_D45_window_status
+    global gui_D45
+    gui_D45_window_status = CLOSE
+    gui_D45.destroy()
+    return   
+
+#functions for Shashtiamsa chart gui window
+def popup_window_D60(name,imagepath):
+    global gui_D60_window_status
+    global gui_D60
+    if(data.isAstroDataComputed == False):
+        messagebox.showerror('PreCalculation Request Error', "Planetary data is not computed yet. Please provide birth details and submit first!")
+        return
+    if (gui_D60_window_status == CLOSE): #open new window if not active window of lagna
+        gui_D60 = Toplevel()
+        gui_D60.protocol("WM_DELETE_WINDOW", popup_window_D60_closed)
+        gui_D60.title(f'Shashtiamsa chart of {name}.')
+        gui_D60.geometry('500x500')
+        image = Image.open(imagepath)
+        copy_of_image = image.copy()
+        photo_D60 = ImageTk.PhotoImage(image)
+        label = Label(gui_D60, image = photo_D60)
+        label.bind('<Configure>', lambda event, arg=(copy_of_image,label): resize_image(event, arg))
+        label.pack(fill=BOTH, expand = YES)
+        gui_D60_window_status = OPEN
+    else:
+        gui_D60.focus_force()    #Brings focus back to this window
+        #gui_D60.bell()
+    return
+
+def popup_window_D60_closed():
+    global gui_D60_window_status
+    global gui_D60
+    gui_D60_window_status = CLOSE
+    gui_D60.destroy()
+    return   
 
 #Window for Vimshottari Dasha
 def popup_window_VimDasha():

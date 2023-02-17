@@ -49732,5 +49732,17 @@
         "lat": 75.7476,
         "lon": 12.4272,
         "timezone": 5.5
+    },
+    "saundatti": {
+        "name": "saundatti",
+        "lat": 75.1253,
+        "lon": 15.7522,
+        "timezone": 5.5
+    },
+    "kittur": {
+        "name": "kittur",
+        "lat": 74.7885,
+        "lon": 15.5988,
+        "timezone": 5.5
     }
 }

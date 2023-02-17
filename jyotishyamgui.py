@@ -908,10 +908,25 @@ class Toplevel1:
         self.btnFetchPlaceDetails.configure(command=lambda: FetchPlacedata_updateFormfields(self))
         self.btnSubmitUserDetails.configure(command=lambda: FetchUserInputData_formBirthdata(self))
         self.btnClear.configure(command=lambda: ClearFormfields(self))
-        #Functions of Chart buttons
+
+        #Functions of Divisional Chart buttons
         self.btnD1.configure(command=lambda: popup_window_D1(self.cmbName.get(), 'images/Lagna_chart.png'))
         self.btnD9.configure(command=lambda: popup_window_D9(self.cmbName.get(), 'images/Navamsa_chart.png'))
         self.btnD10.configure(command=lambda: popup_window_D10(self.cmbName.get(), 'images/Dasamsa_chart.png'))
+        self.btnD2.configure(command=lambda: popup_window_D2(self.cmbName.get(), 'images/Hora_chart.png'))
+        self.btnD3.configure(command=lambda: popup_window_D3(self.cmbName.get(), 'images/Drekkana_chart.png'))
+        self.btnD4.configure(command=lambda: popup_window_D4(self.cmbName.get(), 'images/Chaturtamsa_chart.png'))
+        self.btnD7.configure(command=lambda: popup_window_D7(self.cmbName.get(), 'images/Saptamsa_chart.png'))
+        self.btnD12.configure(command=lambda: popup_window_D12(self.cmbName.get(), 'images/Dwadasamsa_chart.png'))
+        self.btnD16.configure(command=lambda: popup_window_D16(self.cmbName.get(), 'images/Shodasamsa_chart.png'))
+        self.btnD20.configure(command=lambda: popup_window_D20(self.cmbName.get(), 'images/Vimsamsa_chart.png'))
+        self.btnD24.configure(command=lambda: popup_window_D24(self.cmbName.get(), 'images/Chaturvimsamsa_chart.png'))
+        self.btnD27.configure(command=lambda: popup_window_D27(self.cmbName.get(), 'images/Saptavimsamsa_chart.png'))
+        self.btnD30.configure(command=lambda: popup_window_D30(self.cmbName.get(), 'images/Trimsamsa_chart.png'))
+        self.btnD40.configure(command=lambda: popup_window_D40(self.cmbName.get(), 'images/Khavedamsa_chart.png'))
+        self.btnD45.configure(command=lambda: popup_window_D45(self.cmbName.get(), 'images/Akshavedamsa_chart.png'))
+        self.btnD60.configure(command=lambda: popup_window_D60(self.cmbName.get(), 'images/Shashtiamsa_chart.png'))
+
         #Functions of Additional type
         self.btnVimshottariDasha.configure(command=lambda: popup_window_VimDasha())
         self.btnPlanetTable.configure(command=lambda: popup_window_D1PlanetDetails(self))
