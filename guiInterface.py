@@ -10,6 +10,8 @@ import mod_astrodata as data
 import mod_json as js
 import mod_drawChart as dc
 import dashas
+import mod_pdfReport as pdfrep
+import mod_yogadoshas as yd
 
 userlist = []
 
@@ -113,6 +115,13 @@ def FetchUserInputData_formBirthdata(usrInputTk):
 
         #update user details in the form
         UpdateUserDetaisinform(usrInputTk)
+
+        #Compute Yogas and Doshas
+        yd.ComputeYogaDoshas(data.charts)
+        js.dump_astrodata_injson()
+
+        #temporarily create PDF Report
+        pdfrep.GeneratePDFReport(data.charts)
 
     else:   #if validation is not done then display the error
         messagebox.showerror('User Input Error', validationRes)

@@ -530,6 +530,65 @@ def update_houses(division):
         division["houses"].append(house)
     return
 
+def iterativeReplace(string, substring, newstring):
+    while(substring in string):
+        string = string.replace(substring,newstring)
+    return string
+
+def get_nthLord(division,n):
+    #Gets house-number(n)'s sign lord (who owns the sign in that housein division)
+    signlord = division["houses"][n-1]["sign-lord"]
+    return signlord
+
+def get_planetPlacedHousenum(division, planet):
+    #Gets in which house is the requested planet placed in that housein division
+    housenum = division["planets"][planet]["house-num"]
+    return housenum
+
+def get_distancebetweenplanets(division, fromplanet, toplanet):
+    #Computes whats the distance between from planet to toplanet in given divisional chart in seconds(deg and minutes also converted to seconds)
+    fp = division["planets"][fromplanet]
+    tp = division["planets"][toplanet]
+    #compute distance from start of lagna to from and to planets in seconds.
+    sec_fp = (((fp["house-num"]-1)*30*3600) + (fp["pos"]["deg"]*3600) + (fp["pos"]["min"]*60) + (fp["pos"]["sec"]))
+    sec_tp = (((tp["house-num"]-1)*30*3600) + (tp["pos"]["deg"]*3600) + (tp["pos"]["min"]*60) + (tp["pos"]["sec"]))
+
+    if(sec_tp >= sec_fp):   #if toplanet is ahead of fromplanet
+        dist = sec_tp - sec_fp
+    else:   #if toplanet is behind of fromplanet
+        gap = sec_fp - sec_tp
+        dist = (360*3600) - gap
+
+    return dist
+
+def isPushkaraNavamsha(nak, paada):
+    PushkaraNavamshas = [   "Bharani3", "Kritika1", "Kritika4", "Rohini2", "Ardra4", 
+                            "Punarvasu2", "Pushya2", "Purva Phalguni3", "Uttara Phalguni1", "Uttara Phalguni4",
+                            "Hasta2", "Swati4", "Punarvasu4", "Vishaka4", "Vishaka2", "Anurada2", 
+                            "Uttara Ashadha4", "Purva Ashadha3", "Uttara Ashadha1", "Shravana2", "Shatabhishak4", 
+                            "Purva Bhadrapada4", "Purva Bhadrapada2", "Uttara Bhadrapada2" ]
+    if(f'{nak}{paada}' in PushkaraNavamshas):
+        return True
+    else:
+        return False
+
+def isPushkaraBhaga(SignTatva, Degree):
+    #For Fire signs (Aries, Leo and Sagittarius) - 21st degree is the Pushkara bhaga
+    #For Earth signs (Taurus, Virgo and Capricorn) - 14th degree is the Pushkara bhaga
+    #For Airy signs (Gemini, Libra and Aquarius) - 24th degree is the Pushkara bhaga
+    #For Water signs (Cancer, Scorpio and Pisces) - 7th degree is the Pushkara bhaga 
+    if (SignTatva == c.FIRE) and (Degree == 21):
+        return True
+    if (SignTatva == c.EARTH) and (Degree == 14):
+        return True
+    if (SignTatva == c.AIR) and (Degree == 24):
+        return True
+    if (SignTatva == c.WATER) and (Degree == 7):
+        return True
+    return False
+
+
 if __name__ == "__main__":
     print(signnum("Scorpio"))
+    print(isPushkaraNavamsha("",3))
     #print(debilitationSign_of_planet)

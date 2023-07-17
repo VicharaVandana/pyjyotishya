@@ -49,4 +49,9 @@ SHUDRA = "Shudra"
 SATVA = "Sathvika"
 RAJAS = "Rajasika"
 TAMAS = "Tamasika"
+
+#declare constants related to YogaDosha
+PRESENT = "Present"
+COMPRO = "Compromises" 
+ABS = "Absent"
  

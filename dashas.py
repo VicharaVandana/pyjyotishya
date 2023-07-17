@@ -304,6 +304,7 @@ if __name__ == "__main__":
     #duration = relativedelta(years=dashaVimshottariSkeleton["Mars"]["duration"])
     #print(f'Duration of 7 years is {duration}')
     computeVimshottariDasha(moonlngsec, nakshatraLord, bdaytime)
+    print(vimshottariDasha)
     #res = computeSubPeriods(starttime, "Mars", duration, "Antardasha", bdaytime)
     #for item in res:
         #print(item["entryString"])

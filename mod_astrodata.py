@@ -612,7 +612,8 @@ charts = {"D1": D1,
           "D40":D40,
           "D45":D45,
           "D60":D60,
-          "user_details" : {"name"  :"",
+          "yogadoshas":[],
+          "user_details" : {"name"  :"Shyam Bhat",
                             "maasa" :"",
                             "vaara" : "",
                             "tithi" : "",
@@ -628,12 +629,12 @@ charts = {"D1": D1,
 ############################################################################
 ##                   BIRTH DATA of CURRENT USER                           ##
 ############################################################################
-birthdata = { "DOB"     : { "year"     : 2020,
+birthdata = { "DOB"     : { "year"     : 1991,
                             "month"    : 10,
-                            "day"      : 31
+                            "day"      : 8
                           },
-              "TOB"     : { "hour"     : 16,  #in 24 hour format
-                            "min"      : 55,
+              "TOB"     : { "hour"     : 14,  #in 24 hour format
+                            "min"      : 47,
                             "sec"      : 9
                           }, 
               "POB"     : { "name"     : "Honavar",
@@ -666,6 +667,7 @@ birthdatastr = { "DOB"  : { "year"     : "2020",
             
 birthdatas = {}
 places = {}
+yogadoshas = {}
 
 def clearAstroData(charts):
   charts["D1"]["classifications"] = { "benefics"    : [],
@@ -681,7 +683,8 @@ def clearAstroData(charts):
                                       "moksha"      : []
                                     }.copy()
   charts["D1"]["houses"] = []
-  
+  charts["yogadoshas"] = []
+
   for key in lagna_planets:
     lagna_planets[key]["Aspects"] = {"planets":[], "houses":[], "signs":[]}.copy()
     lagna_planets[key]["Aspected-by"] = []

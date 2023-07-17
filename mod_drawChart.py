@@ -13,6 +13,8 @@
 
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
+from html2image import Html2Image
+
 
 from mod_chartPlanetPositions import planetPosition_northSquareClassic as ppnsc
 from mod_chartPlanetPositions import bhavnames, aspectSymbols
@@ -129,6 +131,8 @@ def create_chartSVG(division):
     chartSVGFullname = f'images/{chartSVGfilename}.svg'
     chartSVG = open(chartSVGFullname, 'w',  encoding='utf-16')
     chartPNGFullname = f'images/{chartSVGfilename}.png'
+    chartPNGShortname = f'{chartSVGfilename}.png'
+    hti = Html2Image()
 
     #Write the content into the file
     #SVG chart open section
@@ -154,6 +158,100 @@ def create_chartSVG(division):
     #close the file
     chartSVG.close()
 
-    drawing = svg2rlg(chartSVGFullname)
-    renderPM.drawToFile(drawing, chartPNGFullname, fmt="PNG")
+    #Convert Svg file to PNG file
+    if(chartCfg["aspect-visibility"] == True):
+        hti.output_path = './images/'
+        hti.screenshot(other_file=chartSVGFullname, size=(500, 500), save_as=chartPNGShortname)
+    else:
+        drawing = svg2rlg(chartSVGFullname)
+        renderPM.drawToFile(drawing, chartPNGFullname, fmt="PNG")
+
+    return
+
+##############################################################################################################
+
+def write_relevantplanetsOnChart_nsc(division, chartSVG, relevantPlanets):
+    chartSVG.write('\n  <!-- ********** Planets ********** -->\n')
+    for houseIdx in range(0,12):    #for all houses
+        chartSVG.write(f'  <!-- {bhavnames[houseIdx]} -->\n')
+        chartSVG.write(f'  <!-- Planet placements -->\n')
+        for planetname in division["houses"][houseIdx]["planets"]:
+            planetIdx = division["houses"][houseIdx]["planets"].index(planetname)
+            symbol = division["planets"][planetname]["symbol"]
+            retro = division["planets"][planetname]["retro"]
+
+            #Write the planet only if it is relevant
+            if symbol in relevantPlanets:
+                #identify the planet colour to be put in chart
+                planetcolour = chartCfg["neutral-planet-colour"]
+                #Get planet position co-ordinates x and y on chart svg
+                px = ppnsc[houseIdx][planetIdx]["x"]
+                py = ppnsc[houseIdx][planetIdx]["y"]
+                #Since all needed properties are computed, Now create the svg entry string for planet
+                if(retro == True):
+                    Planet_SVGstring = f'''  <text y="{py}" x="{px}" fill="{planetcolour}" text-decoration="underline" class="planet">({symbol})</text>\n'''
+                else:
+                    Planet_SVGstring = f'''  <text y="{py}" x="{px}" fill="{planetcolour}" class="planet">{symbol}</text>\n'''
+                #write the planet to SVG chart
+                chartSVG.write(Planet_SVGstring)
+    return
+
+def write_signnumOnChart_customcolour_nsc(division, chartSVG, colorlist):
+    chartSVG.write('\n  <!-- ********** Sign Numbers ********** -->\n')
+    chartSVG.write(f'''  <text id ="tan" x="193" y="195" fill="{colorlist[0]}" class="sign-num">{division["houses"][0]["sign-num"]:02}</text>\n''')
+    chartSVG.write(f'''  <text id ="dhan" x="97" y="95" fill="{colorlist[1]}" class="sign-num">{division["houses"][1]["sign-num"]:02}</text>\n''')
+    chartSVG.write(f'''  <text id ="anuj" x="70" y="118" fill="{colorlist[2]}" class="sign-num">{division["houses"][2]["sign-num"]:02}</text>\n''')
+    chartSVG.write(f'''  <text id ="maata" x="170" y="218" fill="{colorlist[3]}" class="sign-num">{division["houses"][3]["sign-num"]:02}</text>\n''')
+    chartSVG.write(f'''  <text id ="santaan" x="75" y="316" fill="{colorlist[4]}" class="sign-num">{division["houses"][4]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="rog" x="97" y="335" fill="{colorlist[5]}" class="sign-num">{division["houses"][5]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="dampathya" x="195" y="240" fill="{colorlist[6]}" class="sign-num">{division["houses"][6]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="aayu" x="296" y="337" fill="{colorlist[7]}" class="sign-num">{division["houses"][7]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="bhagya" x="320" y="318" fill="{colorlist[8]}" class="sign-num">{division["houses"][8]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="karma" x="220" y="218" fill="{colorlist[9]}" class="sign-num">{division["houses"][9]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="laab" x="318" y="118" fill="{colorlist[10]}" class="sign-num">{division["houses"][10]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="karch" x="298" y="98" fill="{colorlist[11]}" class="sign-num">{division["houses"][11]["sign-num"]:02}</text>\n''')
+    return
+
+def create_SimpleYogaDoshaChart(division,YogaDoshaName, relevantPlanets, colorlist):
+    ''' Creates SVG image of astrology chart as per the chart draw configuration
+        with data in division specific for That yoga or dosha. '''
+    # open or create chart file 
+    chartSVGfilename = f'{YogaDoshaName}_chart'
+    chartSVGFullname = f'images/yogaImages/{chartSVGfilename}.svg'
+    chartSVG = open(chartSVGFullname, 'w',  encoding='utf-16')
+    chartPNGFullname = f'images/yogaImages/{chartSVGfilename}.png'
+    chartPNGShortname = f'{chartSVGfilename}.png'
+    hti = Html2Image()
+
+    #Write the content into the file
+    #SVG chart open section
+    chartSVG.write(f'''<svg id="{chartSVGfilename}" height="500" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 420 420" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" charset="utf-16">\n''')
+    chartSVG.write('  <style>\n')
+    chartSVG.write('    .sign-num { font: bold 22px sans-serif; }\n')
+    chartSVG.write('    .planet { font: bold 20px sans-serif; }\n')
+    chartSVG.write('  </style>\n')
+    chartSVG.write('  <!-- ********** Chart Diagram ********** -->\n')
+
+    #create chart for given template
+    if (chartCfg["template"] == "north-square-classic"):
+        draw_classicNorthChartSkeleton(chartSVG)    #Create skeleton
+        write_signnumOnChart_customcolour_nsc(division, chartSVG, colorlist)    #Update the sign numbers on chart skeleton
+        write_relevantplanetsOnChart_nsc(division, chartSVG, relevantPlanets)    #Update the planets on chart for every house
+        #if(chartCfg["aspect-visibility"] == True):
+            #write_planetsAspectsOnChart_nsc(division, chartSVG)
+    
+    #SVG chart End section
+    chartSVG.write('\n  Sorry, your browser does not support inline SVG.\n')
+    chartSVG.write('</svg>\n')
+
+    #close the file
+    chartSVG.close()
+
+    #Convert Svg file to PNG file
+    if(chartCfg["aspect-visibility"] == True):
+        hti.output_path = './images/yogaImages/'
+        hti.screenshot(other_file=chartSVGFullname, size=(500, 500), save_as=chartPNGShortname)
+    else:
+        drawing = svg2rlg(chartSVGFullname)
+        renderPM.drawToFile(drawing, chartPNGFullname, fmt="PNG")
     return

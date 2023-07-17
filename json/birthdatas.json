@@ -166,5 +166,236 @@
         "name": "Mahantesh Akshu anna",
         "Gender": "Male",
         "Comments": ""
+    },
+    "kanchana naravagol": {
+        "DOB": {
+            "year": 1992,
+            "month": 9,
+            "day": 13
+        },
+        "TOB": {
+            "hour": 15,
+            "min": 2,
+            "sec": 5
+        },
+        "POB": {
+            "name": "Gokak",
+            "lat": 74.82393,
+            "lon": 16.16901,
+            "timezone": 5.5
+        },
+        "name": "Kanchana Naravagol",
+        "Gender": "Female",
+        "Comments": ""
+    },
+    "kaveri madar": {
+        "DOB": {
+            "year": 2010,
+            "month": 12,
+            "day": 22
+        },
+        "TOB": {
+            "hour": 10,
+            "min": 30,
+            "sec": 0
+        },
+        "POB": {
+            "name": "lakshmeshwar",
+            "lat": 75.4723,
+            "lon": 15.1275,
+            "timezone": 5.5
+        },
+        "name": "Kaveri Madar",
+        "Gender": "Female",
+        "Comments": ""
+    },
+    "soujanya madar": {
+        "DOB": {
+            "year": 2015,
+            "month": 3,
+            "day": 19
+        },
+        "TOB": {
+            "hour": 14,
+            "min": 0,
+            "sec": 0
+        },
+        "POB": {
+            "name": "lakshmeshwar",
+            "lat": 75.4723,
+            "lon": 15.1275,
+            "timezone": 5.5
+        },
+        "name": "Soujanya Madar",
+        "Gender": "Female",
+        "Comments": ""
+    },
+    "stalin": {
+        "DOB": {
+            "year": 1878,
+            "month": 12,
+            "day": 18
+        },
+        "TOB": {
+            "hour": 12,
+            "min": 0,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Gori",
+            "lat": 43.95,
+            "lon": 42.66,
+            "timezone": 4.0
+        },
+        "name": "Stalin",
+        "Gender": "Male",
+        "Comments": ""
+    },
+    "krutika madar": {
+        "DOB": {
+            "year": 2014,
+            "month": 9,
+            "day": 15
+        },
+        "TOB": {
+            "hour": 8,
+            "min": 5,
+            "sec": 14
+        },
+        "POB": {
+            "name": "Mundargi",
+            "lat": 75.8853,
+            "lon": 15.2055,
+            "timezone": 5.5
+        },
+        "name": "Krutika Madar",
+        "Gender": "Female",
+        "Comments": ""
+    },
+    "apj abdul kalam": {
+        "DOB": {
+            "year": 1931,
+            "month": 10,
+            "day": 15
+        },
+        "TOB": {
+            "hour": 1,
+            "min": 15,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Rameswaram",
+            "lat": 79.26,
+            "lon": 9.26,
+            "timezone": 5.5
+        },
+        "name": "APJ Abdul Kalam",
+        "Gender": "Male",
+        "Comments": ""
+    },
+    "roopa saravi": {
+        "DOB": {
+            "year": 2000,
+            "month": 5,
+            "day": 31
+        },
+        "TOB": {
+            "hour": 9,
+            "min": 30,
+            "sec": 37
+        },
+        "POB": {
+            "name": "lakshmeshwar",
+            "lon": 15.1275,
+            "lat": 75.4723,
+            "timezone": 5.5
+        },
+        "name": "Roopa Saravi",
+        "Gender": "Female",
+        "Comments": ""
+    },
+    "vishnumurthy hegde": {
+        "DOB": {
+            "year": 2002,
+            "month": 7,
+            "day": 8
+        },
+        "TOB": {
+            "hour": 18,
+            "min": 24,
+            "sec": 31
+        },
+        "POB": {
+            "name": "Kumta",
+            "lat": 74.4,
+            "lon": 14.4,
+            "timezone": 5.5
+        },
+        "name": "Vishnumurthy Hegde",
+        "Gender": "Male",
+        "Comments": ""
+    },
+    "akshay kumar": {
+        "DOB": {
+            "year": 1967,
+            "month": 9,
+            "day": 9
+        },
+        "TOB": {
+            "hour": 12,
+            "min": 5,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Amritsar",
+            "lon": 31.63661,
+            "lat": 74.87476,
+            "timezone": 5.5
+        },
+        "name": "Akshay Kumar",
+        "Gender": "Male",
+        "Comments": ""
+    },
+    "manoj": {
+        "DOB": {
+            "year": 1998,
+            "month": 7,
+            "day": 18
+        },
+        "TOB": {
+            "hour": 22,
+            "min": 5,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Nippani",
+            "lat": 74.3786,
+            "lon": 16.4042,
+            "timezone": 5.5
+        },
+        "name": "Manoj",
+        "Gender": "Male",
+        "Comments": ""
+    },
+    "renuka": {
+        "DOB": {
+            "year": 2003,
+            "month": 6,
+            "day": 1
+        },
+        "TOB": {
+            "hour": 10,
+            "min": 10,
+            "sec": 0
+        },
+        "POB": {
+            "name": "lakshmeshwar",
+            "lat": 75.4723,
+            "lon": 15.1275,
+            "timezone": 5.5
+        },
+        "name": "Renuka",
+        "Gender": "Female",
+        "Comments": ""
     }
 }

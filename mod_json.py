@@ -4,6 +4,11 @@ import mod_drawChart as dc
 import json
 
 # astrodata.json related functions
+def load_astrodata():
+    with open('./json/astrodata.json', 'r') as json_astrodatafile:        
+        data.charts = json.loads(json_astrodatafile.read()) 
+    return
+
 def dump_astrodata_injson():
     with open('./json/astrodata.json', 'w') as json_astrodatafile:
         json.dump(dict(data.charts), json_astrodatafile, indent=4)
@@ -75,3 +80,24 @@ def add_place2DB(place, id):
         print(f'Given ID {id} already exists in places database. So can not be added')
         return False
 
+# yogadoshas.json related functions
+def load_yogadoshas():
+    with open('./json/yogadoshas.json', 'r') as json_yogadoshafile:        
+        data.yogadoshas = json.loads(json_yogadoshafile.read()) 
+    return
+
+def dump_yogadoshas_injson():
+    with open('./json/yogadoshas.json', 'w') as json_yogadoshafile:
+        json.dump(dict(data.yogadoshas), json_yogadoshafile, indent=4)
+    return
+
+
+if __name__ == "__main__":
+    #print("Section1")
+    #load_birthdatas()
+    #print(data.birthdatas)
+    print("Section2")
+    load_yogadoshas()
+    #yd.yogadoshas
+    print(yd.yogadoshas["yogadoshas"])
+    print("Section End")
