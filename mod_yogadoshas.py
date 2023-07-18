@@ -1854,8 +1854,7 @@ def GajaKesariYoga(charts):
         Note = f'''{Note}Benefic planets aspecting Jupiter: {benefics_aspectingJupiter} and conjunct benefics: {benefics_conjunctJupiter}. Malefic planets aspecting Jupiter: {malefics_aspectingJupiter} and conjunct malefics: {malefics_conjunctJupiter}.
         Consider all these points [{good_cnt} positive and {cnt} negative] carefully before concluding the results of this Gajakesari yoga.'''
 
-        #getting full list of relevant planets for this yoga
-        
+        #getting full list of relevant planets for this yoga        
         for planet in aspectedby:
             relevant_planets.append(planet[0:2])
         for planet in conjuncts:
@@ -1882,6 +1881,156 @@ def GajaKesariYoga(charts):
         data.yogadoshas["GAJAKESARI"]["Source"] = "https://astrotalk.com/astrology-blog/know-who-can-seek-benefits-of-gajakesari-yoga-as-per-astrology/"   
     
     return IsGajaKesariYogaPresent
+
+#ChandraMangala Yoga - Mars and  Moon conjunct in D1 chart
+def ChandraMangalaYoga(charts):
+    IsChandraMangalaYogaPresent = False
+    Name = ""
+    Rule = ""
+    Results = ""
+    Note = ""
+    bad_cnt = 0
+    good_cnt = 0
+    relevant_planets = ["Ma", "Mo"]
+
+    #Check for existance of this yoga
+    lagnamars = charts["D1"]["planets"]["Mars"]
+    lagnamoon = charts["D1"]["planets"]["Moon"]
+
+    if(lagnamars["sign"] == lagnamoon["sign"]):
+        IsChandraMangalaYogaPresent = True
+        Name = "Chandra Mangala"
+        Rule = "In native's chart Moon is conjunct with Mars. So Chandra Mangala Yoga is formed."
+
+        #if Moon is debilitated then Effects reduce
+        if(lagnamoon["sign"] == "Scorpio"):
+            Note = f'''{Note}Moon is debilitated, which weakens this yoga. '''
+            bad_cnt = bad_cnt + 1
+
+        if(lagnamoon["sign"] == "Taurus"):
+            Note = f'''{Note}Moon is exhalted, which strengthens this yoga. '''
+            good_cnt = good_cnt + 1
+
+        #If Mars is debilitates. then Effects reduce
+        if(lagnamars["sign"] == "Cancer"):
+            Note = f'''{Note}Mars is debilitated, which weakens this yoga. '''
+            bad_cnt = bad_cnt + 1
+
+        if(lagnamars["sign"] == "Capricorn"):
+            Note = f'''{Note}Mars is exhalted, which strengthens this yoga. '''
+            good_cnt = good_cnt + 1
+
+        benefics = charts["D1"]["classifications"]["benefics"].copy()
+        malefics = charts["D1"]["classifications"]["malefics"].copy()
+        malefics.append("Rahu")
+        malefics.append("Ketu")
+        aspectedby = lagnamars["Aspected-by"]
+        conjuncts = lagnamars["conjuncts"]
+        benefics_aspectingMars = list(set(benefics).intersection(aspectedby))
+        benefics_conjunctMars = list(set(benefics).intersection(conjuncts))
+        malefics_aspectingMars = list(set(malefics).intersection(aspectedby))
+        malefics_conjunctMars = list(set(malefics).intersection(conjuncts))
+
+        if (len(benefics_aspectingMars)>0) or (len(benefics_conjunctMars)>0):
+            Note = f'''{Note}Moon and Mars are associated by Benefics by conjunction or aspect.'''
+            good_cnt = good_cnt + 1
+        
+        #If any malefic is aspecting or conjunct with Mars
+        if (len(malefics_aspectingMars)>0) or (len(malefics_conjunctMars)>0):
+            Note = f'''{Note}Moon and Mars is afflicted by Malefics.'''
+            bad_cnt = bad_cnt + 1
+
+        #if mars or moon is a malefic in this chart then this yoga weakens and if benefics then it strengthens
+        if("Mars" in benefics):
+            Note = f'''{Note}In this chart Mars is a benefic planet and '''
+            good_cnt = good_cnt + 1
+        elif("Mars" in malefics):
+            Note = f'''{Note}In this chart Mars is a malefic planet and '''
+            bad_cnt = bad_cnt + 1
+        else:
+            Note = f'''{Note}In this chart Mars is a neutral planet and '''
+        
+        if("Moon" in benefics):
+            Note = f'''{Note}Moon is a benefic planet. '''
+            good_cnt = good_cnt + 1
+        elif("Moon" in malefics):
+            Note = f'''{Note}Moon is a malefic planet. '''
+            bad_cnt = bad_cnt + 1
+        else:
+            Note = f'''{Note}Moon is a neutral planet. '''
+
+        Note = f'''{Note}Benefic planets aspecting Moon and Mars: {benefics_aspectingMars} and conjunct benefics: {benefics_conjunctMars}. Malefic planets aspecting Moon and Mars: {malefics_aspectingMars} and conjunct malefics: {malefics_conjunctMars}.
+        Consider all these points [{good_cnt} positive and {bad_cnt} negative] carefully before concluding the results of this Chandra Mangala yoga.'''
+
+        #getting full list of relevant planets for this yoga        
+        for planet in aspectedby:
+            relevant_planets.append(planet[0:2])
+        for planet in conjuncts:
+            relevant_planets.append(planet[0:2])
+        colorlist = ["pink","pink","pink","pink","pink","pink","pink","pink","pink","pink","pink","pink"]
+        colorlist[lagnamars["house-num"]-1] = "yellow"
+        dc.create_SimpleYogaDoshaChart(charts["D1"],"CHANDRAMANGALA",relevant_planets, colorlist)
+        
+        #Update the results of Gajakesari Yoga
+        Results = f'''Chandra Mangal Yoga is significant in many ways. Apart from financial gains, the native gains a great deal of respect and fame in society. The Moon is associated with riches, happiness and mental strength, whereas Mars is associated with the ability to work hard and achieve all of your life's objectives.
+        This Yoga gives birth to a person who is immensely wealthy, clever, and powerful. He has a high level of self-assurance, which allows him to operate effectively in even the most difficult conditions. Because this is a wealth-related Yoga, a person born under this sign is capable of making money on his own. The native is also likely to feel irritable as a result of this Yoga. The native may become obstinate due to the relationship between Mars and the Moon. The native will be brave and capable of solving issues more effectively. Others will not be able to assist the native. The native will make his or her own way in life. This Yoga has a bad impact on the local mother.
+        '''
+
+        if(lagnamars["house-num"] == 1):
+            Results = f'''{Results}The Chandra Mangal Yoga in the first house will bring the best results in terms of name, popularity, stature, and success in public life and politics. At a higher level, natives may be involved in administrative or defence services.
+            '''
+        elif(lagnamars["house-num"] == 2):
+            Results = f'''{Results}The Moon-Mars conjunction in the second house has the potential to make the native a millionaire and provide them with a life of luxury and riches.
+            '''
+        elif(lagnamars["house-num"] == 3):
+            Results = f'''{Results}Chandra-Mangal yoga in the third house bestows the highest levels of valour, vigour and courage on the inhabitants, enabling them to attain any life goals or ambitions.
+            '''
+        elif(lagnamars["house-num"] == 4):
+            Results = f'''{Results}This Yoga combination in the fourth house brings amenities such as automobiles, property, and more than one house, as well as a large number of agricultural products.
+            '''
+        elif(lagnamars["house-num"] == 5):
+            Results = f'''{Results}The Moon-Mars conjunction in the 5th house bestows pleasure and success in creative endeavours, artistic careers, and love affairs.
+            '''
+        elif(lagnamars["house-num"] == 6):
+            Results = f'''{Results}Moon-Mars in the 6th house brings enmity, lawsuits, legal issues, divorces and other problems. It can, however, help you win competitions in sports, academics or examinations.
+            '''
+        elif(lagnamars["house-num"] == 7):
+            Results = f'''{Results}The Chandra-Mangal yoga in the 7th house is likely to provide positive outcomes and benefits from marriage, but there will be some health issues for the husband, as well as a lack of mutual trust and understanding.
+            '''
+        elif(lagnamars["house-num"] == 8):
+            Results = f'''{Results}This conjunction in the 8th house indicates gains from in-laws, as well as riches and property received through inheritance or as a gift from the government.
+            '''
+        elif(lagnamars["house-num"] == 9):
+            Results = f'''{Results}They will strive to make money in a noble and honest manner. They will pose a serious challenge to their rivals.
+            This conjunction in the 9th house brings Raj Yog to dignitaries with a rich culture and class, making natives renowned and occasionally famous in their line of work.
+            '''
+        elif(lagnamars["house-num"] == 10):
+            Results = f'''{Results}They will strive to make money in a noble and honest manner. They will pose a serious challenge to their rivals.
+            In the 10th house, the Moon-Mars conjunction is favourable for becoming a doctor or surgeon. It provides a significant boost to native's careers, particularly in public or mass transactions.
+            '''
+        elif(lagnamars["house-num"] == 11):
+            Results = f'''{Results}They will strive to make money in a noble and honest manner. They will pose a serious challenge to their rivals.
+            If the Moon-Mars conjunction happens in the 11th house, you can become exceedingly wealthy from a young age after the age of 28. With a lot of wealth and power in life, you'll have a lot of money every day.
+            '''
+        elif(lagnamars["house-num"] == 12):
+            Results = f'''{Results}Chandra Mangal Yoga in the 12th house leads to religious enlightenment and salvation in old age, but it also provides earnings from foreign resources or foreign places in the early and intermediate stages of life, particularly in the import-export business.
+            '''
+        else:
+            Results = f'''{Results}It should not come here. The results are not valid. 
+            '''
+
+
+        #Update the yogadosha sections
+        data.yogadoshas["CHANDRAMANGALA"] = {}
+        data.yogadoshas["CHANDRAMANGALA"]["name"] = Name
+        data.yogadoshas["CHANDRAMANGALA"]["type"] = "Yoga"
+        data.yogadoshas["CHANDRAMANGALA"]["exist"] = IsChandraMangalaYogaPresent
+        data.yogadoshas["CHANDRAMANGALA"]["Rule"] = gen.iterativeReplace(Rule,"\n ", "\n")
+        data.yogadoshas["CHANDRAMANGALA"]["Result"] = gen.iterativeReplace(Results,"\n ", "\n").replace("\n","\n        ") 
+        data.yogadoshas["CHANDRAMANGALA"]["Note"] = gen.iterativeReplace(Note,"\n ", "\n")
+        data.yogadoshas["CHANDRAMANGALA"]["Source"] = "https://www.mypandit.com/kundli/yoga/chandra-mangal/"  
+    
+    return IsChandraMangalaYogaPresent
 
 #Main function to load and compute all yogas and doshas and update the json file
 def ComputeYogaDoshas(charts):
@@ -1913,6 +2062,10 @@ def ComputeYogaDoshas(charts):
     #Gaja Kesari Yoga
     if(GajaKesariYoga(data.charts)==True): #GajaKesari by Moon and Jupiter
         data.charts["yogadoshas"].append("GajaKesari Yoga")
+
+    #Chandra Mangala Yoga
+    if(ChandraMangalaYoga(data.charts)==True): #Chandramangala by Moon and Mars
+        data.charts["yogadoshas"].append("ChandraMangala Yoga")
     
     #Kaal Sarpa Doshas
     if(AnantaKaalSarpaDosha(data.charts)==True): #AnantaKaalSarpaDosha Rahu ketu axis (1-7)
