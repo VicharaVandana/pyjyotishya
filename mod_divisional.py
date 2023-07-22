@@ -827,7 +827,16 @@ def compute_Dx_4m_D1(charts, Dx):
         l_Dx["planets"][planetname]["sign-tatva"] = gen.signtatvas[divSign-1]
         dispositor = gen.signlords[divSign-1]
         l_Dx["planets"][planetname]["dispositor"] = dispositor
-        l_Dx["planets"][planetname]["house-num"] = gen.housediff(lagna, divSign)
+        housenum = gen.housediff(lagna, divSign)
+        l_Dx["planets"][planetname]["house-num"] = housenum
+        if (housenum in [1,5,9]):
+            l_Dx["planets"][planetname]["house-nature"] = c.DHARMA
+        elif (housenum in [2,6,10]):
+            l_Dx["planets"][planetname]["house-nature"] = c.ARTHA
+        elif (housenum in [3,7,11]):
+            l_Dx["planets"][planetname]["house-nature"] = c.KAMA
+        else:
+            l_Dx["planets"][planetname]["house-nature"] = c.MOKSHA
         #update nakshatra related data for ascendant
         nak_pad = nakshatra_pada(div_fullLongi_sec / 3600)  #argument must be full longitude in degrees
         l_Dx["planets"][planetname]["nakshatra"] = nak_pad[0]

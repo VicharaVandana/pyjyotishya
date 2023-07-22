@@ -170,12 +170,17 @@ def computeVimshottariDasha(lngsecondsMoon, nakshatraLord, birthDate):
     global paryantardashaPlanetEntry
     idcnt = 0
     l_DashaStartDate = computeStartDate_FirstDashaLord(lngsecondsMoon, nakshatraLord, birthDate)
+    currentDate = datetime.now()
+    data.charts["Dashas"]["Vimshottari"]["current"]["date"] = str(currentDate)
+    data.charts["Dashas"]["Vimshottari"]["current"]["dasha"] = ""
+    data.charts["Dashas"]["Vimshottari"]["current"]["bhukti"] = ""
+    data.charts["Dashas"]["Vimshottari"]["current"]["paryantardasha"] = ""
     #print(f'start date is :{l_DashaStartDate}')
     l_firstPlanet = nakshatraLord
     l_wholeDuration = relativedelta(years=120)  #whole vimshottari dasha is for 120 years
     #compute Vimshottari table
     res_mahadasha = computeSubPeriods(l_DashaStartDate, l_firstPlanet, l_wholeDuration, "Mahadasha", birthDate)
-    
+    mahadasha_cnt = 0
     for item in res_mahadasha:
         mahadashaPlanetEntry["name"] = item["name"]
         mahadashaPlanetEntry["startDate"] = item["startDate"]
@@ -186,11 +191,31 @@ def computeVimshottariDasha(lngsecondsMoon, nakshatraLord, birthDate):
         dashaIdx = idcnt
         antar_pos = 0
         idcnt = idcnt + 1
+        #Adding Mahadasha details
+        mahadasha_cnt = mahadasha_cnt + 1
+        mahadashaPlanetName = mahadashaPlanetEntry["name"]
+        l_mahadasha = {}
+        l_mahadasha["lord"] = mahadashaPlanetName
+        l_mahadasha["dashaNum"] = mahadasha_cnt
+        l_mahadasha["startDate"] = str(item["startDate"])
+        l_mahadasha["endDate"] = str(item["endDate"])
+        startage = (item["startage"])
+        endAge = (item["endage"])
+        l_dur = (endAge-startage)      
+        l_mahadasha["duration"] = f" {l_dur.years}yr {l_dur.months}m {l_dur.days}d"
+        l_mahadasha["startage"] = f" {startage.years}yr {startage.months}m {startage.days}d"
+        l_mahadasha["endage"] = f" {endAge.years}yr {endAge.months}m {endAge.days}d"  
+        if(currentDate >= item["startDate"]) and (currentDate < item["endDate"]):
+            data.charts["Dashas"]["Vimshottari"]["current"]["dasha"] = l_mahadasha.copy()["lord"]
+        
+        data.charts["Dashas"]["Vimshottari"]["mahadashas"][mahadashaPlanetName] = l_mahadasha.copy()
+
         #for Antardasha
         l_DashaStartDate = item["startDate"]
         l_firstPlanet = item["name"]
         l_wholeDuration = item["endDate"] - item["startDate"]
         res_antardasha = computeSubPeriods(l_DashaStartDate, l_firstPlanet, l_wholeDuration, "Antardasha", birthDate)
+        antardasha_cnt = 0
         for item2 in res_antardasha:
             antardashaPlanetEntry["name"] = item2["name"]
             antardashaPlanetEntry["startDate"] = item2["startDate"]
@@ -203,11 +228,31 @@ def computeVimshottariDasha(lngsecondsMoon, nakshatraLord, birthDate):
             paryantar_pos = 0
             idcnt = idcnt + 1
             antar_pos = antar_pos + 1
+            #Adding Antardasha details
+            antardasha_cnt = antardasha_cnt + 1
+            antardashaPlanetName = antardashaPlanetEntry["name"]
+            l_antardasha = {}
+            l_antardasha["lord"] = antardashaPlanetName
+            l_antardasha["dashaLord"] = mahadashaPlanetName
+            l_antardasha["bhuktiNum"] = antardasha_cnt
+            l_antardasha["startDate"] = str(item2["startDate"])
+            l_antardasha["endDate"] = str(item2["endDate"])
+            startage = (item2["startage"])
+            endAge = (item2["endage"])
+            l_dur = relativedelta((birthDate+endAge), (birthDate+startage))         
+            l_antardasha["duration"] = f" {l_dur.years}yr {l_dur.months}m {l_dur.days}d"
+            l_antardasha["startage"] = f" {startage.years}yr {startage.months}m {startage.days}d"
+            l_antardasha["endage"] = f" {endAge.years}yr {endAge.months}m {endAge.days}d"  
+            if(currentDate >= item2["startDate"]) and (currentDate < item2["endDate"]):
+                data.charts["Dashas"]["Vimshottari"]["current"]["bhukti"] = l_antardasha.copy()["lord"]     
+            data.charts["Dashas"]["Vimshottari"]["antardashas"][f'{mahadashaPlanetName}-{antardashaPlanetName}'] = l_antardasha.copy()
+
             #for Paryantardasha
             l_DashaStartDate = item2["startDate"]
             l_firstPlanet = item2["name"]
             l_wholeDuration = item2["endDate"] - item2["startDate"]
             res_paryantardasha = computeSubPeriods(l_DashaStartDate, l_firstPlanet, l_wholeDuration, "Antardasha", birthDate)
+            paryantardasha_cnt = 0
             for item3 in res_paryantardasha:
                 paryantardashaPlanetEntry["name"] = item3["name"]
                 paryantardashaPlanetEntry["startDate"] = item3["startDate"]
@@ -219,6 +264,28 @@ def computeVimshottariDasha(lngsecondsMoon, nakshatraLord, birthDate):
                 dashaCodeLines.append(f'tree.move({paryantardashaIdx}, {antardashaIdx}, {paryantar_pos}) ')
                 paryantar_pos = paryantar_pos + 1
                 idcnt = idcnt + 1
+
+                #Adding Paryantardasha details
+                paryantardasha_cnt = paryantardasha_cnt + 1
+                paryantardashaPlanetName = paryantardashaPlanetEntry["name"]
+                l_paryantardasha = {}
+                l_paryantardasha["lord"] = paryantardashaPlanetName
+                l_paryantardasha["bhuktiLord"] = antardashaPlanetName
+                l_paryantardasha["dashaLord"] = mahadashaPlanetName
+                l_paryantardasha["pariNum"] = paryantardasha_cnt
+                l_paryantardasha["startDate"] = str(item3["startDate"])
+                l_paryantardasha["endDate"] = str(item3["endDate"])
+                startage = (item3["startage"])
+                endAge = (item3["endage"])
+                l_dur = relativedelta((birthDate+endAge), (birthDate+startage))         
+                l_paryantardasha["duration"] = f" {l_dur.years}yr {l_dur.months}m {l_dur.days}d"
+                l_paryantardasha["startage"] = f" {startage.years}yr {startage.months}m {startage.days}d"
+                l_paryantardasha["endage"] = f" {endAge.years}yr {endAge.months}m {endAge.days}d"       
+                if(currentDate >= item3["startDate"]) and (currentDate < item3["endDate"]):
+                    #print(f'''paryantar dasha {mahadashaPlanetName}-{antardashaPlanetName}-{paryantardashaPlanetName} ({currentDate} >= {item3["startDate"]}) and ({currentDate} > {item3["endDate"]})''')
+                    data.charts["Dashas"]["Vimshottari"]["current"]["paryantardasha"] = l_paryantardasha.copy()["lord"]  
+                data.charts["Dashas"]["Vimshottari"]["paryantardashas"][f'{mahadashaPlanetName}-{antardashaPlanetName}-{paryantardashaPlanetName}'] = l_paryantardasha.copy()
+
                 antardashaPlanetEntry["paryantardasha"].append(item3.copy())
 
             mahadashaPlanetEntry["antardasha"].append(item2.copy())
@@ -258,6 +325,9 @@ def computeSubPeriods(startdate,firstPlanet,wholeDuration, level, birthday):
             l_planetEntry["name"] = l_focusplanet
             l_planetEntry["startDate"] = l_planetStartDate
             l_planetEntry["endDate"] = l_planetEndDate
+            l_planetEntry["duration"] = l_planetDuration
+            l_planetEntry["startage"] = startAge
+            l_planetEntry["endage"] = endAge
             l_planetEntry["entryString"] = f'{l_focusplanet} - ({str(l_planetStartDate)[:-4]}) to ({str(l_planetEndDate)[:-4]}) ({l_durDays} days) Age[({endAge.years}year {endAge.months}month {endAge.days}days)]'
             l_SubPeriods.append(l_planetEntry.copy())
             #print(f'{l_focusplanet} - ({l_planetStartDate}) to ({l_planetEndDate}) ({l_durDays} days) Age[({endAge.years}year {endAge.months}month{endAge.days}days)]')

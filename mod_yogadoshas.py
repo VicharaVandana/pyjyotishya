@@ -1772,7 +1772,7 @@ def GajaKesariYoga(charts):
     lagnaJupiter = charts["D1"]["planets"]["Jupiter"]
     lagnaMoon = charts["D1"]["planets"]["Moon"]
     #If Jupiter and Moon are in kendra with respect to each other then Gajakesari is formed. Jupiter must not be Retrograde.
-    if(lagnaJupiter["house-nature"] == lagnaMoon["house-nature"]) and (lagnaJupiter["retro"] == 0):
+    if(gen.housediff(lagnaJupiter["house-num"], lagnaMoon["house-num"]) in [1,4,7,10]) and (lagnaJupiter["retro"] == 0):
         IsGajaKesariYogaPresent = True
         #update the Rule
         Name = "GajaKesari"

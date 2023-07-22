@@ -54,4 +54,12 @@ TAMAS = "Tamasika"
 PRESENT = "Present"
 COMPRO = "Compromises" 
 ABS = "Absent"
+
+#declare constants related to planet relationship
+SWAYAM = "Swayam Rashi / Own Sign"
+ATHIMITRA = "Athimitra / Best Friend"
+MITRA = "Mitra / Friend"
+SAMA = "Sama / Neutral"
+SHATRU = "Shatru / Enemy"
+ATHISHATRU = "Athishatru / Worst Enemy"
  

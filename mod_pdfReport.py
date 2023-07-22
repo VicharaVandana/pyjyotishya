@@ -41,9 +41,12 @@ def GetPlanetDataArray(planetdata, lagnadata):
     PlanetsData.append((l_plt,f'{round(planetdata[l_plt]["pos"]["dec_deg"], 3)}',str(planetdata[l_plt]["house-num"]),str(planetdata[l_plt]["sign"]),planetdata[l_plt]["dispositor"],planetdata[l_plt]["nakshatra"],planetdata[l_plt]["nak-ruler"]))
     return PlanetsData
 
-def getWidthArray(data):
+def getWidthArray(data, IsRowColorGiven):
     rowCount = len(data)
-    colCount = len(data[0])
+    if (IsRowColorGiven == True):
+        colCount = len(data[0]) - 1
+    else:
+        colCount = len(data[0])
     sizearray = []
     widtharray = []
     totSize = 0
@@ -90,19 +93,28 @@ class PDF(FPDF):
                         "./reports/fonts/Lobster-Regular.ttf",
                         uni=True)
 
-    def writeTable(self,data,x,y):
-        widtharray = getWidthArray(data)
+    def writeTable(self,data,x,y,IsRowColorGiven):
+        widtharray = getWidthArray(data, IsRowColorGiven)
         tabHead = ""
         tabBody = ""
         for rowNum in range(1,len(data)):
-            tabBody = tabBody + f'''\n<tr><td>{'</td><td>'.join(data[rowNum])}</td></tr>'''
+            if(IsRowColorGiven == False):
+                tabBody = tabBody + f'''\n<tr><td>{'</td><td>'.join(data[rowNum])}</td></tr>'''
+                headingcolor = "yellow"
+                elements_countInARow = len(data[0])
+            else:   #Row colour is last element of every row element
+                if (data[rowNum][-1] == ""):
+                    data[rowNum][-1] = "white"
+                tabBody = tabBody + f'''\n<tr bgcolor={data[rowNum][-1]}><td>{'</td><td>'.join(data[rowNum][0:-1])}</td></tr>'''
+                headingcolor = data[0][-1]
+                elements_countInARow = len(data[0]) -1
 
-        for colNum in range(0,len(data[0])):
+        for colNum in range(0,elements_countInARow):
             tabHead = tabHead + f'''\n<th width="{widtharray[colNum]}%">{data[0][colNum]}</th>'''
 
         self.set_xy(x,y)
         self.write_html(
-            f"""<table border="1" bgcolor="lime"><thead><tr>
+            f"""<table border="1"><thead><tr bgcolor={headingcolor}>
             {tabHead}
         </tr></thead>
         <tbody>{tabBody}
@@ -125,7 +137,7 @@ class PDF(FPDF):
         self.ln(10)
         self.set_font('Times', 'BU', 14)
         self.cell(txt="Planetery Details of Lagna Chart", w=0, h=10, align='C')
-        self.writeTable(GetPlanetDataArray(mychart["D1"]["planets"], mychart["D1"]["ascendant"]),5,30+imageWidth+5)
+        self.writeTable(GetPlanetDataArray(mychart["D1"]["planets"], mychart["D1"]["ascendant"]),5,30+imageWidth+5, False)
 
         #User details Box
         self.set_font('Courier', 'B', 12)
@@ -430,6 +442,118 @@ Place of Birth:  {bd["POB"]["name"]}
 
             #End of Yoga Dosha so draw a line
             self.line(0, self.get_y(), self.w, self.get_y())
+    
+    def addVimshottariDasha(self):
+        #title of the page
+        self.set_font('helvetica', 'BU', 16)
+        self.set_text_color(0,0,255)
+        self.cell(txt="Vimshottari Dasha of native", w=0, h=10, align='C')
+
+        self.ln(10)
+        self.set_font('Times', '', 12)
+        self.set_text_color(0,0,0)
+        self.multi_cell(txt=f'''Current Date [yyyy-mm-dd]: {mychart["Dashas"]["Vimshottari"]["current"]["date"].split(" ")[0]}
+Current Mahadasha Lord: {mychart["Dashas"]["Vimshottari"]["current"]["dasha"]}
+Current Bhukti Lord: {mychart["Dashas"]["Vimshottari"]["current"]["bhukti"]}
+Current Paryantardasha Lord: {mychart["Dashas"]["Vimshottari"]["current"]["paryantardasha"]}
+Tabulated data for Mahadashas, Bhuktis under current dasha lord and paryantardashas under current Bhukti are given below''',w=0, h=5, border = True, align='L')
+        self.ln(2)
+
+        #MahaDashas Table
+        #Text for mahadasha Table
+        self.set_font('Times', 'BU', 14)
+        self.set_text_color(150,0,0)
+        self.cell(txt=f"Vimshottari Dasha: Mahadashas of the native", w=0, h=6, align='C')
+        #Mahadasha table part
+        ypos = self.get_y()-5
+        xpos = 5
+        self.set_font('Times', '', 12)
+        self.set_text_color(100,0,0)
+        mahadasha = mychart["Dashas"]["Vimshottari"]["current"]["dasha"]
+        tabdata = [   ("Num","DashaLord","Start Date","End Date","Duration","From Age","Till Age", "yellow")  ]
+        for entry in mychart["Dashas"]["Vimshottari"]["mahadashas"]:
+            num = str(mychart["Dashas"]["Vimshottari"]["mahadashas"][entry]["dashaNum"])
+            lord = mychart["Dashas"]["Vimshottari"]["mahadashas"][entry]["lord"]
+            startdate = mychart["Dashas"]["Vimshottari"]["mahadashas"][entry]["startDate"].split(" ")[0]
+            enddate = mychart["Dashas"]["Vimshottari"]["mahadashas"][entry]["endDate"].split(" ")[0]
+            duration = mychart["Dashas"]["Vimshottari"]["mahadashas"][entry]["duration"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
+            fromage = mychart["Dashas"]["Vimshottari"]["mahadashas"][entry]["startage"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
+            if (fromage.replace(" ","") == ""):
+                fromage = " Birth"
+            tillage = mychart["Dashas"]["Vimshottari"]["mahadashas"][entry]["endage"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
+            #if the current planet is running mahadasha planet then highlight with lime else keep it white
+            if(lord == mahadasha):
+                row_bgcolor = "#9BFFFF" #rgb(155,255,255)
+            else:
+                row_bgcolor = "white"
+            tabdata.append((num,lord,startdate,enddate,duration,fromage,tillage,row_bgcolor))        
+        self.writeTable(tabdata,xpos,ypos,True)
+        self.ln(3)
+
+        #Bhukti Table
+        #Text for Bhukti Table
+        self.set_font('Times', 'BU', 14)
+        self.set_text_color(150,0,200)
+        antardasha = mychart["Dashas"]["Vimshottari"]["current"]["bhukti"]
+        self.cell(txt=f'''Vimshottari Bhuktis: Bhuktis of the native under Mahadasha of {mahadasha}''', w=0, h=6, align='C')
+        #Bhukti table part
+        ypos = self.get_y()-5
+        xpos = 5
+        self.set_font('Times', '', 12)
+        self.set_text_color(100,0,155)
+        tabdata = [   ("Num","BhuktiLord","Start Date","End Date","Duration","From Age","Till Age", "yellow")  ]
+        for entry in mychart["Dashas"]["Vimshottari"]["antardashas"]:
+            if (mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["dashaLord"] == mahadasha):
+                num = str(mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["bhuktiNum"])
+                lord = mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["lord"]
+                startdate = mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["startDate"].split(" ")[0]
+                enddate = mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["endDate"].split(" ")[0]
+                duration = mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["duration"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
+                fromage = mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["startage"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
+                tillage = mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["endage"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
+                if(lord == antardasha):
+                    row_bgcolor = "#9BFF64" #rgb(155,255,100)
+                else:
+                    row_bgcolor = "white"
+                tabdata.append((num,lord,startdate,enddate,duration,fromage,tillage,row_bgcolor))        
+        self.writeTable(tabdata,xpos,ypos,True)
+        self.ln(3)
+
+        #Paryantaradasha Table
+        #Text for Bhukti Table
+        self.set_font('Times', 'BU', 13)
+        self.set_text_color(0,150,75)
+        paryantardasha = mychart["Dashas"]["Vimshottari"]["current"]["paryantardasha"]
+        self.cell(txt=f'''Paryantaradashas of the native under Dasha-Bhukti of {mahadasha} - {antardasha}''', w=0, h=6, align='C')
+        #Paryantaradasha table part
+        ypos = self.get_y()-5
+        xpos = 5
+        self.set_font('Times', '', 12)
+        self.set_text_color(0,100,50)
+        tabdata = [   ("Num","pari-Lord","Start Date","End Date","Duration","From Age","Till Age", "yellow")  ]
+        for entry in mychart["Dashas"]["Vimshottari"]["paryantardashas"]:
+            if ((mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["dashaLord"] == mahadasha) and
+                (mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["bhuktiLord"] == antardasha)):
+                num = str(mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["pariNum"])
+                lord = mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["lord"]
+                startdate = mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["startDate"].split(" ")[0]
+                enddate = mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["endDate"].split(" ")[0]
+                duration = mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["duration"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
+                fromage = mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["startage"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
+                tillage = mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["endage"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
+                if(lord == paryantardasha):
+                    row_bgcolor = "#FF9BCD" #rgb(255,155,205)
+                else:
+                    row_bgcolor = "white"
+                tabdata.append((num,lord,startdate,enddate,duration,fromage,tillage,row_bgcolor))       
+        self.writeTable(tabdata,xpos,ypos,True)
+        self.ln(3)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+        self.ln(1)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+        self.ln(1)
+
+
 
              
 
@@ -456,6 +580,10 @@ def GeneratePDFReport(charts):
         #adding all varga charts
         pdf.add_page()
         pdf.addVargaChartsinaPage()
+
+        #Adding Vimshottari Dasha
+        pdf.add_page()
+        pdf.addVimshottariDasha()
 
         #adding the Yogas 
         pdf.add_page()

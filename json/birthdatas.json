@@ -397,5 +397,26 @@
         "name": "Renuka",
         "Gender": "Female",
         "Comments": ""
+    },
+    "napolean": {
+        "DOB": {
+            "year": 1769,
+            "month": 8,
+            "day": 15
+        },
+        "TOB": {
+            "hour": 11,
+            "min": 30,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Ajaccio",
+            "lat": 41.92723,
+            "lon": 8.73462,
+            "timezone": 1.0
+        },
+        "name": "Napolean",
+        "Gender": "Male",
+        "Comments": ""
     }
 }

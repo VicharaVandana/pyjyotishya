@@ -242,6 +242,9 @@ def update_planetaryData(jd, place):
     else:
       db_planet["house-rel"] = "UNKNOWN"
     
+    #Planet with dispositor relation
+
+    
     #updating Status of planet
     db_planet["status"] = c.PARTIAL
 
@@ -278,7 +281,17 @@ def compute_lagnaChart():
   #computing house related data for planets - not updated by update_planetaryData()
   for planetname in data.lagna_planets:
     planet = data.lagna_planets[planetname]
-    planet["house-num"] = gen.housediff(lagna, gen.signnum(planet["sign"]))
+    housenum = gen.housediff(lagna, gen.signnum(planet["sign"]))
+    planet["house-num"] = housenum
+    if (housenum in [1,5,9]):
+      planet["house-nature"] = c.DHARMA
+    elif (housenum in [2,6,10]):
+      planet["house-nature"] = c.ARTHA
+    elif (housenum in [3,7,11]):
+      planet["house-nature"] = c.KAMA
+    else:
+      planet["house-nature"] = c.MOKSHA
+
     #updating Status of the planet
     planet["status"] = c.COMPUTED
 

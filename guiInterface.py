@@ -12,6 +12,7 @@ import mod_drawChart as dc
 import dashas
 import mod_pdfReport as pdfrep
 import mod_yogadoshas as yd
+import mod_bala as bala
 
 userlist = []
 
@@ -90,6 +91,10 @@ def FetchUserInputData_formBirthdata(usrInputTk):
         varga.compute_Dx_4m_D1(data.charts,"D40")
         varga.compute_Dx_4m_D1(data.charts,"D45")
         varga.compute_Dx_4m_D1(data.charts,"D60")
+
+        #COMPUTE BALAS FOR PLANETS
+        bala.compute_VimshopakaBalas()
+
 
         js.dump_astrodata_injson()
         #creating Lagna chart image
