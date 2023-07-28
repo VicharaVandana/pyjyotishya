@@ -1,6 +1,7 @@
 import mod_astrodata as data
 import mod_general as gen
 import mod_constants as c
+import mod_graphplot as gp
 
 rel2vimshopakratio = {  c.SWAYAM        : (20/20),
                         c.ATHIMITRA     : (18/20),
@@ -127,7 +128,10 @@ def compute_VimshopakaBalas():
                 planet_vimshopakaBala = planet_vimshopakaBala + (planetStrengthInDiv * divisionWeightage)
             
             #Update the Vimshopaka Bala for the planet in given level
-            data.charts["Balas"]["Vimshopaka"][level][planet] = planet_vimshopakaBala
+            data.charts["Balas"]["Vimshopaka"][level][planet] = round(planet_vimshopakaBala, 3)
+    #Plot the graph and create image
+    gp.barPlot(data.charts["Balas"]["Vimshopaka"],"VimshopakaBala", "Vimshopaka Bala of planets in various Varga-groups", "Planets", "Vimshopaka Bala")
+    return
 
 
 

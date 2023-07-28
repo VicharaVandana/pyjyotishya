@@ -306,14 +306,15 @@ Rutu : {mychart["user_details"]["rutu"]}'''
         self.image('./images/jyotishyamitra.png',  x=40)
         self.ln(5)
         #section for User details -TOB, DOB, POB
-        self.set_font('Times', '', 12)
-        self.set_text_color(0,0,0)
+        self.set_font('Times', '', 18)
+        self.set_text_color(0,0,130)
         creationdetails = f'''Created on: {dt.now().strftime("%d/%b/%Y [%A] - %H:%M:%S")}'''
         userdetail = f'''Date of birth:  {bd["DOB"]["day"]}/{bd["DOB"]["month"]}/{bd["DOB"]["year"]}
 Time Of birth:  {bd["TOB"]["hour"]} : {bd["TOB"]["min"]} : {bd["TOB"]["sec"]} 
 Place of Birth:  {bd["POB"]["name"]}
 {creationdetails}'''
-        self.multi_cell(w=0,h=5, txt=userdetail, align='C', border=True)
+        self.multi_cell(w=0,h=8, txt=userdetail, align='C', border=True)
+        self.set_text_color(0,0,0)
 
     def addYogaDoshasSection(self):
         #title of the page
@@ -510,6 +511,8 @@ Tabulated data for Mahadashas, Bhuktis under current dasha lord and paryantardas
                 enddate = mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["endDate"].split(" ")[0]
                 duration = mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["duration"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
                 fromage = mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["startage"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
+                if (fromage.replace(" ","") == ""):
+                    fromage = " Birth"
                 tillage = mychart["Dashas"]["Vimshottari"]["antardashas"][entry]["endage"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
                 if(lord == antardasha):
                     row_bgcolor = "#9BFF64" #rgb(155,255,100)
@@ -540,6 +543,8 @@ Tabulated data for Mahadashas, Bhuktis under current dasha lord and paryantardas
                 enddate = mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["endDate"].split(" ")[0]
                 duration = mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["duration"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
                 fromage = mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["startage"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
+                if (fromage.replace(" ","") == ""):
+                    fromage = " Birth"
                 tillage = mychart["Dashas"]["Vimshottari"]["paryantardashas"][entry]["endage"].replace(" 0yr","").replace(" 0m","").replace(" 0d","")
                 if(lord == paryantardasha):
                     row_bgcolor = "#FF9BCD" #rgb(255,155,205)
@@ -553,7 +558,49 @@ Tabulated data for Mahadashas, Bhuktis under current dasha lord and paryantardas
         self.line(5, self.get_y(), self.w-10, self.get_y())
         self.ln(1)
 
-
+    def addPlanetaryBalas(self):
+        #title of the page
+        self.set_font('helvetica', 'BU', 16)
+        self.set_text_color(0,0,255)
+        self.cell(txt="Strength (Bala) of Planets", w=0, h=10, align='C')
+        #Vimshopaka Bala
+        #Title
+        self.ln(10)
+        self.set_font('Times', 'B', 14)
+        self.set_text_color(150,0,0)
+        self.cell(txt=f"Vimshopaka Bala for planets:", w=0, h=6, align='L')
+        #Vimshopaka Image
+        self.ln(5)
+        ypos = self.get_y()+1
+        xpos = 2
+        self.image(f"./images/balaImages/VimshopakaBala.png", x=5, w=(self.w - 5))
+        #vimnshopaka bala text
+        self.ln(5)
+        self.set_font('Times', 'I', 12)
+        self.set_text_color(100,0,0)
+        vimshopakaDetails = f'''Vimshopaka Bala is computed based on planets placements in various divisional charts
+This value is couputed out of 20 and values range from 5 to 20. 
+The points allocated are: (Own House - 20) and (House Of Great Friend - 18) and (House Of Friend - 15) and (Neutral House - 10) and (House Of Enemy - 7) and (House Of Great Enemy - 5).
+Shadvarga and its weightage are : (D1 or Rashi Chart - 6), (D2 or Hora - 2), (D3 or Drekanna - 4), (D9 or Navamsa - 5), (D12 or Dwadamsa -2), (D30 or Trimsamsa - 1).
+Saptavarga and its weightage are: (D1 or Rashi Chart - 5), (D2 or Hora - 2), (D3 or Drekanna - 3), (D7 or Saptamsa - 1), (D9 or Navamsa - 2.5), (D12 or Dwadamsa - 4.5), (D30 or Trimsamsa - 2).
+Dashavarga and its weightage are: (D1 or Rashi Chart - 3), (D2 or Hora - 1.5), (D3 or Drekanna - 1.5), (D7 or Saptamsa - 1.5), (D9 or Navamsa - 1.5), (D10 or Dasamamsa - 1.5), (D12 or Dwadamsa - 1.5), (D16 or Kalamsa - 1.5), (D30 or Trimsamsa - 1.5), (D60 or Shastiamsa - 5).
+Shodashavarga and its weightage are: (D1 or Rashi Chart - 3.5), (D2 or Hora - 1), (D3 or Drekanna - 1), (D4 or Turyamsa - 0.5), (D7 or Saptamsa - 0.5), (D9 or Navamsa - 3), (D10 or Dasamamsa - 0.5), (D12 or Dwadamsa - 0.5), (D16 or Kalamsa - 2), (D20 or Vimsamsa - 0.5), (D24 or Chatur Vimsamsa - 0.5), (D27 or Bhamsa - 0.5), (D30 or Trimsamsa - 1), (D40 or Khavedamsa - 0.5), (D45 or Akshavedamsa - 0.5), (D60 or Shastiamsa - 4).
+Higher the Vimshopaka score - better the results a planet gives in its Vimshottari and other dasas as the planet is well placed to fructify the results of various facets of life that these divisional charts rule.
+'''
+        vimshopakaDetailshtml = f'''<p>Vimshopaka Bala is computed based on planets placements in various divisional charts
+This value is couputed out of 20 and values range from 5 to 20. 
+<font color="blue">The points allocated are: <B>(Own House - 20)</B> and <B>(House Of Great Friend - 18)</B> and <B>(House Of Friend - 15)</B> and <B>(Neutral House - 10)</B> and <B>(House Of Enemy - 7)</B> and <B>(House Of Great Enemy - 5)</B>.</font></p>
+<p>Shadvarga and its weightage are : (D1 or Rashi Chart - 6), (D2 or Hora - 2), (D3 or Drekanna - 4), (D9 or Navamsa - 5), (D12 or Dwadamsa -2), (D30 or Trimsamsa - 1).</p>
+<p>Saptavarga and its weightage are: (D1 or Rashi Chart - 5), (D2 or Hora - 2), (D3 or Drekanna - 3), (D7 or Saptamsa - 1), (D9 or Navamsa - 2.5), (D12 or Dwadamsa - 4.5), (D30 or Trimsamsa - 2).</p>
+<p>Dashavarga and its weightage are: (D1 or Rashi Chart - 3), (D2 or Hora - 1.5), (D3 or Drekanna - 1.5), (D7 or Saptamsa - 1.5), (D9 or Navamsa - 1.5), (D10 or Dasamamsa - 1.5), (D12 or Dwadamsa - 1.5), (D16 or Kalamsa - 1.5), (D30 or Trimsamsa - 1.5), (D60 or Shastiamsa - 5).</p>
+<p>Shodashavarga and its weightage are: (D1 or Rashi Chart - 3.5), (D2 or Hora - 1), (D3 or Drekanna - 1), (D4 or Turyamsa - 0.5), (D7 or Saptamsa - 0.5), (D9 or Navamsa - 3), (D10 or Dasamamsa - 0.5), (D12 or Dwadamsa - 0.5), (D16 or Kalamsa - 2), (D20 or Vimsamsa - 0.5), (D24 or Chatur Vimsamsa - 0.5), (D27 or Bhamsa - 0.5), (D30 or Trimsamsa - 1), (D40 or Khavedamsa - 0.5), (D45 or Akshavedamsa - 0.5), (D60 or Shastiamsa - 4).</p>
+<p>Higher the Vimshopaka score - better the results a planet gives in its Vimshottari and other dasas as the planet is well placed to fructify the results of various facets of life that these divisional charts rule.</p>
+'''
+        #self.multi_cell(w=0,h=4, txt=vimshopakaDetails, align='L', border=False)
+        self.write_html(vimshopakaDetailshtml)
+        self.ln(3)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+        self.ln(1)
 
              
 
@@ -584,6 +631,10 @@ def GeneratePDFReport(charts):
         #Adding Vimshottari Dasha
         pdf.add_page()
         pdf.addVimshottariDasha()
+
+        #Adding Planetary Balas
+        pdf.add_page()
+        pdf.addPlanetaryBalas()
 
         #adding the Yogas 
         pdf.add_page()

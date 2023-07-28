@@ -167,6 +167,12 @@ yoga_names = [  "Vaidhriti", "Vishkambha", "Priti", "Ayushman", "Saubhagya", "Sh
                 "Ganda", "Vriddhi", "Dhruva", "Vyaghata", "Harshana", "Vajra", "Siddhi", "Vyatipata", "Variyana", "Parigha", 
                 "Siva", "Siddha", "Sadhya", "Shubha", "Shukla", "Brahma", "Indra" ]
 
+sign_natures =  [   "Movable",       "Fixed",    "Dual",
+                    "Movable",       "Fixed",    "Dual",
+                    "Movable",       "Fixed",    "Dual",
+                    "Movable",       "Fixed",    "Dual",
+                ]
+
 diety_of_nakshatra = dict(zip(nakshatras, nakshatra_dieties))
 ruler_of_nakshatra = dict(zip(nakshatras, nakshatra_rulers))
 lord_of_sign       = dict(zip(signs, signlords))
@@ -175,6 +181,7 @@ tatva_of_sign      = dict(zip(signs, signtatvas))
 tatva_of_rashi     = dict(zip(rashis, signtatvas))
 exhaltationSign_of_planet  = dict(zip(planets, exhaltation_signs))
 debilitationSign_of_planet = dict(zip(planets, debilitation_signs))
+sign_nature = dict(zip(signs, sign_natures))
 
 ###############################################################################
 ##                              lamda functions                              ##
@@ -587,8 +594,18 @@ def isPushkaraBhaga(SignTatva, Degree):
         return True
     return False
 
+def check_ifAllNumInSetA_in_SetB(SetA,SetB):
+    SetA_Copy = SetA.copy()
+    SetB_Copy = SetB.copy()
+    for item in SetB_Copy:
+        while(item in SetA_Copy):
+            SetA_Copy.remove(item)
+    if(len(SetA_Copy) == 0):
+        return True
+    else:
+        return False
 
 if __name__ == "__main__":
     print(signnum("Scorpio"))
-    print(isPushkaraNavamsha("",3))
+    print(check_ifAllNumInSetA_in_SetB([1,4,4,10,7,1,1], [1,4,7,10]))
     #print(debilitationSign_of_planet)

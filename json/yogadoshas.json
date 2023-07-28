@@ -25,5 +25,23 @@
         "Result": "Sarala Yoga is a Vipreeta Raja Yoga. As its name suggests, it is made up of two words - <Vipreeta> which means reverse and <Raja> which means a ruler. This presents a condition in the kundali of a person where the negatives add up to a positive outcome that can be life-altering. Fortunes are reversed wherein you receive benefits after a spate of bad luck.\n        Vipreeta Raj Yoga is a contradictory yoga where you get the positive results from the paapi grahas. These grahas are notorious for causing malice and ill-will with their effects. But they face an advantageous position when they are in each other's houses and this results in positive outcomes.\n        According to Phaladeepika, Sarala yoga enables the natives to be long-lived, resolute, fearless, prosperous, learned, blessed with children, and wealth. The native with this yoga will achieve success in all his ventures, will be victorious over his enemies, and will be a great celebrity.\n        Sarala Vipreeta Raja Yoga blesses the person with wisdom and power. It infuses the native with an air of authority and the sagacity to solve problems\n        ",
         "Note": "The Sarala Yoga is impacted by association with Benefics and malefics. Also the results are subject to strength of ascendant and combustion with Sun\nBenefic planets aspecting Jupiter: [] and conjunct benefics: ['Venus'].\nMalefic planets aspecting Jupiter: ['Rahu'] and conjunct malefics: [].\nConsider all these points carefully before concluding the results of this Vipareeta rajayoga.",
         "Source": "https://www.sanatanveda.com/astrology/vipareeta-raja-yoga-in-vedic-astrology/"
+    },
+    "CHATRA": {
+        "name": "Chatra Aakriti Nabhasa",
+        "type": "Yoga",
+        "exist": true,
+        "Rule": "All of 7 planets from Sun to Saturn are in houses[7,8,9,10,11,12,1]. Hence Chatra Yoga which is a part of Aakriti yogas in Nabhasa yogas is formed.",
+        "Result": "According to Parashara, One born in Chatra Yog will help his own men, be kind, dear to many kings, very intelligent, happy at the beginning and end of his life and be long-lived.\n        ",
+        "Note": "None",
+        "Source": ""
+    },
+    "KEDARA": {
+        "name": "Kedara Sankhya Nabhasa",
+        "type": "Yoga",
+        "exist": true,
+        "Rule": "All 7 planets from Sun to Saturn are in 4 seperate signs. Hence Kedara Yoga which is a part of Sankhya yogas in Nabhasa yogas is formed.",
+        "Result": "According to Parashara, One born in Kedara Yog will be useful to many, be an agriculturist, be truthful, happy, fickle-minded and wealthy.\n        ",
+        "Note": "If other (Nabhasa) yoga is present in addition to an Sankhya Yoga then the effects of Sankhya yoga do not come to pass, but the other (Nabhasa) yoga prevails.\nIn your case Aakriti Nabhasa Yoga is present meaning this sankhya yoga may not give results.",
+        "Source": ""
     }
 }
