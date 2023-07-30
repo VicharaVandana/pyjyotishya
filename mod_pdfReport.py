@@ -442,7 +442,8 @@ Place of Birth:  {bd["POB"]["name"]}
                 self.ln(5)
 
             #End of Yoga Dosha so draw a line
-            self.line(0, self.get_y(), self.w, self.get_y())
+            self.line(5, self.get_y(), self.w-5, self.get_y())
+            self.add_page()
     
     def addVimshottariDasha(self):
         #title of the page

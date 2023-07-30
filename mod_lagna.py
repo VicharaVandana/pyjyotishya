@@ -303,6 +303,7 @@ def compute_lagnaChart():
   gen.compute_conjuncts(data.D1) 
 
   #populating the classification part of divisional chart
+  gen.populate_Natural_BeneficsMalefics(data.D1)  #Natural benefics and malefics
   gen.populate_kendraplanets(data.D1) #kendra planets
   gen.populate_trikonaplanets(data.D1) #trikona planets
   gen.populate_trikplanets(data.D1) #trik planets
@@ -358,6 +359,7 @@ def compute_lagnaChart_custom(UserBirthData):
   gen.compute_conjuncts(data.D1) 
 
   #populating the classification part of divisional chart
+  gen.populate_Natural_BeneficsMalefics(data.D1)  #Natural benefics and malefics
   gen.populate_kendraplanets(data.D1) #kendra planets
   gen.populate_trikonaplanets(data.D1) #trikona planets
   gen.populate_trikplanets(data.D1) #trik planets

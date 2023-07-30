@@ -775,6 +775,19 @@
                 "Jupiter",
                 "Venus",
                 "Rahu"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu",
+                "Mercury"
             ]
         }
     },
@@ -981,6 +994,19 @@
             ],
             "moksha": [
                 "Moon"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon",
+                "Mercury"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu"
             ]
         },
         "ascendant": {
@@ -1758,6 +1784,19 @@
                 "Rahu",
                 "Mars",
                 "Venus"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon",
+                "Mercury"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu"
             ]
         },
         "ascendant": {
@@ -2538,6 +2577,19 @@
             ],
             "moksha": [
                 "Saturn"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu",
+                "Mercury"
             ]
         },
         "ascendant": {
@@ -3346,6 +3398,19 @@
                 "Venus",
                 "Rahu",
                 "Jupiter"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu",
+                "Mercury"
             ]
         },
         "ascendant": {
@@ -4143,6 +4208,19 @@
                 "Moon",
                 "Mercury",
                 "Rahu"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu",
+                "Mercury"
             ]
         },
         "ascendant": {
@@ -4931,6 +5009,19 @@
                 "Mars",
                 "Jupiter",
                 "Ketu"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu",
+                "Mercury"
             ]
         },
         "ascendant": {
@@ -5723,6 +5814,19 @@
             "moksha": [
                 "Saturn",
                 "Moon"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon",
+                "Mercury"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu"
             ]
         },
         "ascendant": {
@@ -6504,7 +6608,20 @@
                 "Mars",
                 "Mercury"
             ],
-            "moksha": []
+            "moksha": [],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon",
+                "Mercury"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu"
+            ]
         },
         "ascendant": {
             "name": "Ascendant",
@@ -7290,6 +7407,19 @@
                 "Mercury",
                 "Mars",
                 "Venus"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon",
+                "Mercury"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu"
             ]
         },
         "ascendant": {
@@ -8059,6 +8189,19 @@
             "moksha": [
                 "Venus",
                 "Jupiter"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon",
+                "Mercury"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu"
             ]
         },
         "ascendant": {
@@ -8841,6 +8984,19 @@
             ],
             "moksha": [
                 "Moon"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu",
+                "Mercury"
             ]
         },
         "ascendant": {
@@ -9652,6 +9808,19 @@
                 "Rahu",
                 "Ketu",
                 "Venus"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu",
+                "Moon",
+                "Mercury"
             ]
         },
         "ascendant": {
@@ -10424,6 +10593,19 @@
                 "Jupiter",
                 "Rahu",
                 "Ketu"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu",
+                "Moon",
+                "Mercury"
             ]
         },
         "ascendant": {
@@ -11220,6 +11402,19 @@
                 "Mercury",
                 "Moon",
                 "Mars"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Mercury"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
+                "Ketu",
+                "Moon"
             ]
         },
         "ascendant": {
@@ -12012,6 +12207,19 @@
             "moksha": [
                 "Jupiter",
                 "Mars",
+                "Ketu"
+            ],
+            "natural-benefics": [
+                "Jupiter",
+                "Venus",
+                "Moon",
+                "Mercury"
+            ],
+            "natural-malefics": [
+                "Sun",
+                "Saturn",
+                "Mars",
+                "Rahu",
                 "Ketu"
             ]
         },
@@ -21322,7 +21530,7 @@
                 }
             },
             "current": {
-                "date": "2023-07-29 01:38:46.740102",
+                "date": "2023-07-30 19:07:28.957831",
                 "dasha": "Jupiter",
                 "bhukti": "Venus",
                 "paryantardasha": "Mars"

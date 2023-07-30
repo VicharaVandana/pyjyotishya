@@ -337,6 +337,39 @@ def compute_BenMalNeu4lagna(lagna, cls):
         cls["neutral"].append(np)
     return
 
+def populate_Natural_BeneficsMalefics(division):
+    division["classifications"]["natural-benefics"] = []
+    division["classifications"]["natural-malefics"] = []
+    #Fixed Natural Benefics
+    division["classifications"]["natural-benefics"].append("Jupiter")
+    division["classifications"]["natural-benefics"].append("Venus")
+
+    #Fixed Natural Malefics
+    division["classifications"]["natural-malefics"].append("Sun")
+    division["classifications"]["natural-malefics"].append("Saturn")
+    division["classifications"]["natural-malefics"].append("Mars")
+    division["classifications"]["natural-malefics"].append("Rahu")
+    division["classifications"]["natural-malefics"].append("Ketu")
+
+    #Shukla Paksha moon is Benefic and Krishna Paksha moon is malefic
+    distSunToMoon_sec = get_distancebetweenplanets(division,"Sun", "Moon")
+    if(distSunToMoon_sec < (180*3600)): #shukla paksha
+        division["classifications"]["natural-benefics"].append("Moon")
+    else:   #Krishna Paksha
+        division["classifications"]["natural-malefics"].append("Moon")
+
+    #If Mercury is conjunct with any malefic then he is malefic. Else he is Benefic
+    for malefic in division["classifications"]["natural-malefics"]:
+        if(division["planets"][malefic]["house-num"] == division["planets"]["Mercury"]["house-num"]):
+            division["classifications"]["natural-malefics"].append("Mercury")
+            break
+    if ("Mercury" not in division["classifications"]["natural-malefics"]):
+        division["classifications"]["natural-benefics"].append("Mercury")
+    
+    return
+
+
+
 def populate_kendraplanets(division):
     #populates the kendra planets in the given chart. Kendra are house 1,4,7,10
     #1st House planets
@@ -604,6 +637,10 @@ def check_ifAllNumInSetA_in_SetB(SetA,SetB):
         return True
     else:
         return False
+
+def list_intersection(lst1, lst2):
+    lst3 = [value for value in lst1 if value in lst2]
+    return lst3
 
 if __name__ == "__main__":
     print(signnum("Scorpio"))

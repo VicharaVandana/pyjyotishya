@@ -880,6 +880,7 @@ def compute_Dx_4m_D1(charts, Dx):
     gen.compute_conjuncts(data.charts[Dx]) 
 
     #populating the classification part of divisional chart
+    gen.populate_Natural_BeneficsMalefics(data.charts[Dx])  #Natural benefics and malefics
     gen.populate_kendraplanets(data.charts[Dx]) #kendra planets
     gen.populate_trikonaplanets(data.charts[Dx]) #trikona planets
     gen.populate_trikplanets(data.charts[Dx]) #trik planets
