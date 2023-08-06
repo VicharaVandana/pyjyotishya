@@ -418,5 +418,26 @@
         "name": "Napolean",
         "Gender": "Male",
         "Comments": ""
+    },
+    "7planetin1house_gurmeet": {
+        "DOB": {
+            "year": 1962,
+            "month": 2,
+            "day": 3
+        },
+        "TOB": {
+            "hour": 10,
+            "min": 3,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Ludhiana",
+            "lat": 75.85229,
+            "lon": 30.90015,
+            "timezone": 5.5
+        },
+        "name": "7planetin1house_Gurmeet",
+        "Gender": "Male",
+        "Comments": ""
     }
 }

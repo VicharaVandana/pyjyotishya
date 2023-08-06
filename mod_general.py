@@ -77,6 +77,17 @@ exhaltation_signs = [   "Aries",        "Taurus",       "Capricorn",
                         "Libra",        "Taurus",       "Scorpio"
                     ]
 
+#in format (x,y) x is sign number and y is degrees
+deep_ExaltationPoints =    [    (1,10),     (2,3),  (10,28),
+                                (6,15),     (4,5),  (12,27),
+                                (7,20),     (2,27),  (8,27),
+                            ]
+
+deep_DebilitationPoints =   [   (7,10),     (8,3),  (4,28),
+                                (12,15),    (10,5), (6,27),
+                                (1,20),     (8,27), (2,27),
+                            ]
+
 debilitation_signs = [  "Libra",        "Scorpio",      "Cancer",
                         "Pisces",       "Capricorn",    "Virgo",
                         "Aries",        "Scorpio",      "Taurus"
@@ -181,6 +192,8 @@ tatva_of_sign      = dict(zip(signs, signtatvas))
 tatva_of_rashi     = dict(zip(rashis, signtatvas))
 exhaltationSign_of_planet  = dict(zip(planets, exhaltation_signs))
 debilitationSign_of_planet = dict(zip(planets, debilitation_signs))
+deepExaltPoint =  dict(zip(planets, deep_ExaltationPoints))
+deepDebilitPoint =  dict(zip(planets, deep_DebilitationPoints))
 sign_nature = dict(zip(signs, sign_natures))
 
 ###############################################################################
@@ -592,6 +605,22 @@ def get_distancebetweenplanets(division, fromplanet, toplanet):
     #compute distance from start of lagna to from and to planets in seconds.
     sec_fp = (((fp["house-num"]-1)*30*3600) + (fp["pos"]["deg"]*3600) + (fp["pos"]["min"]*60) + (fp["pos"]["sec"]))
     sec_tp = (((tp["house-num"]-1)*30*3600) + (tp["pos"]["deg"]*3600) + (tp["pos"]["min"]*60) + (tp["pos"]["sec"]))
+
+    if(sec_tp >= sec_fp):   #if toplanet is ahead of fromplanet
+        dist = sec_tp - sec_fp
+    else:   #if toplanet is behind of fromplanet
+        gap = sec_fp - sec_tp
+        dist = (360*3600) - gap
+
+    return dist
+
+def get_point2planetdistance(division, point, toplanet):
+    #Computes whats the distance between the point [sign,deg,min,sec] to toplanet in given divisional chart in seconds(deg and minutes also converted to seconds)
+    tp = division["planets"][toplanet]
+    tp_signnum = signnum(tp["sign"])
+    #compute distance from start of Aries to from and to planets in seconds.
+    sec_fp = (((point[0]-1)*30*3600) + (point[1]*3600) + (point[2]*60) + (point[3]))
+    sec_tp = (((tp_signnum-1)*30*3600) + (tp["pos"]["deg"]*3600) + (tp["pos"]["min"]*60) + (tp["pos"]["sec"]))
 
     if(sec_tp >= sec_fp):   #if toplanet is ahead of fromplanet
         dist = sec_tp - sec_fp

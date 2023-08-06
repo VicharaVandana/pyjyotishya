@@ -12818,7 +12818,7 @@
         "Vimshopaka": {
             "shadvarga": {
                 "Sun": 9.65,
-                "Moon": 12.75,
+                "Moon": 13.75,
                 "Mars": 15.75,
                 "Mercury": 15.95,
                 "Jupiter": 18.9,
@@ -12829,7 +12829,7 @@
             },
             "saptavarga": {
                 "Sun": 9.8,
-                "Moon": 12.5,
+                "Moon": 13.25,
                 "Mars": 15.75,
                 "Mercury": 15.05,
                 "Jupiter": 17.175,
@@ -12840,7 +12840,7 @@
             },
             "dashavarga": {
                 "Sun": 9.725,
-                "Moon": 10.675,
+                "Moon": 11.05,
                 "Mars": 17.375,
                 "Mercury": 15.65,
                 "Jupiter": 16.8,
@@ -12851,7 +12851,7 @@
             },
             "shodashavarga": {
                 "Sun": 9.7,
-                "Moon": 10.45,
+                "Moon": 10.7,
                 "Mars": 17.45,
                 "Mercury": 15.725,
                 "Jupiter": 16.05,
@@ -12859,6 +12859,183 @@
                 "Saturn": 15.275,
                 "Rahu": 11.0,
                 "Ketu": 12.1
+            }
+        },
+        "Shadbala": {
+            "Total": {
+                "Sun": 404.345,
+                "Moon": 307.731,
+                "Mars": 570.512,
+                "Mercury": 488.783,
+                "Jupiter": 488.447,
+                "Venus": 323.542,
+                "Saturn": 435.5
+            },
+            "Rupas": {
+                "Sun": 6.739,
+                "Moon": 5.129,
+                "Mars": 9.509,
+                "Mercury": 8.146,
+                "Jupiter": 8.141,
+                "Venus": 5.392,
+                "Saturn": 7.258
+            },
+            "Sthanabala": {
+                "Total": {
+                    "Sun": 87.382,
+                    "Moon": 192.018,
+                    "Mars": 290.866,
+                    "Mercury": 220.884,
+                    "Jupiter": 314.812,
+                    "Venus": 165.568,
+                    "Saturn": 240.515
+                },
+                "Uchhabala": {
+                    "Sun": 6.382,
+                    "Moon": 12.018,
+                    "Mars": 20.866,
+                    "Mercury": 56.884,
+                    "Jupiter": 47.812,
+                    "Venus": 16.568,
+                    "Saturn": 34.515
+                },
+                "Saptavargajabala": {
+                    "Sun": 66.0,
+                    "Moon": 135.0,
+                    "Mars": 165.0,
+                    "Mercury": 119.0,
+                    "Jupiter": 222.0,
+                    "Venus": 119.0,
+                    "Saturn": 131.0
+                },
+                "Ojhayugmarashiamshabala": {
+                    "Sun": 0.0,
+                    "Moon": 30.0,
+                    "Mars": 30.0,
+                    "Mercury": 15.0,
+                    "Jupiter": 15.0,
+                    "Venus": 0.0,
+                    "Saturn": 15.0
+                },
+                "Kendradhibala": {
+                    "Sun": 15,
+                    "Moon": 15,
+                    "Mars": 60,
+                    "Mercury": 15,
+                    "Jupiter": 30,
+                    "Venus": 30,
+                    "Saturn": 60
+                },
+                "Drekshanabala": {
+                    "Sun": 0,
+                    "Moon": 0,
+                    "Mars": 15,
+                    "Mercury": 15,
+                    "Jupiter": 0,
+                    "Venus": 0,
+                    "Saturn": 0
+                }
+            },
+            "Digbala": {
+                "Sun": 51.951,
+                "Moon": 6.018,
+                "Mars": 55.199,
+                "Mercury": 23.116,
+                "Jupiter": 8.854,
+                "Venus": 22.568,
+                "Saturn": 2.848
+            },
+            "Kaalabala": {
+                "Total": {
+                    "Sun": 172.577,
+                    "Moon": 64.508,
+                    "Mars": 208.77,
+                    "Mercury": 220.337,
+                    "Jupiter": 115.448,
+                    "Venus": 57.539,
+                    "Saturn": 158.17
+                },
+                "Natonnatabala": {
+                    "Sun": 13.929,
+                    "Moon": 46.071,
+                    "Mars": 46.071,
+                    "Mercury": 60.0,
+                    "Jupiter": 13.929,
+                    "Venus": 13.929,
+                    "Saturn": 46.071
+                },
+                "Pakshabala": {
+                    "Sun": 57.969,
+                    "Moon": 2.031,
+                    "Mars": 57.969,
+                    "Mercury": 57.969,
+                    "Jupiter": 2.031,
+                    "Venus": 2.031,
+                    "Saturn": 57.969
+                },
+                "Tribhagabala": {
+                    "Sun": 60.0,
+                    "Moon": 0.0,
+                    "Mars": 0.0,
+                    "Mercury": 0.0,
+                    "Jupiter": 60.0,
+                    "Venus": 0.0,
+                    "Saturn": 0.0
+                },
+                "Varsha-maasa-dina-horabala": {
+                    "Sun": 0.0,
+                    "Moon": 0.0,
+                    "Mars": 90.0,
+                    "Mercury": 60.0,
+                    "Jupiter": 0.0,
+                    "Venus": 0.0,
+                    "Saturn": 0.0
+                },
+                "Yuddhabala": {
+                    "Sun": 0,
+                    "Moon": 0,
+                    "Mars": 0,
+                    "Mercury": 0,
+                    "Jupiter": 0,
+                    "Venus": 0,
+                    "Saturn": 0
+                },
+                "Ayanabala": {
+                    "Sun": 40.679,
+                    "Moon": 16.406,
+                    "Mars": 14.73,
+                    "Mercury": 42.368,
+                    "Jupiter": 39.488,
+                    "Venus": 41.579,
+                    "Saturn": 54.13
+                }
+            },
+            "Cheshtabala": {
+                "Sun": 40.679,
+                "Moon": 2.031,
+                "Mars": 6.821,
+                "Mercury": 6.99,
+                "Jupiter": 25.645,
+                "Venus": 46.112,
+                "Saturn": 43.56
+            },
+            "Naisargikabala": {
+                "Sun": 60,
+                "Moon": 51.4,
+                "Mars": 17.1,
+                "Mercury": 25.7,
+                "Jupiter": 34.3,
+                "Venus": 42.9,
+                "Saturn": 8.6
+            },
+            "Drikbala": {
+                "Sun": -8.244,
+                "Moon": -8.244,
+                "Mars": -8.244,
+                "Mercury": -8.244,
+                "Jupiter": -10.612,
+                "Venus": -11.145,
+                "Saturn": -18.193
             }
         }
     },
@@ -21530,7 +21707,7 @@
                 }
             },
             "current": {
-                "date": "2023-07-30 19:07:28.957831",
+                "date": "2023-08-07 00:05:32.898237",
                 "dasha": "Jupiter",
                 "bhukti": "Venus",
                 "paryantardasha": "Mars"

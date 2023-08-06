@@ -94,6 +94,7 @@ def FetchUserInputData_formBirthdata(usrInputTk):
 
         #COMPUTE BALAS FOR PLANETS
         bala.compute_VimshopakaBalas()
+        bala.compute_shadbala()
 
 
         js.dump_astrodata_injson()

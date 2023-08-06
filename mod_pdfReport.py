@@ -7,15 +7,6 @@ global mychart
 global reportLevel 
 reportLevel = "BASIC"
 
-data1 = [
-    ["First name", "Last name", "Age", "City"],
-    ["Jules", "Smith", "34", "San Juan"],
-    ["Mary", "Ramos", "45", "Orlando"],
-    ["Carlson", "Banks", "19", "Los Angeles"],
-    ["Lucas", "Cimon", "31", "Saint-Mahturin-sur-Loire"],
-    ["Shyam", "Bhat", "31", "Honavar"],
-    ["The Great Alexandar of Greece", "Conquerror", "185", "Athens"]
-]
 
 def GetPlanetDataArray(planetdata, lagnadata):
     PlanetsData = []
@@ -571,7 +562,7 @@ Tabulated data for Mahadashas, Bhuktis under current dasha lord and paryantardas
         self.set_text_color(150,0,0)
         self.cell(txt=f"Vimshopaka Bala for planets:", w=0, h=6, align='L')
         #Vimshopaka Image
-        self.ln(5)
+        self.ln(7)
         ypos = self.get_y()+1
         xpos = 2
         self.image(f"./images/balaImages/VimshopakaBala.png", x=5, w=(self.w - 5))
@@ -579,15 +570,7 @@ Tabulated data for Mahadashas, Bhuktis under current dasha lord and paryantardas
         self.ln(5)
         self.set_font('Times', 'I', 12)
         self.set_text_color(100,0,0)
-        vimshopakaDetails = f'''Vimshopaka Bala is computed based on planets placements in various divisional charts
-This value is couputed out of 20 and values range from 5 to 20. 
-The points allocated are: (Own House - 20) and (House Of Great Friend - 18) and (House Of Friend - 15) and (Neutral House - 10) and (House Of Enemy - 7) and (House Of Great Enemy - 5).
-Shadvarga and its weightage are : (D1 or Rashi Chart - 6), (D2 or Hora - 2), (D3 or Drekanna - 4), (D9 or Navamsa - 5), (D12 or Dwadamsa -2), (D30 or Trimsamsa - 1).
-Saptavarga and its weightage are: (D1 or Rashi Chart - 5), (D2 or Hora - 2), (D3 or Drekanna - 3), (D7 or Saptamsa - 1), (D9 or Navamsa - 2.5), (D12 or Dwadamsa - 4.5), (D30 or Trimsamsa - 2).
-Dashavarga and its weightage are: (D1 or Rashi Chart - 3), (D2 or Hora - 1.5), (D3 or Drekanna - 1.5), (D7 or Saptamsa - 1.5), (D9 or Navamsa - 1.5), (D10 or Dasamamsa - 1.5), (D12 or Dwadamsa - 1.5), (D16 or Kalamsa - 1.5), (D30 or Trimsamsa - 1.5), (D60 or Shastiamsa - 5).
-Shodashavarga and its weightage are: (D1 or Rashi Chart - 3.5), (D2 or Hora - 1), (D3 or Drekanna - 1), (D4 or Turyamsa - 0.5), (D7 or Saptamsa - 0.5), (D9 or Navamsa - 3), (D10 or Dasamamsa - 0.5), (D12 or Dwadamsa - 0.5), (D16 or Kalamsa - 2), (D20 or Vimsamsa - 0.5), (D24 or Chatur Vimsamsa - 0.5), (D27 or Bhamsa - 0.5), (D30 or Trimsamsa - 1), (D40 or Khavedamsa - 0.5), (D45 or Akshavedamsa - 0.5), (D60 or Shastiamsa - 4).
-Higher the Vimshopaka score - better the results a planet gives in its Vimshottari and other dasas as the planet is well placed to fructify the results of various facets of life that these divisional charts rule.
-'''
+        
         vimshopakaDetailshtml = f'''<p>Vimshopaka Bala is computed based on planets placements in various divisional charts
 This value is couputed out of 20 and values range from 5 to 20. 
 <font color="blue">The points allocated are: <B>(Own House - 20)</B> and <B>(House Of Great Friend - 18)</B> and <B>(House Of Friend - 15)</B> and <B>(Neutral House - 10)</B> and <B>(House Of Enemy - 7)</B> and <B>(House Of Great Enemy - 5)</B>.</font></p>
@@ -601,7 +584,66 @@ This value is couputed out of 20 and values range from 5 to 20.
         self.write_html(vimshopakaDetailshtml)
         self.ln(3)
         self.line(5, self.get_y(), self.w-10, self.get_y())
+        self.ln(1)        
+
+        #Section for Shadbala
+        self.add_page()
+        #title of the page
+        self.set_font('helvetica', 'BU', 16)
+        self.set_text_color(0,0,255)
+        self.cell(txt="Strength (Bala) of Planets (contd..)", w=0, h=10, align='C')
+        #Title
+        self.ln(9)
+        self.set_font('Times', 'B', 14)
+        self.set_text_color(150,0,0)
+        self.cell(txt=f"          ShadBala for planets(Charts)", w=0, h=6, align='L')
+        #Image
+        self.ln(8)
+        ypos = self.get_y()+1
+        xpos = 2
+        self.image(f"./images/balaImages/Shadbala_Rupas.png", x=xpos, w=(self.w/1.8))
+        self.set_y(ypos + 14)
+        xpos = (self.w/1.8)+2
+        wdth = self.w - 4 - (self.w/1.8)
+        self.image(f"./images/balaImages/Shadbala.png", x=xpos, w=(wdth))
+
+        #Put sthanabala and kaalabala images side by side
+        self.ln(5)
+        ypos = self.get_y() 
+        xpos = 2 
+        wdth = (self.w - 4)/2
+        self.image(f"./images/balaImages/Sthanabala.png", x=xpos, w=wdth)
+        xpos = wdth+2
+        self.set_y(ypos)
+        self.image(f"./images/balaImages/Kaalabala.png", x=xpos, w=wdth)
         self.ln(1)
+
+        ShadbalaText = f'''<H4><B>Shadbala:- </B>A graha acquires strength in various ways, such as being placed in a certain Rasi, Bhava, Varga, Day or Night time, Shukla or Krsna paksha, being Vakri or victorious in Graha Yuddha etc. Shadbala is a mathematical model to quantify the strength attained from 6 different sources. Those 6 various balas from 6 sources are as folloows:</H4>
+<ul><li><B>Sthana Bala:</B> The strengths arising out of various kinds of placements in Rasi and Vargas are classified under this. These comprises of 5 sub-components viz. (1) Uccha, (2) Saptavargaja, (3) Ojayugma, (4) Kendradi, (5) Drekkana.</li>
+<li><B>Dig Bala:</B> The strength arising out of placement in specific Kendras depending on the Tattva governing the grahas and teh Kendras.</li>
+<li><B>Kaala Bala:</B> The strength arising out of the time when the birth or an event happened. These comprises of 6 sub-components viz.(1) Paksha, (2) Abdamasadinahora, (3) Ayana, (4) Natonnata, (5) Tribhaga, (6) Yuddha.</li>
+<li><B>Cheshta Bala:</B> The strength arising out of movement, fast or slow, forward or reverse direction.</li>
+<li><B>Naisargika Bala:</B> The strength arising out of natural strength and weakness of the grahas.</li>
+<li><B>Drik Bala:</B> The strength arising out of aspects of shubha and papa grahas. The shubha grahas are the sources of strength while the papa-grahas are the sources of weakness.</li></ul>
+<h6>Next The table of shadbalas with all sub balas is given in detail. Please coinsider this before analysing the charts.</h6>'''
+        self.set_font('Courier', '', 10)
+        self.set_text_color(100,0,0)
+        self.write_html(ShadbalaText)
+
+        #Shadbala Table
+        self.add_page()
+        #title of the page
+        self.set_font('helvetica', 'BU', 16)
+        self.set_text_color(0,0,255)
+        self.cell(txt="Strength (Bala) of Planets (contd..)", w=0, h=10, align='C')
+        #Title
+        self.ln(9)
+        self.set_font('Times', 'B', 14)
+        self.set_text_color(150,0,0)
+        self.cell(txt=f"ShadBala for planets(Table)", w=0, h=6, align='L')
+
+
+
 
              
 
