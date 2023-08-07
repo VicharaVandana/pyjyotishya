@@ -2,6 +2,7 @@ from fpdf import FPDF
 import  mod_astrodata as data
 from mod_astrodata import birthdata as bd
 from datetime import datetime as dt
+from mod_bala import BalaNeededValues as need
 
 global mychart
 global reportLevel 
@@ -56,6 +57,105 @@ def getWidthArray(data, IsRowColorGiven):
         item_Percent = (item * 100)/totSize
         widtharray.append(int(item_Percent))
     return(widtharray)
+def htmlrow_Shadbala_withoutBase(bala, values, rowclr = "white"):
+    htmlcontent = f'''<tr bgcolor={rowclr}>
+                            
+                            <td align="left">{bala}</td>
+                            '''
+    for planet in ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]:
+        htmlcontent = f'''{htmlcontent} <td align="center"><font color="black">{values[planet]}</font></td> '''
+
+    htmlcontent = f'''{htmlcontent} </tr>'''
+
+    return htmlcontent
+
+def htmlrow_Shadbala_withBase(bala, values, row1clr = "white",row2clr="white"):
+    htmlcontent = f'''<tr bgcolor={row1clr}>
+                            <td align="left">{bala}(Needed)</td>                            
+                            <td align="center">{need[bala]["Sun"]}</td>
+                            <td align="center">{need[bala]["Moon"]}</td>
+                            <td align="center">{need[bala]["Mars"]}</td>
+                            <td align="center">{need[bala]["Mercury"]}</td>
+                            <td align="center">{need[bala]["Jupiter"]}</td>
+                            <td align="center">{need[bala]["Venus"]}</td>
+                            <td align="center">{need[bala]["Saturn"]}</td>
+                        </tr>
+                        <tr bgcolor={row2clr}>
+                            <td align="left">{bala}(Actual)</td>
+                            '''
+    for planet in ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]:
+        if(values[planet] > need[bala][planet]):
+            textclr = "green"
+        elif(values[planet] < need[bala][planet]):
+            textclr = "red"
+        else:
+            textclr = "black"
+        htmlcontent = f'''{htmlcontent} <td align="center"><font color="{textclr}">{values[planet]}</font></td> '''
+
+    htmlcontent = f'''{htmlcontent} </tr>'''
+
+    return htmlcontent
+
+def create_ShadbalaTableHtml():
+    shadbalas= data.charts["Balas"]["Shadbala"]
+    #Update Shadbala Heading
+    heading = f'''<tr bgcolor = "black"> <font color="white">
+                    <th width="{30}%" align="center">Bala</th>
+                    <th width="{10}%" align="center">Sun</th>
+                    <th width="{10}%" align="center">Moon</th>
+                    <th width="{10}%" align="center">Mars</th>
+                    <th width="{10}%" align="center">Mercury</th>
+                    <th width="{10}%" align="center">Jupiter</th>
+                    <th width="{10}%" align="center">Venus</th>
+                    <th width="{10}%" align="center">Saturn</th> </font>
+                </tr>'''
+    
+    shadbalatotal = htmlrow_Shadbala_withBase("Shadbala", shadbalas["Total"],row1clr="white",row2clr="yellow")                    
+    sthanabala = htmlrow_Shadbala_withBase("Sthanabala", shadbalas["Sthanabala"]["Total"],row1clr="white",row2clr="yellow")
+    uchhabala = htmlrow_Shadbala_withoutBase("Sthana --> Uchhabala",shadbalas["Sthanabala"]["Uchhabala"], "#FFFFCC")
+    saptavargajabala = htmlrow_Shadbala_withoutBase("Sthana --> Saptavargajabala",shadbalas["Sthanabala"]["Saptavargajabala"], "#FFFFCC")
+    ojhayugmarashiamshabala = htmlrow_Shadbala_withoutBase("Sthana --> Ojhayugmarashiamshabala",shadbalas["Sthanabala"]["Ojhayugmarashiamshabala"], "#FFFFCC")
+    kendradhibala = htmlrow_Shadbala_withoutBase("Sthana --> Kendradhibala",shadbalas["Sthanabala"]["Kendradhibala"], "#FFFFCC")
+    drekshanabala = htmlrow_Shadbala_withoutBase("Sthana --> Drekshanabala",shadbalas["Sthanabala"]["Drekshanabala"], "#FFFFCC")
+    digbala = htmlrow_Shadbala_withBase("Digbala", shadbalas["Digbala"],row1clr="white",row2clr="yellow")
+    kaalabala = htmlrow_Shadbala_withBase("Kaalabala", shadbalas["Kaalabala"]["Total"],row1clr="white",row2clr="yellow")
+    natonnatabala = htmlrow_Shadbala_withoutBase("Kaala --> Natonnatabala",shadbalas["Kaalabala"]["Natonnatabala"], "#FFFFCC")
+    pakshabala = htmlrow_Shadbala_withoutBase("Kaala --> Pakshabala",shadbalas["Kaalabala"]["Pakshabala"], "#FFFFCC")
+    tribhagabala = htmlrow_Shadbala_withoutBase("Kaala --> Tribhagabala",shadbalas["Kaalabala"]["Tribhagabala"], "#FFFFCC")
+    vmdhbala = htmlrow_Shadbala_withoutBase("Kaala --> VarshMaasDinaHoraBala",shadbalas["Kaalabala"]["Varsha-maasa-dina-horabala"], "#FFFFCC")
+    yuddhabala = htmlrow_Shadbala_withoutBase("Kaala --> Yuddhabala",shadbalas["Kaalabala"]["Yuddhabala"], "#FFFFCC")
+    ayanabala = htmlrow_Shadbala_withBase("Ayanabala", shadbalas["Kaalabala"]["Ayanabala"],row1clr="white",row2clr="yellow")
+    cheshtabala = htmlrow_Shadbala_withBase("Cheshtabala",shadbalas["Cheshtabala"], row1clr="white",row2clr="yellow")
+    naisargikabala = htmlrow_Shadbala_withoutBase("Naisargikabala",shadbalas["Naisargikabala"], "yellow")
+    drikbala = htmlrow_Shadbala_withoutBase("Drikbala",shadbalas["Drikbala"], "yellow")
+    
+    
+    
+    
+
+
+    html_Table = f'''<table>
+                        {heading}
+                        {shadbalatotal}
+                        {sthanabala}
+                        {uchhabala}
+                        {saptavargajabala}
+                        {ojhayugmarashiamshabala}
+                        {kendradhibala}
+                        {drekshanabala}
+                        {digbala}
+                        {kaalabala}
+                        {natonnatabala}
+                        {pakshabala}
+                        {tribhagabala}
+                        {vmdhbala}
+                        {yuddhabala}
+                        {ayanabala}
+                        {cheshtabala}
+                        {naisargikabala}
+                        {drikbala}                         
+                     </table>'''
+    return html_Table
 
 class PDF(FPDF):
 
@@ -640,7 +740,56 @@ This value is couputed out of 20 and values range from 5 to 20.
         self.ln(9)
         self.set_font('Times', 'B', 14)
         self.set_text_color(150,0,0)
-        self.cell(txt=f"ShadBala for planets(Table)", w=0, h=6, align='L')
+        self.cell(txt=f"ShadBala (in virupas) for planets(Table)", w=0, h=6, align='L')
+        self.ln(2)
+        self.set_font('Times', 'B', 11)
+        self.set_text_color(120,100,0)
+        self.write_html(create_ShadbalaTableHtml(),table_line_separators=True)
+        self.ln(1)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+        
+        self.ln(2)
+        self.set_font('Times', 'B', 14)
+        self.set_text_color(100,100,100)
+        self.cell(txt=f"ShadBala (in rupas) for planets and rank:", w=0, h=6, align='L')
+        shadbala = data.charts["Balas"]["Shadbala"]["Total"].copy()
+        ordered_shadbala = sorted(shadbala.items(), key=lambda x:x[1])
+        rank = 1
+        ranktable = f'''<table >
+  <tr bgcolor = "black"> <font color="white">
+    <th width = "10%" align = "center">Rank</th>
+    <th width = "50%" align = "center">Planet</th>
+    <th width = "20%" align = "center">Shadbala</th>
+    <th width = "20%" align = "center">Min Req</th> </font>
+  </tr>'''
+        for item in [6,5,4,3,2,1,0]:
+            shadbalarupa = round((ordered_shadbala[item][1] / 60),2)
+            shadbalaminrupa = round((need["Shadbala"][ordered_shadbala[item][0]] / 60),2)
+            if (shadbalarupa >=shadbalaminrupa):
+                bgclr = "lime"
+            else:
+                bgclr = "#F77D85"
+            ranktable = f'''{ranktable} 
+            <tr bgcolor = "{bgclr}">
+                <td align = "center">{rank}</td>
+                <td align = "center">{ordered_shadbala[item][0]}</td>
+                <td align = "center">{shadbalarupa}</td> 
+                <td align = "center">{shadbalaminrupa}</td>              
+            </tr>  '''
+            rank = rank + 1
+
+        ranktable = f'''{ranktable}</table>'''
+        self.write_html(ranktable,table_line_separators=True)
+        self.ln(2)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+        self.ln(1)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+
+
+
+
+
+        
 
 
 
