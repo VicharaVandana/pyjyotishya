@@ -2,6 +2,7 @@ import mod_astrodata as data
 import mod_general as gen
 import mod_constants as c
 import mod_graphplot as gp
+import mod_drawChart as dc
 import math 
 import datetime
 import calendar
@@ -903,6 +904,116 @@ def compute_shadbala():
     gp.barPlot(normalizedshadbala,"Shadbala-Normalized", "Normalized Shadbala of planets", "Planets", "Shad Bala(percentage)")
     return 
 
+def compute_ishtakashtabalas():
+    for planet in ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]:
+        uchhabala = data.charts["Balas"]["Shadbala"]["Sthanabala"]["Uchhabala"][planet]
+        cheshtabala = data.charts["Balas"]["Shadbala"]["Cheshtabala"][planet]
+        ishtabala = round(math.sqrt(uchhabala*cheshtabala),3)
+        kashtabala = 60.0-ishtabala
+        data.charts["Balas"]["Ishtabala"][planet] = ishtabala
+        data.charts["Balas"]["Kashtabala"][planet] = kashtabala
+
+    #Plot the graph and create image
+    gp.barPlot(data.charts["Balas"]["Ishtabala"],"Ishtabala", "Ishtabala of planets", "Planets", "Ishta Bala", index=0)
+    gp.barPlot(data.charts["Balas"]["Kashtabala"],"Kashtabala", "Kashtabala of planets", "Planets", "Kashta Bala", index=0)
+    return
+
+############################## BHAVA BALAS #################################
+def compute_bhavaAdhipthibala():
+    for hno in range(12):
+        houselord = data.charts["D1"]["houses"][hno]["sign-lord"]
+        data.charts["Balas"]["BhavaBala"]["BhavaAdhipathibala"][hno] = data.charts["Balas"]["Shadbala"]["Total"][houselord]
+    return
+
+def compute_bhavaDigbala():
+    bhavadigbalas = {    "nara" : [60,50,40,30,20,10,0,10,20,30,40,50],
+                        "jalachara" : [30,40,50,60,50,40,30,20,10,0,10,20],
+                        "chatuspadha" : [30,20,10,0,10,20,30,40,50,60,50,40],
+                        "keeta" : [0,10,20,30,40,50,60,50,40,30,20,10],
+                        "none" : [0,0,0,0,0,0,0,0,0,0,0,0]
+                    }
+    sign_nature = { "Aries":"chatuspadha",       
+                    "Taurus":"chatuspadha",    
+                    "Gemini":"nara",   
+                    "Cancer":"jalachara",
+                    "Leo":"chatuspadha",         
+                    "Virgo":"nara",     
+                    "Libra":"nara",    
+                    "Scorpio":"keeta",
+                    "Saggitarius-1":"nara",         #first half
+                    "Saggitarius-2":"chatuspadha",  #second half
+                    "Capricorn-1":"chatuspadha",    #first half
+                    "Capricorn-2":"jalachara",      #second half
+                    "Aquarius":"none", 
+                    "Pisces":"jalachara"
+                  }
+    for hno in range(12):
+        sign = data.charts["D1"]["houses"][hno]["sign"]
+        lagnadeg = data.charts["D1"]["ascendant"]["pos"]["dec_deg"]
+        if (lagnadeg <= 15.0):
+            part = 1
+        else:
+            part = 2
+        
+        if ((sign == "Saggitarius") or (sign == "Capricorn")):
+            sign_part = f'''{sign}-{part}''' 
+        else:
+            sign_part = sign
+
+        nature = sign_nature[sign_part]
+        bhavadigbala = bhavadigbalas[nature][hno]
+        data.charts["Balas"]["BhavaBala"]["BhavaDigbala"][hno] = bhavadigbala
+    return
+
+def compute_bhavadrishtibala():
+    naturalbenefics = data.charts["D1"]["classifications"]["natural-benefics"].copy()
+    naturalmalefics = data.charts["D1"]["classifications"]["natural-malefics"].copy()
+    naturalmalefics.remove("Rahu")
+    naturalmalefics.remove("Ketu")
+    for hno in range(12):
+        sign_num = data.charts["D1"]["houses"][hno]["sign-num"]
+        bhava_drikbala = 0
+        benefic_sputa = 0
+        malefic_sputa = 0
+        #for each planet check drishtis from benefics and malefics 
+        for aspectingplanet in naturalbenefics:
+            #compute sputa drishti from benefics to bhava madhya
+            dist_bhavamadhya2aspecting = gen.get_point2planetdistance(data.charts["D1"], [sign_num,15,0,0], aspectingplanet)/3600
+            dist_aspecting2bhavamadhya = 360 - dist_bhavamadhya2aspecting
+            sputa = get_sputadrishti(dist_aspecting2bhavamadhya,aspectingplanet)
+            benefic_sputa = benefic_sputa + sputa   #beneficDrishtipinda is sum of all sputadrishtis from benefics
+        
+        for aspectingplanet in naturalmalefics:
+            #compute sputa drishti from malefics
+            dist_bhavamadhya2aspecting = gen.get_point2planetdistance(data.charts["D1"], [sign_num,15,0,0], aspectingplanet)/3600
+            dist_aspecting2bhavamadhya = 360 - dist_bhavamadhya2aspecting
+            sputa = get_sputadrishti(dist_aspecting2bhavamadhya,aspectingplanet)
+            malefic_sputa = malefic_sputa + sputa   #beneficDrishtipinda is sum of all sputadrishtis from benefics
+
+        #Total drishtipinda is beneficdrishtipinda - malefic drishti pinda
+        drishtipinda_total = benefic_sputa - malefic_sputa
+
+        #Drik Bala is quarter of this drishti pinda
+        bhava_drikbala = drishtipinda_total / 4.0
+        data.charts["Balas"]["BhavaBala"]["BhavaDrishtibala"][hno] = round(bhava_drikbala,3)
+    return
+
+def compute_bhavabala():
+    #Compute 3 sub balas first for bhava
+    compute_bhavaAdhipthibala()
+    compute_bhavaDigbala()
+    compute_bhavadrishtibala()
+
+    #Now add all 3 balas to get final bhavabala
+    for hno in range(12):
+        bhavabala = data.charts["Balas"]["BhavaBala"]["BhavaAdhipathibala"][hno]
+        bhavabala = bhavabala + data.charts["Balas"]["BhavaBala"]["BhavaDigbala"][hno]
+        bhavabala = bhavabala + data.charts["Balas"]["BhavaBala"]["BhavaDrishtibala"][hno]
+        data.charts["Balas"]["BhavaBala"]["Total"][hno] = round(bhavabala,3)        
+    dc.create_bhavaBalaChartSVG(data.charts)
+    dc.create_bhavaBalaRankChartSVG(data.charts)
+    return
 
 if __name__ == "__main__":
-    compute_uchhabala()
+    #compute_uchhabala()
+    compute_bhavaAdhipthibala()

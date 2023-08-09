@@ -92,14 +92,17 @@ def FetchUserInputData_formBirthdata(usrInputTk):
         varga.compute_Dx_4m_D1(data.charts,"D45")
         varga.compute_Dx_4m_D1(data.charts,"D60")
 
+        js.load_drawChartConfig()
+
         #COMPUTE BALAS FOR PLANETS
         bala.compute_VimshopakaBalas()
         bala.compute_shadbala()
+        bala.compute_ishtakashtabalas()
+        bala.compute_bhavabala()
 
 
         js.dump_astrodata_injson()
         #creating Lagna chart image
-        js.load_drawChartConfig()
         dc.create_chartSVG(data.D1)
         dc.create_chartSVG(data.D9)
         dc.create_chartSVG(data.D10)

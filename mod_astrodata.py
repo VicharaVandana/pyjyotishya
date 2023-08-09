@@ -707,7 +707,14 @@ charts = {"D1": D1,
               "Cheshtabala" : {"Sun": 0, "Moon": 0, "Mars": 0, "Mercury": 0, "Jupiter": 0, "Venus": 0, "Saturn": 0},
               "Naisargikabala" : {"Sun": 60, "Moon": 51.4, "Mars": 17.1 , "Mercury": 25.7, "Jupiter": 34.3, "Venus": 42.9, "Saturn": 8.6},
               "Drikbala" : {"Sun": 0, "Moon": 0, "Mars": 0, "Mercury": 0, "Jupiter": 0, "Venus": 0, "Saturn": 0}
-            }
+            },
+"Ishtabala":{"Sun": 0, "Moon": 0, "Mars": 0, "Mercury": 0, "Jupiter": 0, "Venus": 0, "Saturn": 0},
+"Kashtabala":{"Sun": 0, "Moon": 0, "Mars": 0, "Mercury": 0, "Jupiter": 0, "Venus": 0, "Saturn": 0},
+"BhavaBala": {  "BhavaAdhipathibala" : [0,0,0,0,0,0,0,0,0,0,0,0],
+                "BhavaDigbala" : [0,0,0,0,0,0,0,0,0,0,0,0],
+                "BhavaDrishtibala" : [0,0,0,0,0,0,0,0,0,0,0,0],
+                "Total" : [0,0,0,0,0,0,0,0,0,0,0,0]
+},
                   },
           "Dashas":{ "Vimshottari":{  "mahadashas" : {},
                                       "antardashas": {},

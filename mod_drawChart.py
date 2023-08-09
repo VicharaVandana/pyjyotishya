@@ -14,7 +14,7 @@
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
 from html2image import Html2Image
-
+from scipy.stats import rankdata
 
 from mod_chartPlanetPositions import planetPosition_northSquareClassic as ppnsc
 from mod_chartPlanetPositions import bhavnames, aspectSymbols
@@ -43,20 +43,20 @@ def draw_classicNorthChartSkeleton(chartSVG):
     chartSVG.write(f'''  <polygon id ="karchbhav" points="310,110 410,10 210,10" style="fill:{chartCfg["house-colour"]["karchbhav"]};stroke:{chartCfg["line-colour"]};stroke-width:2" />\n''')
     return
 
-def write_signnumOnChart_nsc(division, chartSVG):
+def write_signnumOnChart_nsc(division, chartSVG, signclr):
     chartSVG.write('\n  <!-- ********** Sign Numbers ********** -->\n')
-    chartSVG.write(f'''  <text id ="tan" x="193" y="195" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][0]["sign-num"]:02}</text>\n''')
-    chartSVG.write(f'''  <text id ="dhan" x="97" y="95" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][1]["sign-num"]:02}</text>\n''')
-    chartSVG.write(f'''  <text id ="anuj" x="70" y="118" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][2]["sign-num"]:02}</text>\n''')
-    chartSVG.write(f'''  <text id ="maata" x="170" y="218" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][3]["sign-num"]:02}</text>\n''')
-    chartSVG.write(f'''  <text id ="santaan" x="75" y="316" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][4]["sign-num"]:02}</text>\n''')  
-    chartSVG.write(f'''  <text id ="rog" x="97" y="335" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][5]["sign-num"]:02}</text>\n''')  
-    chartSVG.write(f'''  <text id ="dampathya" x="195" y="240" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][6]["sign-num"]:02}</text>\n''')  
-    chartSVG.write(f'''  <text id ="aayu" x="296" y="337" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][7]["sign-num"]:02}</text>\n''')  
-    chartSVG.write(f'''  <text id ="bhagya" x="320" y="318" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][8]["sign-num"]:02}</text>\n''')  
-    chartSVG.write(f'''  <text id ="karma" x="220" y="218" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][9]["sign-num"]:02}</text>\n''')  
-    chartSVG.write(f'''  <text id ="laab" x="318" y="118" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][10]["sign-num"]:02}</text>\n''')  
-    chartSVG.write(f'''  <text id ="karch" x="298" y="98" fill="{chartCfg["sign-colour"]}" class="sign-num">{division["houses"][11]["sign-num"]:02}</text>\n''')
+    chartSVG.write(f'''  <text id ="tan" x="193" y="195" fill="{signclr}" class="sign-num">{division["houses"][0]["sign-num"]:02}</text>\n''')
+    chartSVG.write(f'''  <text id ="dhan" x="97" y="95" fill="{signclr}" class="sign-num">{division["houses"][1]["sign-num"]:02}</text>\n''')
+    chartSVG.write(f'''  <text id ="anuj" x="70" y="118" fill="{signclr}" class="sign-num">{division["houses"][2]["sign-num"]:02}</text>\n''')
+    chartSVG.write(f'''  <text id ="maata" x="170" y="218" fill="{signclr}" class="sign-num">{division["houses"][3]["sign-num"]:02}</text>\n''')
+    chartSVG.write(f'''  <text id ="santaan" x="75" y="316" fill="{signclr}" class="sign-num">{division["houses"][4]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="rog" x="97" y="335" fill="{signclr}" class="sign-num">{division["houses"][5]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="dampathya" x="195" y="240" fill="{signclr}" class="sign-num">{division["houses"][6]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="aayu" x="296" y="337" fill="{signclr}" class="sign-num">{division["houses"][7]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="bhagya" x="320" y="318" fill="{signclr}" class="sign-num">{division["houses"][8]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="karma" x="220" y="218" fill="{signclr}" class="sign-num">{division["houses"][9]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="laab" x="318" y="118" fill="{signclr}" class="sign-num">{division["houses"][10]["sign-num"]:02}</text>\n''')  
+    chartSVG.write(f'''  <text id ="karch" x="298" y="98" fill="{signclr}" class="sign-num">{division["houses"][11]["sign-num"]:02}</text>\n''')
     return
 
 def get_planetColour(planetname, classification):
@@ -146,7 +146,7 @@ def create_chartSVG(division):
     #create chart for given template
     if (chartCfg["template"] == "north-square-classic"):
         draw_classicNorthChartSkeleton(chartSVG)    #Create skeleton
-        write_signnumOnChart_nsc(division, chartSVG)    #Update the sign numbers on chart skeleton
+        write_signnumOnChart_nsc(division, chartSVG, chartCfg["sign-colour"])    #Update the sign numbers on chart skeleton
         write_planetsOnChart_nsc(division, chartSVG)    #Update the planets on chart for every house
         if(chartCfg["aspect-visibility"] == True):
             write_planetsAspectsOnChart_nsc(division, chartSVG)
@@ -254,4 +254,137 @@ def create_SimpleYogaDoshaChart(division,YogaDoshaName, relevantPlanets, colorli
     else:
         drawing = svg2rlg(chartSVGFullname)
         renderPM.drawToFile(drawing, chartPNGFullname, fmt="PNG")
+    return
+
+########################## Bhavabala Charts #####################################
+def write_bhavaBalasOnChart_nsc(charts, chartSVG):
+    bhavbalas = []
+    for bala in charts["Balas"]["BhavaBala"]["Total"]:
+        bhavbalas.append(int(bala))
+
+    
+    chartSVG.write('\n  <!-- ********** Bhavabala Numbers ********** -->\n')
+    chartSVG.write(f'''  <text id ="tanEntry" x="187" y="115" fill="lime" class="center-text">{bhavbalas[0]}</text>
+  <text id ="dhanEntry" x="90" y="60" fill="lime" class="center-text">{bhavbalas[1]}</text>
+  <text id ="anujEntry" x="22" y="120" fill="lime" class="center-text">{bhavbalas[2]}</text>
+  <text id ="maataEntry" x="90" y="218" fill="lime" class="center-text">{bhavbalas[3]}</text>
+  <text id ="santaanEntry" x="22" y="320" fill="lime" class="center-text">{bhavbalas[4]}</text>
+  <text id ="rogEntry" x="95" y="380" fill="lime" class="center-text">{bhavbalas[5]}</text>
+  <text id ="dampathyaEntry" x="195" y="310" fill="lime" class="center-text">{bhavbalas[6]}</text>
+  <text id ="aayuEntry" x="290" y="380" fill="lime" class="center-text">{bhavbalas[7]}</text>
+  <text id ="bhagyaEntry" x="355" y="320" fill="lime" class="center-text">{bhavbalas[8]}</text>
+  <text id ="karmaEntry" x="290" y="220" fill="lime" class="center-text">{bhavbalas[9]}</text>
+  <text id ="laabEntry" x="355" y="120" fill="lime" class="center-text">{bhavbalas[10]}</text>
+  <text id ="karchEntry" x="287" y="60" fill="lime" class="center-text">{bhavbalas[11]}</text>\n''')
+    return
+
+def create_bhavaBalaChartSVG(charts):
+    ''' Creates SVG image of astrology chart as per the chart draw configuration
+        with data in division. The chart is bhavabala chart 
+        with sign numbers and bhavabala in middle'''
+    # open or create chart file 
+    chartSVGfilename = f'Bhavabala_chart'
+    chartSVGFullname = f'images/balaImages/{chartSVGfilename}.svg'
+    chartSVG = open(chartSVGFullname, 'w',  encoding='utf-16')
+    chartPNGFullname = f'images/balaImages/{chartSVGfilename}.png'
+    chartPNGShortname = f'{chartSVGfilename}.png'
+    hti = Html2Image()
+
+    #Write the content into the file
+    #SVG chart open section
+    chartSVG.write(f'''<svg id="Bhavabala_chart" height="410" width="410" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 420 420" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" charset="utf-16">\n''')
+    chartSVG.write('  <style>\n')
+    chartSVG.write('    .sign-num { font: bold 22px sans-serif; }\n')
+    chartSVG.write('    .center-text { font: bold 26px sans-serif; }\n')
+    chartSVG.write('    .planet { font: bold 20px sans-serif; }\n')
+    chartSVG.write('  </style>\n')
+    chartSVG.write('  <!-- ********** Chart Diagram ********** -->\n')
+
+    #create chart for given template
+    if (chartCfg["template"] == "north-square-classic"):
+        draw_classicNorthChartSkeleton(chartSVG)    #Create skeleton
+        write_signnumOnChart_nsc(charts["D1"], chartSVG, "white")    #Update the sign numbers on chart skeleton
+        write_bhavaBalasOnChart_nsc(charts, chartSVG)    #Update the planets on chart for every house
+    
+    #SVG chart End section
+    chartSVG.write('\n  Sorry, your browser does not support inline SVG.\n')
+    chartSVG.write('</svg>\n')
+
+    #close the file
+    chartSVG.close()
+
+    #Convert Svg file to PNG file
+    if(chartCfg["aspect-visibility"] == True):
+        hti.output_path = './images/balaImages/'
+        hti.screenshot(other_file=chartSVGFullname, size=(500, 500), save_as=chartPNGShortname)
+    else:
+        drawing = svg2rlg(chartSVGFullname)
+        renderPM.drawToFile(drawing, chartPNGFullname, fmt="PNG")
+
+    return
+
+def write_bhavaBalasRankOnChart_nsc(charts, chartSVG):
+    bhavbalas = charts["Balas"]["BhavaBala"]["Total"].copy()
+    rankorderofbhavabalas = rankdata(bhavbalas, method='dense')
+    maxrank = max(rankorderofbhavabalas)
+    bhavabalarank = [(maxrank+1)-x for x in rankorderofbhavabalas]  
+    
+    chartSVG.write('\n  <!-- ********** Bhavabala Rank Numbers ********** -->\n')
+    chartSVG.write(f'''  <text id ="tanEntry" x="187" y="115" fill="skyblue" class="center-text">{bhavabalarank[0]}</text>
+  <text id ="dhanEntry" x="90" y="60" fill="skyblue" class="center-text">{bhavabalarank[1]}</text>
+  <text id ="anujEntry" x="22" y="120" fill="skyblue" class="center-text">{bhavabalarank[2]}</text>
+  <text id ="maataEntry" x="90" y="218" fill="skyblue" class="center-text">{bhavabalarank[3]}</text>
+  <text id ="santaanEntry" x="22" y="320" fill="skyblue" class="center-text">{bhavabalarank[4]}</text>
+  <text id ="rogEntry" x="95" y="380" fill="skyblue" class="center-text">{bhavabalarank[5]}</text>
+  <text id ="dampathyaEntry" x="195" y="310" fill="skyblue" class="center-text">{bhavabalarank[6]}</text>
+  <text id ="aayuEntry" x="290" y="380" fill="skyblue" class="center-text">{bhavabalarank[7]}</text>
+  <text id ="bhagyaEntry" x="355" y="320" fill="skyblue" class="center-text">{bhavabalarank[8]}</text>
+  <text id ="karmaEntry" x="290" y="220" fill="skyblue" class="center-text">{bhavabalarank[9]}</text>
+  <text id ="laabEntry" x="355" y="120" fill="skyblue" class="center-text">{bhavabalarank[10]}</text>
+  <text id ="karchEntry" x="287" y="60" fill="skyblue" class="center-text">{bhavabalarank[11]}</text>\n''')
+    return
+
+def create_bhavaBalaRankChartSVG(charts):
+    ''' Creates SVG image of astrology chart as per the chart draw configuration
+        with data in division. The chart is bhavabala chart 
+        with sign numbers and bhavabala in middle'''
+    # open or create chart file 
+    chartSVGfilename = f'BhavabalaRank_chart'
+    chartSVGFullname = f'images/balaImages/{chartSVGfilename}.svg'
+    chartSVG = open(chartSVGFullname, 'w',  encoding='utf-16')
+    chartPNGFullname = f'images/balaImages/{chartSVGfilename}.png'
+    chartPNGShortname = f'{chartSVGfilename}.png'
+    hti = Html2Image()
+
+    #Write the content into the file
+    #SVG chart open section
+    chartSVG.write(f'''<svg id="Bhavabala_chart" height="410" width="410" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 420 420" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" charset="utf-16">\n''')
+    chartSVG.write('  <style>\n')
+    chartSVG.write('    .sign-num { font: bold 22px sans-serif; }\n')
+    chartSVG.write('    .center-text { font: bold 38px sans-serif; }\n')
+    chartSVG.write('    .planet { font: bold 20px sans-serif; }\n')
+    chartSVG.write('  </style>\n')
+    chartSVG.write('  <!-- ********** Chart Diagram ********** -->\n')
+
+    #create chart for given template
+    if (chartCfg["template"] == "north-square-classic"):
+        draw_classicNorthChartSkeleton(chartSVG)    #Create skeleton
+        write_signnumOnChart_nsc(charts["D1"], chartSVG, "white")    #Update the sign numbers on chart skeleton
+        write_bhavaBalasRankOnChart_nsc(charts, chartSVG)    #Update the bhavabala ranks
+    
+    #SVG chart End section
+    chartSVG.write('\n  Sorry, your browser does not support inline SVG.\n')
+    chartSVG.write('</svg>\n')
+
+    #close the file
+    chartSVG.close()
+
+    #Convert Svg file to PNG file
+    if(chartCfg["aspect-visibility"] == True):
+        hti.output_path = './images/balaImages/'
+        hti.screenshot(other_file=chartSVGFullname, size=(500, 500), save_as=chartPNGShortname)
+    else:
+        drawing = svg2rlg(chartSVGFullname)
+        renderPM.drawToFile(drawing, chartPNGFullname, fmt="PNG")
+
     return

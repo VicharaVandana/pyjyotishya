@@ -3,6 +3,7 @@ import  mod_astrodata as data
 from mod_astrodata import birthdata as bd
 from datetime import datetime as dt
 from mod_bala import BalaNeededValues as need
+from scipy.stats import rankdata
 
 global mychart
 global reportLevel 
@@ -755,7 +756,7 @@ This value is couputed out of 20 and values range from 5 to 20.
         shadbala = data.charts["Balas"]["Shadbala"]["Total"].copy()
         ordered_shadbala = sorted(shadbala.items(), key=lambda x:x[1])
         rank = 1
-        ranktable = f'''<table >
+        ranktable_shadbala = f'''<table >
   <tr bgcolor = "black"> <font color="white">
     <th width = "10%" align = "center">Rank</th>
     <th width = "50%" align = "center">Planet</th>
@@ -769,7 +770,7 @@ This value is couputed out of 20 and values range from 5 to 20.
                 bgclr = "lime"
             else:
                 bgclr = "#F77D85"
-            ranktable = f'''{ranktable} 
+            ranktable_shadbala = f'''{ranktable_shadbala} 
             <tr bgcolor = "{bgclr}">
                 <td align = "center">{rank}</td>
                 <td align = "center">{ordered_shadbala[item][0]}</td>
@@ -778,17 +779,83 @@ This value is couputed out of 20 and values range from 5 to 20.
             </tr>  '''
             rank = rank + 1
 
-        ranktable = f'''{ranktable}</table>'''
-        self.write_html(ranktable,table_line_separators=True)
+        ranktable_shadbala = f'''{ranktable_shadbala}</table>'''
+        self.write_html(ranktable_shadbala,table_line_separators=True)
         self.ln(2)
         self.line(5, self.get_y(), self.w-10, self.get_y())
         self.ln(1)
         self.line(5, self.get_y(), self.w-10, self.get_y())
 
+        #Bhavabala Section
+        #Shadbala Table
+        self.add_page()
+        #title of the page
+        self.set_font('helvetica', 'BU', 16)
+        self.set_text_color(0,0,255)
+        self.cell(txt="Strength (Bala) of Houses", w=0, h=10, align='C')
+        #Title
+        self.ln(9)
+        self.set_font('Times', 'B', 14)
+        self.set_text_color(150,0,0)
+        self.cell(txt=f"Bhavabala (in virupas and ranks) for Houses", w=0, h=6, align='C')
+        #Image of bhavabala (left half: Bhavabala and right half: bhavabala ranks)
+        self.ln(8)
+        ypos = self.get_y() 
+        xpos = 8 
+        wdth = (self.w)/2
+        self.image(f"./images/balaImages/Bhavabala_chart.png", x=xpos, w=wdth)
+        xpos = wdth+4
+        self.set_y(ypos)
+        self.image(f"./images/balaImages/BhavabalaRank_chart.png", x=xpos, w=wdth)
+        self.ln(3)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+        self.ln(1)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+        self.ln(3)
+        #Bhavabala Table
+        bhavbalas = data.charts["Balas"]["BhavaBala"]["Total"].copy()
+        bhavadhipathibalas = data.charts["Balas"]["BhavaBala"]["BhavaAdhipathibala"].copy()
+        bhavdigbalas = data.charts["Balas"]["BhavaBala"]["BhavaDigbala"].copy()
+        bhavdrishtibalas = data.charts["Balas"]["BhavaBala"]["BhavaDrishtibala"].copy()
+        bhavnames = ["Tan", "Dhan", "Anuj", "Maata", "Santaan", "Rog",
+             "Dampathya", "Aayu", "Bhagya", "Karma", "Laab", "Karch"]
+        rankorderofbhavabalas = rankdata(bhavbalas, method='dense')
+        maxrank = max(rankorderofbhavabalas)
+        bhavabalarank = [(maxrank+1)-x for x in rankorderofbhavabalas]
+        table_bhavabala = f'''<table >
+  <tr bgcolor = "black"> <font color="white">
+    <th width = "8%" align = "center">Num</th>
+    <th width = "22%" align = "center">Bhava</th>
+    <th width = "15%" align = "center">Adhipathi</th>
+    <th width = "15%" align = "center">Dig</th>
+    <th width = "15%" align = "center">Drishti</th>
+    <th width = "15%" align = "center">Bhava bala</th>
+    <th width = "10%" align = "center">Rank</th> </font>
+  </tr>'''
+        for item in range(12):
+            if (bhavabalarank[item] <= 5):
+                bgclr = "lime"
+            else:
+                bgclr = "#F77D85"
+            table_bhavabala = f'''{table_bhavabala} 
+            <tr bgcolor = "{bgclr}">
+                <td align = "center">{item+1}</td>
+                <td align = "center">{bhavnames[item]}</td>
+                <td align = "center">{bhavadhipathibalas[item]}</td>
+                <td align = "center">{bhavdigbalas[item]}</td>
+                <td align = "center">{bhavdrishtibalas[item]}</td>
+                <td align = "center">{bhavbalas[item]}</td>
+                <td align = "center">{bhavabalarank[item]}</td>             
+            </tr>  '''
 
-
-
-
+        table_bhavabala = f'''{table_bhavabala}</table>'''
+        self.write_html(table_bhavabala,table_line_separators=True)
+        self.ln(2)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+        self.ln(1)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+        self.ln(1)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
         
 
 

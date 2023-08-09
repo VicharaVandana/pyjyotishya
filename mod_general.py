@@ -49,7 +49,7 @@ nakshatra_dieties = [   "Ashwini kumaras", "Yama", "Agni",
 
 signs = [ "Aries",       "Taurus",    "Gemini",   "Cancer",
           "Leo",         "Virgo",     "Libra",    "Scorpio",
-          "Saggitarius", "Capricorn", "Aquarius", "Pisces",
+          "Saggitarius", "Capricorn", "Aquarius", "Pisces"
         ]
 
 rashis = ["Mesha",       "Vrushaba",  "Mithuna",  "Karka",

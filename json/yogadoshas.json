@@ -1,19 +1,46 @@
 {
-    "DANDA": {
-        "name": "Danda Aakriti Nabhasa",
+    "BHADRA": {
+        "name": "Bhadra Panchamahapurusha",
         "type": "Yoga",
         "exist": true,
-        "Rule": "All of 7 planets from Sun to Saturn are in houses[10,11,12,1]. Hence Danda Yoga which is a part of Aakriti yogas in Nabhasa yogas is formed.",
-        "Result": "According to Parashara, One born in Danda Yog will lose sons and wife, will be indigent, unkind, away from his men and will serve mean people.\n        ",
+        "Rule": "In Lagna chart, Mercury is exhalted [Virgo] and in Kendra with respect to Moon [house number:1 from moon] Hence Bhadra Panchamahapurusha yoga is formed.",
+        "Result": "Bhadra Yoga makes you stand out from the crowd and helps you advance steadily towards the highest level of success. It is believed that if the planet Mercury holds a favourable position in your birth chart and forms the Bhadra Yoga, it will enhance your intelligence and ensure that you achieve success in all your endeavours.\n        The native is blessed with superlative intelligence and wisdom to make the right decisions at the right time. Also, it blesses the native with advanced communication skills which enables them to have a deep and lasting influence on people around them.\n        This yoga blesses you with a long and healthy life. With the help of Bhadra Yoga, you will have a great career as a journalist, speaker, political person or reformer.\n        Bhadra Yoga will improve your mental faculties and make you intelligent and wise. It also gives you a pleasing personality and a flexible mind. You are approachable and easily become a trusted confidant to many.\n        ",
+        "Note": "The Bhadra Yoga is strengthened by association with Benefics and weakened by association with malefics. Also the results are subject to strength of ascendant or moon with which the mercury is in kendra.\nBenefic planets aspecting Mercury: [] and conjunct benefics: ['Moon'].\nMalefic planets aspecting Mercury: [] and conjunct malefics: ['Sun'].\nConsider all these points carefully before concluding the results of this panchamahapurusha yoga.",
+        "Source": "https://www.astroyogi.com/kundli/yog/bhadra/"
+    },
+    "SASA": {
+        "name": "Sasa Panchamahapurusha",
+        "type": "Yoga",
+        "exist": true,
+        "Rule": "In Lagna chart, Saturn is in Own sign [Capricorn] and in Kendra [house number:1] Hence Sasa Panchamahapurusha yoga is formed.",
+        "Result": "Sasa Yoga makes the native practical, realistic, responsible and hardworking. They also develop exceptional mass communication skills and bear an air of authority. Embracing the effects of Saturn wholeheartedly is said to be the mark of a successful person. Saturn can bless people under Sasa Yoga with exceptional abilities to produce positive results.\n        Persons with Sasa Yoga in their kundali are well placed in society, often in senior bureaucratic positions. They possess superlative intelligence and leadership qualities. The financial benefits are many; they are blessed with every creature comfort known to man. The effects Sasa yoga may become more pronounced as one grows in years when it is time for the hard work to pay off.\n        Natives with Sasa Yoga in their horoscope will be elevated to positions of power. They will enjoy success and riches, and their fame will spread far and wide. They are pragmatic by nature. They are hardworking, conscientious and self-made.\n        The native is blessed with the good qualities of Saturn. They are devoted to their mothers and often engage in charitable activities.\n        Sasa Yoga enables the natives to draw benefits from spiritualism and meditation. Such people have heightened intuition and can become good spiritual healers and yoga teachers.\n        ",
+        "Note": "The Sasa Yoga is strengthened by association with Benefics and weakened by association with malefics. Also the results are subject to strength of ascendant or moon with which the saturn is in kendra.\nBenefic planets aspecting Saturn: [] and conjunct benefics: [].\nMalefic planets aspecting Saturn: [] and conjunct malefics: [].\nConsider all these points carefully before concluding the results of this panchamahapurusha yoga.",
+        "Source": "https://www.astroyogi.com/kundli/yog/sasa/"
+    },
+    "SARALA": {
+        "name": "Sarala Vipareeta Raja",
+        "type": "Yoga",
+        "exist": true,
+        "Rule": "Lord of Twelfth house Jupiter is placed in eighth house. Hence 1 count of Sarala yoga is formed in Natives Lagna chart\n",
+        "Result": "Sarala Yoga is a Vipreeta Raja Yoga. As its name suggests, it is made up of two words - <Vipreeta> which means reverse and <Raja> which means a ruler. This presents a condition in the kundali of a person where the negatives add up to a positive outcome that can be life-altering. Fortunes are reversed wherein you receive benefits after a spate of bad luck.\n        Vipreeta Raj Yoga is a contradictory yoga where you get the positive results from the paapi grahas. These grahas are notorious for causing malice and ill-will with their effects. But they face an advantageous position when they are in each other's houses and this results in positive outcomes.\n        According to Phaladeepika, Sarala yoga enables the natives to be long-lived, resolute, fearless, prosperous, learned, blessed with children, and wealth. The native with this yoga will achieve success in all his ventures, will be victorious over his enemies, and will be a great celebrity.\n        Sarala Vipreeta Raja Yoga blesses the person with wisdom and power. It infuses the native with an air of authority and the sagacity to solve problems\n        ",
+        "Note": "The Sarala Yoga is impacted by association with Benefics and malefics. Also the results are subject to strength of ascendant and combustion with Sun\nBenefic planets aspecting Jupiter: [] and conjunct benefics: ['Venus'].\nMalefic planets aspecting Jupiter: ['Rahu'] and conjunct malefics: [].\nConsider all these points carefully before concluding the results of this Vipareeta rajayoga.",
+        "Source": "https://www.sanatanveda.com/astrology/vipareeta-raja-yoga-in-vedic-astrology/"
+    },
+    "CHATRA": {
+        "name": "Chatra Aakriti Nabhasa",
+        "type": "Yoga",
+        "exist": true,
+        "Rule": "All of 7 planets from Sun to Saturn are in houses[7,8,9,10,11,12,1]. Hence Chatra Yoga which is a part of Aakriti yogas in Nabhasa yogas is formed.",
+        "Result": "According to Parashara, One born in Chatra Yog will help his own men, be kind, dear to many kings, very intelligent, happy at the beginning and end of his life and be long-lived.\n        ",
         "Note": "None",
         "Source": ""
     },
-    "YUGA": {
-        "name": "Yuga Sankhya Nabhasa",
+    "KEDARA": {
+        "name": "Kedara Sankhya Nabhasa",
         "type": "Yoga",
         "exist": true,
-        "Rule": "All 7 planets from Sun to Saturn are in 2 seperate signs. Hence Yuga Yoga which is a part of Sankhya yogas in Nabhasa yogas is formed.",
-        "Result": "According to Parashara, One born in Yuga Yog will be heretic, be devoid of wealth, be discarded by others and be devoid of sons, mother and virtues.\n        ",
+        "Rule": "All 7 planets from Sun to Saturn are in 4 seperate signs. Hence Kedara Yoga which is a part of Sankhya yogas in Nabhasa yogas is formed.",
+        "Result": "According to Parashara, One born in Kedara Yog will be useful to many, be an agriculturist, be truthful, happy, fickle-minded and wealthy.\n        ",
         "Note": "If other (Nabhasa) yoga is present in addition to an Sankhya Yoga then the effects of Sankhya yoga do not come to pass, but the other (Nabhasa) yoga prevails.\nIn your case Aakriti Nabhasa Yoga is present meaning this sankhya yoga may not give results.",
         "Source": ""
     }
