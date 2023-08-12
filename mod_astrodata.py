@@ -716,6 +716,7 @@ charts = {"D1": D1,
                 "Total" : [0,0,0,0,0,0,0,0,0,0,0,0]
 },
                   },
+          "AshtakaVarga" : {},
           "Dashas":{ "Vimshottari":{  "mahadashas" : {},
                                       "antardashas": {},
                                       "paryantardashas": {},

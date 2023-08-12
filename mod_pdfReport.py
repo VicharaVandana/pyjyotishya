@@ -856,8 +856,88 @@ This value is couputed out of 20 and values range from 5 to 20.
         self.line(5, self.get_y(), self.w-10, self.get_y())
         self.ln(1)
         self.line(5, self.get_y(), self.w-10, self.get_y())
-        
 
+        return
+        
+    def addAshtakjavargaChartsinaPage(self):
+        #title of the page
+        self.set_font('Times', 'BU', 12)
+        self.cell(txt="Ashtaka Varga Charts", w=0, h=10, align='C')
+        
+        self.set_font('Times', 'BI', 10)
+        imageWidth = (self.w / 3.0) - 5
+        self.set_fill_color(255,255,0)  #yellow colour
+
+        #first comes Lagna chart
+        self.image("./images/ashtakavargaImages/SAV_chart.png", x=5, y=35, w=imageWidth)
+        #setting caption 
+        self.set_xy(5,35+imageWidth)    #caption position
+        self.cell(txt="Sarva Ashtaka Varga", w=imageWidth, h=3, align='C', ln=1)
+        #self.multi_cell(txt="Physical appearance, Health, Entire life",w=imageWidth, h=3, fill=1)
+
+        #next comes Sun chart
+        self.image("./images/ashtakavargaImages/BAV_Sun_chart.png", x=5+imageWidth+2, y=35, w=imageWidth)
+        #setting caption 
+        self.set_xy(5+imageWidth+2,35+imageWidth)    #caption position
+        self.cell(txt="Sun Bhinna Ashtaka Varga", w=imageWidth, h=3, align='C', ln=1)
+        self.set_x(5+imageWidth+2)
+        #self.multi_cell(txt="Spouse, Marriage, Business, Second half of life",w=imageWidth, h=3, fill=1)
+
+        #next comes Moon chart
+        self.image("./images/ashtakavargaImages/BAV_Moon_chart.png", x=5+(2*imageWidth)+4, y=35, w=imageWidth)
+        #setting caption 
+        self.set_xy(5+(2*imageWidth)+4,35+imageWidth)    #caption position
+        self.cell(txt="Moon Bhinna Ashtaka Varga", w=imageWidth, h=3, align='C', ln=1)
+        self.set_x(5+(2*imageWidth)+4)
+        #self.multi_cell(txt="Matters of great importance, career, honor, awards, fame",w=imageWidth, h=3, fill=1)
+    ###############################################################################
+        #next comes Mars chart
+        self.image("./images/ashtakavargaImages/BAV_Mars_chart.png", x=5, y=35 + imageWidth + 15, w=imageWidth)
+        #setting caption 
+        self.set_xy(5,35 + (2*imageWidth) + 15)    #caption position
+        self.cell(txt="Mars Bhinna Ashtaka Varga", w=imageWidth, h=3, align='C', ln=1)
+        #self.multi_cell(txt="Wealth, securities, assets",w=imageWidth, h=3, fill=1)
+
+        #next comes Mercury chart
+        self.image("./images/ashtakavargaImages/BAV_Mercury_chart.png", x=5+imageWidth+2, y=35 + imageWidth + 15, w=imageWidth)
+        #setting caption 
+        self.set_xy(5+imageWidth+2,35 + (2*imageWidth) + 15)    #caption position
+        self.cell(txt="Mercury Bhinna Ashtaka Varga", w=imageWidth, h=3, align='C', ln=1)
+        self.set_x(5+(1*imageWidth)+4)
+        #self.multi_cell(txt="Happiness through siblings",w=imageWidth, h=3, fill=1)
+
+        #next comes Jupiter chart
+        self.image("./images/ashtakavargaImages/BAV_Jupiter_chart.png", x=5+(2*imageWidth)+4, y=35 + imageWidth + 15, w=imageWidth)
+        #setting caption 
+        self.set_xy(5+(2*imageWidth)+4,35 + (2*imageWidth) + 15)    #caption position
+        self.cell(txt="Jupiter Bhinna Ashtaka Varga", w=imageWidth, h=3, align='C', ln=1)
+        self.set_x(5+(2*imageWidth)+4)
+        #self.multi_cell(txt="Fortune, Unmovable Assets",w=imageWidth, h=3, fill=1)
+
+    ###############################################################################
+        #next comes Venus chart
+        self.image("./images/ashtakavargaImages/BAV_Venus_chart.png", x=5, y=35 + (2*imageWidth) + 30, w=imageWidth)
+        #setting caption 
+        self.set_xy(5,35 + (3*imageWidth) + 30)    #caption position
+        self.cell(txt="Venus Bhinna Ashtaka Varga", w=imageWidth, h=3, align='C', ln=1)
+        #self.multi_cell(txt="sons, grandsons, children",w=imageWidth, h=3, fill=1)
+
+        #next comes Saturn chart
+        self.image("./images/ashtakavargaImages/BAV_Saturn_chart.png", x=5+imageWidth+2, y=35 + (2*imageWidth) + 30, w=imageWidth)
+        #setting caption 
+        self.set_xy(5+imageWidth+2,35 + (3*imageWidth) + 30)    #caption position
+        self.cell(txt="Saturn Bhinna Ashtaka Varga", w=imageWidth, h=3, align='C', ln=1)
+        self.set_x(5+(1*imageWidth)+4)
+        #self.multi_cell(txt="Parents",w=imageWidth, h=3, fill=1)
+
+        self.ln(2)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+        self.ln(1)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+        self.ln(1)
+        self.line(5, self.get_y(), self.w-10, self.get_y())
+
+        return
 
 
 
@@ -894,6 +974,10 @@ def GeneratePDFReport(charts):
         #Adding Planetary Balas
         pdf.add_page()
         pdf.addPlanetaryBalas()
+
+        #Adding AshtakaVarga
+        pdf.add_page()
+        pdf.addAshtakjavargaChartsinaPage()
 
         #adding the Yogas 
         pdf.add_page()

@@ -439,5 +439,47 @@
         "name": "7planetin1house_Gurmeet",
         "Gender": "Male",
         "Comments": ""
+    },
+    "keerthi saravi": {
+        "DOB": {
+            "year": 2003,
+            "month": 2,
+            "day": 11
+        },
+        "TOB": {
+            "hour": 10,
+            "min": 30,
+            "sec": 43
+        },
+        "POB": {
+            "name": "lakshmeshwar",
+            "lat": 75.4723,
+            "lon": 15.1275,
+            "timezone": 5.5
+        },
+        "name": "keerthi saravi",
+        "Gender": "Female",
+        "Comments": ""
+    },
+    "sample": {
+        "DOB": {
+            "year": 1989,
+            "month": 3,
+            "day": 24
+        },
+        "TOB": {
+            "hour": 4,
+            "min": 45,
+            "sec": 0
+        },
+        "POB": {
+            "name": "rudraprayag",
+            "lat": 78.9822,
+            "lon": 30.285,
+            "timezone": 5.5
+        },
+        "name": "sample",
+        "Gender": "Male",
+        "Comments": ""
     }
 }

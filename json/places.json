@@ -49780,5 +49780,11 @@
         "lat": 74.3786,
         "lon": 16.4042,
         "timezone": 5.5
+    },
+    "rudraprayag": {
+        "name": "rudraprayag",
+        "lat": 78.9822,
+        "lon": 30.285,
+        "timezone": 5.5
     }
 }

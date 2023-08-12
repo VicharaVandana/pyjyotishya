@@ -388,3 +388,113 @@ def create_bhavaBalaRankChartSVG(charts):
         renderPM.drawToFile(drawing, chartPNGFullname, fmt="PNG")
 
     return
+
+############################## AshtakaVarga Charts #############################
+def write_AshtakaVargaPointsOnChart_nsc(chartSVG, planetashtaka):     
+    
+    chartSVG.write('\n  <!-- ********** AshtakaVarga Points ********** -->\n')
+    chartSVG.write(f'''  <text id ="tanEntry" x="187" y="115" fill="skyblue" class="center-text">{planetashtaka[0]}</text>
+  <text id ="dhanEntry" x="90" y="60" fill="skyblue" class="center-text">{planetashtaka[1]}</text>
+  <text id ="anujEntry" x="22" y="120" fill="skyblue" class="center-text">{planetashtaka[2]}</text>
+  <text id ="maataEntry" x="90" y="218" fill="skyblue" class="center-text">{planetashtaka[3]}</text>
+  <text id ="santaanEntry" x="22" y="320" fill="skyblue" class="center-text">{planetashtaka[4]}</text>
+  <text id ="rogEntry" x="95" y="380" fill="skyblue" class="center-text">{planetashtaka[5]}</text>
+  <text id ="dampathyaEntry" x="195" y="310" fill="skyblue" class="center-text">{planetashtaka[6]}</text>
+  <text id ="aayuEntry" x="290" y="380" fill="skyblue" class="center-text">{planetashtaka[7]}</text>
+  <text id ="bhagyaEntry" x="355" y="320" fill="skyblue" class="center-text">{planetashtaka[8]}</text>
+  <text id ="karmaEntry" x="290" y="220" fill="skyblue" class="center-text">{planetashtaka[9]}</text>
+  <text id ="laabEntry" x="355" y="120" fill="skyblue" class="center-text">{planetashtaka[10]}</text>
+  <text id ="karchEntry" x="287" y="60" fill="skyblue" class="center-text">{planetashtaka[11]}</text>\n''')
+    return
+
+def create_ashtakavargaChartSVG(charts):
+    ashtaka = charts["AshtakaVarga"]
+    for planet in ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]:
+        # open or create chart file 
+        chartSVGfilename = f'BAV_{planet}_chart'
+        chartSVGFullname = f'images/ashtakavargaImages/{chartSVGfilename}.svg'
+        chartSVG = open(chartSVGFullname, 'w',  encoding='utf-16')
+        chartPNGFullname = f'images/ashtakavargaImages/{chartSVGfilename}.png'
+        chartPNGShortname = f'{chartSVGfilename}.png'
+        hti = Html2Image()
+
+        #Write the content into the file
+        #SVG chart open section
+        chartSVG.write(f'''<svg id="BhinnaAshtakaVarga_chart" height="500" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 420 420" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" charset="utf-16">\n''')
+        chartSVG.write('  <style>\n')
+        chartSVG.write('    .sign-num { font: bold 22px sans-serif; }\n')
+        chartSVG.write('    .center-text { font: bold 38px sans-serif; }\n')
+        chartSVG.write('    .planet { font: bold 20px sans-serif; }\n')
+        chartSVG.write('  </style>\n')
+        chartSVG.write('  <!-- ********** Chart Diagram ********** -->\n')
+
+        #create chart for given template
+        if (chartCfg["template"] == "north-square-classic"):
+            draw_classicNorthChartSkeleton(chartSVG)    #Create skeleton
+            colorlist = ["white", "white", "white", "white", "white", "white", "white", "white", "white", "white", "white", "white"]
+            planet_hno = charts["D1"]["planets"][planet]["house-num"]
+            colorlist[planet_hno-1] = "yellow"
+            write_signnumOnChart_customcolour_nsc(charts["D1"], chartSVG, colorlist)    #Update the sign numbers on chart skeleton
+            write_AshtakaVargaPointsOnChart_nsc(chartSVG, ashtaka[planet])    #Update the ashtakavarga points
+        
+        #SVG chart End section
+        chartSVG.write('\n  Sorry, your browser does not support inline SVG.\n')
+        chartSVG.write('</svg>\n')
+
+        #close the file
+        chartSVG.close()
+
+        #Convert Svg file to PNG file
+        if(chartCfg["aspect-visibility"] == True):
+            hti.output_path = './images/ashtakavargaImages/'
+            hti.screenshot(other_file=chartSVGFullname, size=(500, 500), save_as=chartPNGShortname)
+        else:
+            drawing = svg2rlg(chartSVGFullname)
+            renderPM.drawToFile(drawing, chartPNGFullname, fmt="PNG")
+    ######## FOR Sarva AshtakaVarga ##################
+    # open or create chart file 
+    chartSVGfilename = f'SAV_chart'
+    chartSVGFullname = f'images/ashtakavargaImages/{chartSVGfilename}.svg'
+    chartSVG = open(chartSVGFullname, 'w',  encoding='utf-16')
+    chartPNGFullname = f'images/ashtakavargaImages/{chartSVGfilename}.png'
+    chartPNGShortname = f'{chartSVGfilename}.png'
+    hti = Html2Image()
+
+    #Write the content into the file
+    #SVG chart open section
+    chartSVG.write(f'''<svg id="SarvaAshtakaVarga_chart" height="500" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 420 420" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" charset="utf-16">\n''')
+    chartSVG.write('  <style>\n')
+    chartSVG.write('    .sign-num { font: bold 22px sans-serif; }\n')
+    chartSVG.write('    .center-text { font: bold 38px sans-serif; }\n')
+    chartSVG.write('    .planet { font: bold 20px sans-serif; }\n')
+    chartSVG.write('  </style>\n')
+    chartSVG.write('  <!-- ********** Chart Diagram ********** -->\n')
+
+    #create chart for given template
+    if (chartCfg["template"] == "north-square-classic"):
+        draw_classicNorthChartSkeleton(chartSVG)    #Create skeleton
+        colorlist = ["white", "white", "white", "white", "white", "white", "white", "white", "white", "white", "white", "white"]
+        #planet_hno = charts["D1"]["planets"][planet]["house-num"]
+        #colorlist[planet_hno-1] = "yellow"
+        write_signnumOnChart_customcolour_nsc(charts["D1"], chartSVG, colorlist)    #Update the sign numbers on chart skeleton
+        write_AshtakaVargaPointsOnChart_nsc(chartSVG, ashtaka["Total"])    #Update the ashtakavarga points
+    
+    #SVG chart End section
+    chartSVG.write('\n  Sorry, your browser does not support inline SVG.\n')
+    chartSVG.write('</svg>\n')
+
+    #close the file
+    chartSVG.close()
+
+    #Convert Svg file to PNG file
+    if(chartCfg["aspect-visibility"] == True):
+        hti.output_path = './images/ashtakavargaImages/'
+        hti.screenshot(other_file=chartSVGFullname, size=(500, 500), save_as=chartPNGShortname)
+    else:
+        drawing = svg2rlg(chartSVGFullname)
+        renderPM.drawToFile(drawing, chartPNGFullname, fmt="PNG")
+
+
+
+
+    return

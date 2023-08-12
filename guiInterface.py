@@ -13,6 +13,8 @@ import dashas
 import mod_pdfReport as pdfrep
 import mod_yogadoshas as yd
 import mod_bala as bala
+import mod_ashtakavarga as ashtaka
+
 
 userlist = []
 
@@ -99,6 +101,10 @@ def FetchUserInputData_formBirthdata(usrInputTk):
         bala.compute_shadbala()
         bala.compute_ishtakashtabalas()
         bala.compute_bhavabala()
+
+        #Compute AshtakaVarga
+        ashtaka.compute_BhinnaAshtakaVargas()
+
 
 
         js.dump_astrodata_injson()
