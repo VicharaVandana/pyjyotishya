@@ -538,47 +538,9 @@ Place of Birth:  {bd["POB"]["name"]}
             self.line(5, self.get_y(), self.w-5, self.get_y())
             self.add_page()
     
-    #Lord In Houses predictions
-    def addLordInHousesSection(self):
-        #title of the page
-        imgcrossed = False
-        self.set_font('helvetica', 'BU', 14)
-        self.set_text_color(0,0,255)
-        self.cell(txt="Lord in Houses predictions in Native's Kundali", w=0, h=10, align='C')
-        imageWidth = (self.w / 2.5) - 5
-        #put Lagna chart 
-        self.image("./images/Lagna_chart.png", x=5, y=30, w=imageWidth)
-        imgend_x = (self.w / 2.5)
-        imgend_y = 30 + imageWidth + 5
-
-        #Setup for prediction text
-        self.set_font('Times', '', 10)
-        self.set_text_color(20,15,0)
-
-        #Get the predections
-        predictions = lhpredictions.populate_lordinhouses(data.charts)
-        xpos = imgend_x
-        ypos = 30
-        self.set_xy(xpos,ypos)
-        
-        for prediction in predictions:
-            predictiontext = f'''LordinHouse : {prediction["LordinHouse"]}
-Description: {prediction["Description"]}
-Result: {prediction["Prediction"]}
-'''
-            self.multi_cell(txt=predictiontext, w=0, h=5, align='L')
-            self.ln(5)
-            if ((self.get_y() < imgend_y) and (imgcrossed == False)):
-                self.set_x(imgend_x)
-            else:
-                imgcrossed = True        
-
-        #End of Yoga Dosha so draw a line
-        self.line(5, self.get_y(), self.w-5, self.get_y())
-        self.add_page()
     
     #Lord In Houses predictions
-    def addLordInHousesSection2(self):
+    def addLordInHousesSection(self):
         #title of the page
         imgcrossed = False
         self.set_font('helvetica', 'BU', 14)
@@ -610,7 +572,7 @@ Result: {prediction["Prediction"]}
                 self.set_x(imgend_x)
             self.cell(txt="Description : ", w=0, h=5, align='L', ln=False)
             self.set_font('Times', 'I', 12)
-            self.set_text_color(0,0,230)
+            self.set_text_color(155,0,155)
             if ((self.get_y() < imgend_y) and (imgcrossed == False)):
                 self.set_x(imgend_x)
             else:
@@ -1089,7 +1051,7 @@ def GeneratePDFReport(charts):
         pdf.addYogaDoshasSection()
 
         #Adding Lord in houses section
-        pdf.addLordInHousesSection2()
+        pdf.addLordInHousesSection()
         
     
     pdf.output(f'./reports/{charts["user_details"]["name"]}_jyotishamitraReport.pdf', 'F')
