@@ -56,6 +56,7 @@ COMPRO = "Compromises"
 ABS = "Absent"
 
 #declare constants related to planet relationship
+EXHALT = "Uchha Sthana / Exhalted Sign"
 MOOL = "Mooltrikona Rashi / Mooltrikon Sign"
 SWAYAM = "Swayam Rashi / Own Sign"
 ATHIMITRA = "Athimitra / Best Friend"

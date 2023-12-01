@@ -481,5 +481,215 @@
         "name": "sample",
         "Gender": "Male",
         "Comments": ""
+    },
+    "vinay madar": {
+        "DOB": {
+            "year": 2005,
+            "month": 5,
+            "day": 31
+        },
+        "TOB": {
+            "hour": 5,
+            "min": 0,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Gadag",
+            "lat": 75.62971,
+            "lon": 15.42977,
+            "timezone": 5.5
+        },
+        "name": "Vinay Madar",
+        "Gender": "Male",
+        "Comments": ""
+    },
+    "keerthi son": {
+        "DOB": {
+            "year": 2023,
+            "month": 11,
+            "day": 5
+        },
+        "TOB": {
+            "hour": 18,
+            "min": 40,
+            "sec": 0
+        },
+        "POB": {
+            "name": "madhalli",
+            "lat": 75.4286,
+            "lon": 15.2815,
+            "timezone": 5.5
+        },
+        "name": "keerthi son",
+        "Gender": "Male",
+        "Comments": ""
+    },
+    "laxmi mandri": {
+        "DOB": {
+            "year": 1995,
+            "month": 4,
+            "day": 3
+        },
+        "TOB": {
+            "hour": 15,
+            "min": 30,
+            "sec": 0
+        },
+        "POB": {
+            "name": "ghataprabha",
+            "lat": 74.7586,
+            "lon": 16.2395,
+            "timezone": 5.5
+        },
+        "name": "laxmi mandri",
+        "Gender": "Female",
+        "Comments": ""
+    },
+    "shwetha bhat": {
+        "DOB": {
+            "year": 1987,
+            "month": 6,
+            "day": 11
+        },
+        "TOB": {
+            "hour": 14,
+            "min": 24,
+            "sec": 6
+        },
+        "POB": {
+            "name": "Ramdurga",
+            "lat": 75.2975,
+            "lon": 15.95,
+            "timezone": 5.5
+        },
+        "name": "shwetha bhat",
+        "Gender": "Female",
+        "Comments": ""
+    },
+    "pengesha": {
+        "DOB": {
+            "year": 1992,
+            "month": 6,
+            "day": 15
+        },
+        "TOB": {
+            "hour": 23,
+            "min": 5,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Bidar",
+            "lat": 17.9,
+            "lon": 77.55,
+            "timezone": 5.5
+        },
+        "name": "pengesha",
+        "Gender": "Male",
+        "Comments": ""
+    },
+    "akshus nephew": {
+        "DOB": {
+            "year": 2023,
+            "month": 6,
+            "day": 2
+        },
+        "TOB": {
+            "hour": 15,
+            "min": 14,
+            "sec": 0
+        },
+        "POB": {
+            "name": "sattur",
+            "lat": 75.0366,
+            "lon": 15.4177,
+            "timezone": 5.5
+        },
+        "name": "Akshus nephew",
+        "Gender": "Male",
+        "Comments": ""
+    },
+    "nitin dev akshus prospect": {
+        "DOB": {
+            "year": 1992,
+            "month": 7,
+            "day": 5
+        },
+        "TOB": {
+            "hour": 21,
+            "min": 27,
+            "sec": 0
+        },
+        "POB": {
+            "name": "hollalkere",
+            "lat": 76.1958,
+            "lon": 14.0541,
+            "timezone": 5.5
+        },
+        "name": "Nitin Dev Akshus prospect",
+        "Gender": "Male",
+        "Comments": ""
+    },
+    "kumar akshus prospect": {
+        "DOB": {
+            "year": 1991,
+            "month": 9,
+            "day": 4
+        },
+        "TOB": {
+            "hour": 6,
+            "min": 35,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Savanur",
+            "lat": 75.3356,
+            "lon": 14.9725,
+            "timezone": 5.5
+        },
+        "name": "Kumar Akshus prospect",
+        "Gender": "Male",
+        "Comments": ""
+    },
+    "rajamani akka": {
+        "DOB": {
+            "year": 1989,
+            "month": 8,
+            "day": 23
+        },
+        "TOB": {
+            "hour": 5,
+            "min": 0,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Mysore",
+            "lat": 76.63925,
+            "lon": 12.29791,
+            "timezone": 5.5
+        },
+        "name": "Rajamani akka",
+        "Gender": "Female",
+        "Comments": ""
+    },
+    "harshitha l.s": {
+        "DOB": {
+            "year": 2008,
+            "month": 8,
+            "day": 1
+        },
+        "TOB": {
+            "hour": 5,
+            "min": 15,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Mandya",
+            "lat": 76.89583,
+            "lon": 12.52417,
+            "timezone": 5.5
+        },
+        "name": "harshitha L.S",
+        "Gender": "Female",
+        "Comments": ""
     }
 }

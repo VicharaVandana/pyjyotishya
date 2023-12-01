@@ -837,7 +837,7 @@ def compute_yuddhabala():
                 looserplanet = planet2
                 winnerplanet = planet1
                 #now get difference in shadbala between winning and loosing planet
-                shadbalaGap = (abs(data.charts["Balas"]["Shadbala"]["Total"][looserplanet] - data.charts["Balas"]["Shadbala"]["Total"][winnerplanet]))
+                shadbalaGap = round(((abs(data.charts["Balas"]["Shadbala"]["Total"][looserplanet] - data.charts["Balas"]["Shadbala"]["Total"][winnerplanet]))), 3)
                 data.charts["Balas"]["Shadbala"]["Kaalabala"]["Yuddhabala"][looserplanet] = (data.charts["Balas"]["Shadbala"]["Kaalabala"]["Yuddhabala"][looserplanet] - shadbalaGap)
                 data.charts["Balas"]["Shadbala"]["Kaalabala"]["Yuddhabala"][winnerplanet] = (data.charts["Balas"]["Shadbala"]["Kaalabala"]["Yuddhabala"][winnerplanet] + shadbalaGap)
     

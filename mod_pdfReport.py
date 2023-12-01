@@ -4,6 +4,7 @@ from mod_astrodata import birthdata as bd
 from datetime import datetime as dt
 from mod_bala import BalaNeededValues as need
 from scipy.stats import rankdata
+import mod_lordinhouses as lhpredictions
 
 global mychart
 global reportLevel 
@@ -537,6 +538,110 @@ Place of Birth:  {bd["POB"]["name"]}
             self.line(5, self.get_y(), self.w-5, self.get_y())
             self.add_page()
     
+    #Lord In Houses predictions
+    def addLordInHousesSection(self):
+        #title of the page
+        imgcrossed = False
+        self.set_font('helvetica', 'BU', 14)
+        self.set_text_color(0,0,255)
+        self.cell(txt="Lord in Houses predictions in Native's Kundali", w=0, h=10, align='C')
+        imageWidth = (self.w / 2.5) - 5
+        #put Lagna chart 
+        self.image("./images/Lagna_chart.png", x=5, y=30, w=imageWidth)
+        imgend_x = (self.w / 2.5)
+        imgend_y = 30 + imageWidth + 5
+
+        #Setup for prediction text
+        self.set_font('Times', '', 10)
+        self.set_text_color(20,15,0)
+
+        #Get the predections
+        predictions = lhpredictions.populate_lordinhouses(data.charts)
+        xpos = imgend_x
+        ypos = 30
+        self.set_xy(xpos,ypos)
+        
+        for prediction in predictions:
+            predictiontext = f'''LordinHouse : {prediction["LordinHouse"]}
+Description: {prediction["Description"]}
+Result: {prediction["Prediction"]}
+'''
+            self.multi_cell(txt=predictiontext, w=0, h=5, align='L')
+            self.ln(5)
+            if ((self.get_y() < imgend_y) and (imgcrossed == False)):
+                self.set_x(imgend_x)
+            else:
+                imgcrossed = True        
+
+        #End of Yoga Dosha so draw a line
+        self.line(5, self.get_y(), self.w-5, self.get_y())
+        self.add_page()
+    
+    #Lord In Houses predictions
+    def addLordInHousesSection2(self):
+        #title of the page
+        imgcrossed = False
+        self.set_font('helvetica', 'BU', 14)
+        self.set_text_color(0,0,255)
+        self.cell(txt="Lord in Houses predictions in Native's Kundali", w=0, h=10, align='C')
+        imageWidth = (self.w / 2.5) - 5
+        #put Lagna chart 
+        self.image("./images/Lagna_chart.png", x=5, y=30, w=imageWidth)
+        imgend_x = (self.w / 2.5)
+        imgend_y = 30 + imageWidth + 5
+
+
+        #Get the predections
+        predictions = lhpredictions.populate_lordinhouses(data.charts)
+        xpos = imgend_x
+        ypos = 30
+        self.set_xy(xpos,ypos)
+        
+        for prediction in predictions:
+            #Heading
+            self.set_font('Times', 'BU', 12)
+            self.set_text_color(200,15,0)
+            self.cell(txt=prediction["LordinHouse"], w=0, h=5, align='L', ln=True)
+
+            #Description
+            self.set_font('Times', 'B', 12)
+            self.set_text_color(0,0,0)
+            if ((self.get_y() < imgend_y) and (imgcrossed == False)):
+                self.set_x(imgend_x)
+            self.cell(txt="Description : ", w=0, h=5, align='L', ln=False)
+            self.set_font('Times', 'I', 12)
+            self.set_text_color(0,0,230)
+            if ((self.get_y() < imgend_y) and (imgcrossed == False)):
+                self.set_x(imgend_x)
+            else:
+                self.set_x(5)
+            self.multi_cell(txt=f'                            {prediction["Description"]}', w=0, h=5, align='L')
+            self.ln()
+
+            #Results
+            self.set_font('Times', 'B', 12)
+            self.set_text_color(0,0,0)
+            if ((self.get_y() < imgend_y) and (imgcrossed == False)):
+                self.set_x(imgend_x)
+            self.cell(txt="Result : ", w=0, h=5, align='L', ln=False)
+            self.set_font('Times', 'I', 12)
+            self.set_text_color(0,0,230)
+            if ((self.get_y() < imgend_y) and (imgcrossed == False)):
+                self.set_x(imgend_x)
+            else:
+                self.set_x(5)            
+            self.multi_cell(txt=f'                    {prediction["Prediction"]}', w=0, h=5, align='L')
+            self.ln(5)
+
+            if ((self.get_y() < imgend_y) and (imgcrossed == False)):
+                self.set_x(imgend_x)
+            else:
+                imgcrossed = True        
+
+        #End of Yoga Dosha so draw a line
+        self.line(5, self.get_y(), self.w-5, self.get_y())
+        self.add_page()
+    
     def addVimshottariDasha(self):
         #title of the page
         self.set_font('helvetica', 'BU', 16)
@@ -982,6 +1087,9 @@ def GeneratePDFReport(charts):
         #adding the Yogas 
         pdf.add_page()
         pdf.addYogaDoshasSection()
+
+        #Adding Lord in houses section
+        pdf.addLordInHousesSection2()
         
     
     pdf.output(f'./reports/{charts["user_details"]["name"]}_jyotishamitraReport.pdf', 'F')

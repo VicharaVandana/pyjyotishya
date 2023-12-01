@@ -49781,10 +49781,40 @@
         "lon": 16.4042,
         "timezone": 5.5
     },
-    "rudraprayag": {
-        "name": "rudraprayag",
-        "lat": 78.9822,
-        "lon": 30.285,
+    "madhalli": {
+        "name": "madhalli",
+        "lat": 75.4286,
+        "lon": 15.2815,
+        "timezone": 5.5
+    },
+    "ghataprabha": {
+        "name": "ghataprabha",
+        "lat": 74.7586,
+        "lon": 16.2395,
+        "timezone": 5.5
+    },
+    "ramdurga": {
+        "name": "Ramdurga",
+        "lat": 75.2975,
+        "lon": 15.95,
+        "timezone": 5.5
+    },
+    "sattur": {
+        "name": "sattur",
+        "lat": 75.0366,
+        "lon": 15.4177,
+        "timezone": 5.5
+    },
+    "hollalkere": {
+        "name": "hollalkere",
+        "lat": 76.1958,
+        "lon": 14.0541,
+        "timezone": 5.5
+    },
+    "savanur": {
+        "name": "Savanur",
+        "lat": 75.3356,
+        "lon": 14.9725,
         "timezone": 5.5
     }
 }
