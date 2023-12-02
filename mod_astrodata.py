@@ -728,6 +728,45 @@ charts = {"D1": D1,
                                                  }
                                     }
                     },
+  "sub-planets" : {
+    "Sphuta"  : {
+            "type"  : "", #Beeja for males and Kshetra for females
+            "symbol"       : "",
+            "D1": {"pos"          : {"deg" : 0, "min" : 0, "sec" : 0, "dec_deg": 0.0}, #initioalized to zero
+                  "nakshatra"    : "Ashwini" ,
+                  "pada"         : 1,
+                  "nak-ruler"    : "Ketu",
+                  "nak-diety"    : "Ashwini kumaras",
+                  "sign"         : "Aries",
+                  "rashi"        : "Mesha",
+                  "signlord"     : "Mars",},
+            "D3": {"pos"          : {"deg" : 0, "min" : 0, "sec" : 0, "dec_deg": 0.0}, #initioalized to zero
+                  "nakshatra"    : "Ashwini" ,
+                  "pada"         : 1,
+                  "nak-ruler"    : "Ketu",
+                  "nak-diety"    : "Ashwini kumaras",
+                  "sign"         : "Aries",
+                  "rashi"        : "Mesha",
+                  "signlord"     : "Mars",},
+            "D7": {"pos"          : {"deg" : 0, "min" : 0, "sec" : 0, "dec_deg": 0.0}, #initioalized to zero
+                  "nakshatra"    : "Ashwini" ,
+                  "pada"         : 1,
+                  "nak-ruler"    : "Ketu",
+                  "nak-diety"    : "Ashwini kumaras",
+                  "sign"         : "Aries",
+                  "rashi"        : "Mesha",
+                  "signlord"     : "Mars",},
+            "D9": {"pos"          : {"deg" : 0, "min" : 0, "sec" : 0, "dec_deg": 0.0}, #initioalized to zero
+                  "nakshatra"    : "Ashwini" ,
+                  "pada"         : 1,
+                  "nak-ruler"    : "Ketu",
+                  "nak-diety"    : "Ashwini kumaras",
+                  "sign"         : "Aries",
+                  "rashi"        : "Mesha",
+                  "signlord"     : "Mars",},
+          },
+
+  },
           "user_details" : {"name"  :"Shyam Bhat",
                             "maasa" :"",
                             "vaara" : "",

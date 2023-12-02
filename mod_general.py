@@ -671,6 +671,22 @@ def list_intersection(lst1, lst2):
     lst3 = [value for value in lst1 if value in lst2]
     return lst3
 
+def compute_pakshatithi4mdegree(deg):
+    # Normalize degrees to be within the range [0, 360)
+    normalized_deg = deg % 360
+
+    # Determine the paksha (waxing or waning)
+    if normalized_deg < 180:
+        paksha = "shukla"
+    else:
+        paksha = "krishna"
+
+    # Determine the tithi
+    tithi = ((normalized_deg % 180) // 12) + 1
+
+    return paksha, tithi
+
+
 if __name__ == "__main__":
     print(signnum("Scorpio"))
     print(check_ifAllNumInSetA_in_SetB([1,4,4,10,7,1,1], [1,4,7,10]))

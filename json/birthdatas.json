@@ -691,5 +691,26 @@
         "name": "harshitha L.S",
         "Gender": "Female",
         "Comments": ""
+    },
+    "harish km akshathas prospect": {
+        "DOB": {
+            "year": 1992,
+            "month": 4,
+            "day": 10
+        },
+        "TOB": {
+            "hour": 11,
+            "min": 30,
+            "sec": 0
+        },
+        "POB": {
+            "name": "Bangalore",
+            "lat": 77.59369,
+            "lon": 12.97194,
+            "timezone": 5.5
+        },
+        "name": "Harish KM Akshathas prospect",
+        "Gender": "Male",
+        "Comments": ""
     }
 }
